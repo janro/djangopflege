@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}summary{% endblock %}
+
+{% block breadcrumb %}
+  &gt; <a href="{{pflegeadmin.summary}}">&Uuml;bersicht</a>
+{% endblock %}
+
+{% block content %}
+
+  <h1>Zusammenfassung</h1>
+  <p>
+    {{carer_count}} BetreuerInnen gespeichert, xy davon aktiv.
+  </p>
+  <p>
+    {{family_count}} Familien gespeichert xy davon aktiv.
+  </p>
+
+  <h2>N&auml;chste Wechsel</h2>
+  <p>todo</p>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% include 'pflegeadmin/topicmenu.html' %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}summary{% endblock %}
+
+{% block breadcrumb %}
+  &gt; <a href="/pflegeadmin/f/">Familien</a>
+  &gt; <a href="/pflegeadmin/f/">TODO</a>
+{% endblock %}
+
+{% block content %}
+
+  {% if family %}
+    This is {{family.id}}!
+    <form action="/pflegeadmin/f/{{family.id}}/edit2/" method="post">
+  {% else %}
+    This is a new Family!
+    <form action="/pflegeadmin/f/edit2/" method="post">
+  {% endif %}
+
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit" />
+  </form>
+
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% include 'pflegeadmin/topicmenu.html' %}
+{% endblock %}

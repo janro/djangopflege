@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}summary{% endblock %}
+
+{% block breadcrumb %}
+  &gt; <a href="/pflegeadmin/f/">Familien</a>
+  &gt; <a href="/pflegeadmin/f/{{family.id}}">{{family.id}}</a>
+{% endblock %}
+
+{% block content %}
+
+  <h1>Familie {{family.lastname_contact_p}}</h1>
+  
+  <table>
+
+    <tr><td colspan="2"> Zu Betreuende Person </td></tr>
+
+    <tr>
+      <td> Vorname </td><td> {{family.firstname_care_p}} </td>
+    </tr>
+    <tr>
+      <td> Nachname </td><td> {{family.lastname_care_p}} </td>
+    </tr>
+    <tr>
+      <td> Telephon </td><td> {{family.phone_care_p}} </td></tr>
+    <tr>
+      <td> Pflegestufe </td><td> {{family.care_level}} </td></tr>
+    <tr>
+      <td> Geburtsdatum </td><td> {{family.date_of_birth}} </td>
+    </tr>
+    
+    <tr><td colspan="2">Kontakt Person</td></tr>
+    <tr>
+      <td> Vorname</td><td> {{family.firstname_contact_p}} </td>
+    </tr>
+    <tr>
+      <td> Nachname </td><td> {{family.lastname_contact_p}} </td>
+    </tr>
+    <tr>
+      <td> Telephon </td><td> {{family.phone_contact_p}} </td>
+    </tr>
+
+    <tr><td colspan="2">Allgemeine Daten</td></tr>
+    <tr>
+      <td> Stra&szlig;e </td><td> {{family.address_street}} </td>
+    </tr>
+    <tr>
+      <td> Hausnummer </td><td> {{family.address_number}} </td>
+    </tr>
+    <tr>
+      <td> Postleitzahl </td><td> {{family.address_postal}} </td>
+    </tr>
+    <tr>
+      <td> Ort </td><td> {{family.address_town}} </td>
+    </tr>
+
+  </table>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% include 'pflegeadmin/topicmenu.html' %}
+{% endblock %}

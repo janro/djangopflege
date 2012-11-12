@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}login{% endblock %}
+
+{% block breadcrumb %}&gt;<a href="/login">login</a>{% endblock %}
+
+{% block content %}
+
+  {% if form.errors %}
+    <div id="block">
+      <p>Your username and password didn't match. Please try again.</p>
+    </div>
+  {% endif %}
+
+  <h1>Login</h1>
+  <form method="post" action="{% url django.contrib.auth.views.login %}">
+  {% csrf_token %}
+    <table>
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <input type="submit" value="login" />
+    <!-- <input type="hidden" name="next" value="{{ next }}" /> -->
+  </form>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% if not user.is_authenticated %}
+    <a href="/login">login</a>
+  {% endif %}
+  {% if user.is_authenticated %}
+    <a href="/logout">logout</a>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+<!-- alltime features -->
+<a href="/">Start</a>
+
+<!-- not-logged-in features -->
+{% if not user.is_authenticated %}
+  <a href="/login">Login</a>
+{% endif %}
+
+{% if user.is_staff %}
+  <a href="/admin">Admin</a>
+{% endif %}
+
+<!-- logged-in-features -->
+{% if user.is_authenticated %}
+  <a href="/pflegeadmin/">&Uuml;bersicht</a>
+  <a href="/pflegeadmin/f/">Familien</a>
+  <a href="{{pflegeadmin.carers}}">Betreuer</a>
+  <a href="/logout">Logout</a>
+{% endif %}

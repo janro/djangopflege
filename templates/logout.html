@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}login{% endblock %}
+
+{% block breadcrumb %}&gt;<a href="/logout">logout</a>{% endblock %}
+
+{% block content %}
+
+  <div id="block">
+    {% if not user.is_authenticated %}
+      Logout succesfull!
+    {% endif %}
+    {% if user.is_authenticated %}
+      Logout NOT succesfull!
+    {% endif %}
+  </div>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% if not user.is_authenticated %}
+    <a href="/login">login</a>
+  {% endif %}
+  {% if user.is_authenticated %}
+    <a href="/logout">logout</a>
+  {% endif %}
+{% endblock %}

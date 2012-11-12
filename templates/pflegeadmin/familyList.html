@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}summary{% endblock %}
+
+{% block breadcrumb %}
+  &gt; <a href="/pflegeadmin/f/">Familien</a>
+{% endblock %}
+
+{% block content %}
+
+  <h1>Familienliste</h1>
+  
+  <table>
+
+    <tr>
+      <td>&#35;</td>
+      <td>Vorname</td>
+      <td>Nachname</td>
+      <td>Telephonnummer</td>
+    </tr>
+
+    {% for family in family_list %}
+      <tr>
+        <td><a href="/pflegeadmin/f/{{family.id}}/">{{family.id}}</a></td>
+        <td>{{family.firstname_contact_p}}</td>
+        <td>{{family.lastname_contact_p}}</td>
+        <td>{{family.phone_contact_p}}</td>
+      </tr>
+    {% endfor %}
+
+  </table>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% include 'pflegeadmin/topicmenu.html' %}
+{% endblock %}
