@@ -4,23 +4,49 @@
 
 {% block breadcrumb %}
   &gt; <a href="/pflegeadmin/f/">Familien</a>
-  &gt; <a href="/pflegeadmin/f/">TODO</a>
+  {% if family %}  
+    &gt; <a href="/pflegeadmin/f/{{family.id}}">{{family.id}}</a>
+  {% else %}
+    &gt; <a href="/pflegeadmin/f/edit">Hinzuf&uuml;gen</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
 
   {% if family %}
-    This is {{family.id}}!
-    <form action="/pflegeadmin/f/{{family.id}}/edit2/" method="post">
+    <h1>Bearbeite Familie {{family.id}}</h1>
   {% else %}
-    This is a new Family!
-    <form action="/pflegeadmin/f/edit2/" method="post">
+    <h1>Neue Familie</h1>
   {% endif %}
 
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Submit" />
-  </form>
+  {% for field in form %}
+    {%if field.errors %}
+      <div id="block">
+        {{field.label_tag}}: {{field.errors}}
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  {% if family %}
+    <form action="/pflegeadmin/f/{{family.id}}/edit/" method="post">
+  {% else %}
+    <form action="/pflegeadmin/f/edit/" method="post">
+  {% endif %}
+    
+      {% csrf_token %}
+  
+      <table class="form">
+        {% for field in form %}
+          <tr>
+            <td> {{field.label_tag}} </td>
+            <td> {{field}}           </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+      <input type="submit" value="Speichern" />
+      <input type="reset" value="Abbrechen" />
+    </form>
 
 
 {% endblock %}

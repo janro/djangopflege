@@ -201,3 +201,8 @@ li
 	list-style-type: none;
 	line-height: 160%;
 }
+
+table.form th, td
+{
+	width: 200px;
+}
