@@ -14,17 +14,22 @@ class Carer(models.Model):
   remark = models.CharField(max_length=500)
   phone = models.CharField(max_length=20)
 
+
+firstname_contact_person
+lastname_contact_person
+phone_contact_person
+
 class Family(models.Model):
-  firstname_contact_p = models.CharField(max_length=100, null=True, blank=True)
-  lastname_contact_p = models.CharField(max_length=100, null=True, blank=True)
-  phone_contact_p = models.CharField(max_length=20, null=True, blank=True)
-  firstname_care_p = models.CharField(max_length=100, null=True, blank=True)
-  lastname_care_p = models.CharField(max_length=100, null=True, blank=True)
-  phone_care_p = models.CharField(max_length=20, null=True, blank=True)
-  address_street = models.CharField(max_length=100, null=True, blank=True)
-  address_number = models.IntegerField(null=True, blank=True)
-  address_postal = models.IntegerField(null=True, blank=True)
-  address_town = models.CharField(max_length=100, null=True, blank=True)
+  firstname_contact_person = models.CharField(max_length=100, null=True, blank=True)
+  lastname_contact_person = models.CharField(max_length=100, null=True, blank=True)
+  phone_contact_person = models.CharField(max_length=20, null=True, blank=True)
+  firstname_care_person = models.CharField(max_length=100, null=True, blank=True)
+  lastname_care_person = models.CharField(max_length=100, null=True, blank=True)
+  phone_care_person = models.CharField(max_length=20, null=True, blank=True)
+  street = models.CharField(max_length=100, null=True, blank=True)
+  number = models.IntegerField(null=True, blank=True)
+  postal_code = models.IntegerField(null=True, blank=True)
+  city = models.CharField(max_length=100, null=True, blank=True)
   care_level = models.IntegerField(null=True, blank=True)
   date_of_birth = models.DateField(null=True, blank=True)
 

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}summary{% endblock %}
+{% block title %}Families{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="/pflegeadmin/f/">Familien</a>
+  &gt; <a href="/pflegeadmin/f/">Families</a>
 {% endblock %}
 
 {% block content %}
@@ -14,9 +14,9 @@
 
     <tr>
       <td>&#35;</td>
-      <td>Vorname</td>
-      <td>Nachname</td>
-      <td>Telephonnummer</td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Phone Number</td>
     </tr>
 
     {% for family in family_list %}

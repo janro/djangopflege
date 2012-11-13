@@ -9,9 +9,9 @@
 
 <!-- logged-in-features -->
 {% if user.is_authenticated %}
-  <a href="/pflegeadmin/">&Uuml;bersicht</a>
-  <a href="/pflegeadmin/f/">Familien</a>
-  <a href="{{pflegeadmin.carers}}">Betreuer</a>
+  <a href="/pflegeadmin/">Overview</a>
+  <a href="/pflegeadmin/f/">Families</a>
+  <a href="{{pflegeadmin.carers}}">Carers</a>
 {% endif %}
 
 <!-- admin feature -->

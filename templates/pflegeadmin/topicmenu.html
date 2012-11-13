@@ -1,16 +1,16 @@
 {% if user.is_authenticated %}
-  <a href="/pflegeadmin/f/">Familien</a>
+  <a href="/pflegeadmin/f/">Families</a>
 {% endif %}
 
 {% if family %}
-<a href="/pflegeadmin/f/{{family.id}}/edit/">Bearbeiten</a>
-<a href="/pflegeadmin/f/{{family.id}}/delete/">Löschen</a>
+<a href="/pflegeadmin/f/{{family.id}}/edit/">Edit</a>
+<a href="/pflegeadmin/f/{{family.id}}/delete/">Delete</a>
 {% endif %}
 
 {% if perms.pflegeadmin.familyPayment_level1 %}
-  <a href="/pflegeadmin/f/edit/">Hinzuf&uuml;gen</a>
+  <a href="/pflegeadmin/f/edit/">Add</a>
 {% endif %}
 
 {% if user.is_authenticated %}
-  <a href="/carer">Betreuer</a>
+  <a href="/carer">Carers</a>
 {% endif %}

@@ -3,20 +3,20 @@
 {% block title %}summary{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="/pflegeadmin/f/">Familien</a>
+  &gt; <a href="/pflegeadmin/f/">Families</a>
   {% if family %}  
     &gt; <a href="/pflegeadmin/f/{{family.id}}">{{family.id}}</a>
   {% else %}
-    &gt; <a href="/pflegeadmin/f/edit">Hinzuf&uuml;gen</a>
+    &gt; <a href="/pflegeadmin/f/edit">Add</a>
   {% endif %}
 {% endblock %}
 
 {% block content %}
 
   {% if family %}
-    <h1>Bearbeite Familie {{family.id}}</h1>
+    <h1>Edit Family {{family.id}}</h1>
   {% else %}
-    <h1>Neue Familie</h1>
+    <h1>Create New Family</h1>
   {% endif %}
 
   {% for field in form %}
@@ -44,8 +44,8 @@
         {% endfor %}
       </table>
 
-      <input type="submit" value="Speichern" />
-      <input type="reset" value="Abbrechen" />
+      <input type="submit" value="Save" />
+      <input type="reset" value="Cancel" />
     </form>
 
 
