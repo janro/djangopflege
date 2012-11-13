@@ -8,23 +8,23 @@
 
 {% block content %}
 
-  <h1>Familienliste</h1>
+  <h1>Family List</h1>
   
-  <table>
+  <table class="list">
 
     <tr>
-      <td>&#35;</td>
-      <td>First Name</td>
-      <td>Last Name</td>
-      <td>Phone Number</td>
+      <td class="list_id">&#35;</td>
+      <td class="list_etc">First Name</td>
+      <td class="list_etc">Last Name</td>
+      <td class="list_etc">Phone Number</td>
     </tr>
 
     {% for family in family_list %}
       <tr>
-        <td><a href="/pflegeadmin/f/{{family.id}}/">{{family.id}}</a></td>
-        <td>{{family.firstname_contact_p}}</td>
-        <td>{{family.lastname_contact_p}}</td>
-        <td>{{family.phone_contact_p}}</td>
+        <td class="list_id"><a href="/pflegeadmin/f/{{family.id}}/">{{family.id}}</a></td>
+        <td class="list_etc">{{family.firstname_contact_person}}</td>
+        <td class="list_etc">{{family.lastname_contact_person}}</td>
+        <td class="list_etc">{{family.phone_contact_person}}</td>
       </tr>
     {% endfor %}
 

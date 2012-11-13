@@ -82,7 +82,7 @@ h3, h4
 }
 #topmenu
 {
-    text-align: right;
+  text-align: right;
 	padding-top: 1em;
 	padding-right: 1em;
 	font-family: Verdana, Arial, sans-serif;
@@ -202,7 +202,43 @@ li
 	line-height: 160%;
 }
 
-table.form th.form, td.form
+table.form td.form
 {
 	width: 200px;
+}
+
+table.table_center
+{
+
+}
+
+td.list_id
+{
+	width: 20px;
+	text-align: right;
+}
+
+td.list_etc
+{
+	width: 120px;
+	text-align: right;
+}
+
+td.list_long_r
+{
+	width: 250px;
+	text-align: right;
+}
+
+td.list_long_l
+{
+	width: 250px;
+	text-align: left;
+}
+
+td.list_long_c
+{
+	text-align: center;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
 }

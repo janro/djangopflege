@@ -9,52 +9,39 @@
 
 {% block content %}
 
-  <h1>Familie {{family.lastname_contact_p}}</h1>
+  <h1>View Family {{family.id}}</h1>
   
-  <table>
-
-    <tr><td colspan="2"> Zu Betreuende Person </td></tr>
-
-    <tr>
-      <td> Vorname </td><td> {{family.firstname_care_p}} </td>
-    </tr>
-    <tr>
-      <td> Nachname </td><td> {{family.lastname_care_p}} </td>
-    </tr>
-    <tr>
-      <td> Telephon </td><td> {{family.phone_care_p}} </td></tr>
-    <tr>
-      <td> Pflegestufe </td><td> {{family.care_level}} </td></tr>
-    <tr>
-      <td> Geburtsdatum </td><td> {{family.date_of_birth}} </td>
-    </tr>
-    
-    <tr><td colspan="2">Kontakt Person</td></tr>
-    <tr>
-      <td> Vorname</td><td> {{family.firstname_contact_p}} </td>
-    </tr>
-    <tr>
-      <td> Nachname </td><td> {{family.lastname_contact_p}} </td>
-    </tr>
-    <tr>
-      <td> Telephon </td><td> {{family.phone_contact_p}} </td>
-    </tr>
-
-    <tr><td colspan="2">Allgemeine Daten</td></tr>
-    <tr>
-      <td> Stra&szlig;e </td><td> {{family.address_street}} </td>
-    </tr>
-    <tr>
-      <td> Hausnummer </td><td> {{family.address_number}} </td>
-    </tr>
-    <tr>
-      <td> Postleitzahl </td><td> {{family.address_postal}} </td>
-    </tr>
-    <tr>
-      <td> Ort </td><td> {{family.address_town}} </td>
-    </tr>
-
-  </table>
+    <table align="center">
+      <tr><td colspan="2" class="list_long_c">Contact Person</td></tr>
+      <tr><td class="list_long_l">Firstname</td>
+        <td class="list_long_r">{{family.firstname_contact_person}}</td></tr>
+      <tr><td class="list_long_l">Lastname</td>
+        <td class="list_long_r">{{family.lastname_contact_person}}</td></tr>
+      <tr><td class="list_long_l">Phone</td>
+        <td class="list_long_r">{{family.phone_contact_person}}</td></tr>
+      
+      <tr><td colspan="2" class="list_long_c">Care Person</td></tr>
+      <tr><td class="list_long_l">Firstname</td>
+        <td class="list_long_r">{{family.firstname_care_person}}</td></tr>
+      <tr><td class="list_long_l">Lastname</td>
+        <td class="list_long_r">{{family.lastname_care_person}}</td></tr>
+      <tr><td class="list_long_l">Phone</td>
+        <td class="list_long_r">{{family.phone_care_person}}</td></tr>
+      
+      <tr><td colspan="2" class="list_long_c">Generell Informations</td></tr>
+      <tr><td class="list_long_l">Street</td>
+        <td class="list_long_r">{{family.street}}</td></tr>
+      <tr><td class="list_long_l">Number</td>
+        <td class="list_long_r">{{family.number}}</td></tr>
+      <tr><td class="list_long_l">Postal code</td>
+        <td class="list_long_r">{{family.postal_code}}</td></tr>
+      <tr><td class="list_long_l">City</td>
+        <td class="list_long_r">{{family.city}}</td></tr>
+      <tr><td class="list_long_l">Care level</td>
+        <td class="list_long_r">{{family.care_level}}</td></tr>
+      <tr><td class="list_long_l">Date of Birth</td>
+        <td class="list_long_r">{{family.date_of_birth}}</td></tr>
+    </table>
 
 {% endblock %}
 

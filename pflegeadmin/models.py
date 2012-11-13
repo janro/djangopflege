@@ -15,11 +15,28 @@ class Carer(models.Model):
   phone = models.CharField(max_length=20)
 
 
-firstname_contact_person
-lastname_contact_person
-phone_contact_person
-
 class Family(models.Model):
+  
+  # firstname_contact_person
+  # lastname_contact_person
+  # phone_contact_person
+  # firstname_care_person
+  # lastname_care_person
+  # phone_care_person
+  # street
+  # number
+  # postal_code
+  # city
+  # care_level
+  # date_of_birth
+
+  CARE_LEVELS = (
+    (1, 'Level 1'),
+    (2, 'Level 2'),
+    (3, 'Level 3'),
+    (4, 'Level 4'),
+  )
+  
   firstname_contact_person = models.CharField(max_length=100, null=True, blank=True)
   lastname_contact_person = models.CharField(max_length=100, null=True, blank=True)
   phone_contact_person = models.CharField(max_length=20, null=True, blank=True)
@@ -30,7 +47,7 @@ class Family(models.Model):
   number = models.IntegerField(null=True, blank=True)
   postal_code = models.IntegerField(null=True, blank=True)
   city = models.CharField(max_length=100, null=True, blank=True)
-  care_level = models.IntegerField(null=True, blank=True)
+  care_level = models.IntegerField(default=1, choices=CARE_LEVELS, blank=True)
   date_of_birth = models.DateField(null=True, blank=True)
 
 class Care(models.Model):
