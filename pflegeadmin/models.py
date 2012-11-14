@@ -1,19 +1,43 @@
 from django.db import models
 
 class Carer(models.Model):
-  firstname = models.CharField(max_length=100)
-  lastname = models.CharField(max_length=100)
-  date_of_birth = models.DateField()
-  hometown = models.CharField(max_length=100)
-  family = models.CharField(max_length=100)
-  language_skills = models.IntegerField()
-  care_skills = models.IntegerField()
-  weight = models.IntegerField()
+
+  # firstname
+  # lastname
+  # phone
+  # date_of_birth
+  # hometown
+  # family
+  # weight
+  # smoker
+  # trade_registered
+  # language_skills
+  # care_skills
+  # remark
+
+  SKILL_LEVELS = (
+    (1, 'Skill Level 1'),
+    (2, 'Skill Level 2'),
+    (3, 'Skill Level 3'),
+    (4, 'Skill Level 4'),
+  )
+
+  firstname = models.CharField(max_length=100, null=True, blank=False)
+  lastname = models.CharField(max_length=100, null=True, blank=True)
+  phone = models.CharField(max_length=20, null=True, blank=True)
+  date_of_birth = models.DateField(null=True, blank=True)
+  hometown = models.CharField(max_length=100, null=True, blank=True)
+  weight = models.IntegerField(null=True, blank=True)
+  family = models.BooleanField()
   smoker = models.BooleanField()
   trade_registered = models.BooleanField()
-  remark = models.CharField(max_length=500)
-  phone = models.CharField(max_length=20)
+  language_skills = models.IntegerField(default=1, choices=SKILL_LEVELS, blank=True)
+  care_skills = models.IntegerField(default=1, choices=SKILL_LEVELS, blank=True)
+  remark = models.CharField(max_length=500, null=True, blank=True)
 
+  
+  class Meta:
+    permissions = (('carerCreateDelete', 'Create or Delete'),)
 
 class Family(models.Model):
   
@@ -38,8 +62,8 @@ class Family(models.Model):
   )
   
   firstname_contact_person = models.CharField(max_length=100, null=True, blank=True)
-  lastname_contact_person = models.CharField(max_length=100, null=True, blank=True)
-  phone_contact_person = models.CharField(max_length=20, null=True, blank=True)
+  lastname_contact_person = models.CharField(max_length=100, null=True, blank=False)
+  phone_contact_person = models.CharField(max_length=20, null=True, blank=False)
   firstname_care_person = models.CharField(max_length=100, null=True, blank=True)
   lastname_care_person = models.CharField(max_length=100, null=True, blank=True)
   phone_care_person = models.CharField(max_length=20, null=True, blank=True)
@@ -49,6 +73,9 @@ class Family(models.Model):
   city = models.CharField(max_length=100, null=True, blank=True)
   care_level = models.IntegerField(default=1, choices=CARE_LEVELS, blank=True)
   date_of_birth = models.DateField(null=True, blank=True)
+
+  class Meta:
+      permissions = (('familyCreateDelete', 'Create or Delete'),)
 
 class Care(models.Model):
   carer = models.ForeignKey(Carer)
@@ -62,7 +89,7 @@ class FamilyPayment(models.Model):
   family_pays = models.IntegerField()
 
   class Meta:
-      permissions = (("familyPayment_level1", "View Family Payment"), )
+      permissions = (('familyPayment_level1', 'View Family Payment'),)
 
 class CarerPayment(models.Model):
   carer = models.ForeignKey(Carer)
@@ -70,4 +97,4 @@ class CarerPayment(models.Model):
   date = models.DateField()
 
   class Meta:
-    permissions = (("carerPayment_level1", "View Carer Payment"), )
+    permissions = (('carerPayment_level1', 'View Carer Payment'),)

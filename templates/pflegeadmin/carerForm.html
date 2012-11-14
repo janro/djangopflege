@@ -1,22 +1,23 @@
+
 {% extends 'base.html' %}
 
-{% block title %}Family Form{% endblock %}
+{% block title %}Carer Form{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="/pflegeadmin/f/">Families</a>
-  {% if family %}  
-    &gt; <a href="/pflegeadmin/f/{{family.id}}">{{family.id}}</a>
+  &gt; <a href="/pflegeadmin/c/">Carers</a>
+  {% if carer %}  
+    &gt; <a href="/pflegeadmin/c/{{carer.id}}">{{carer.id}}</a>
   {% else %}
-    &gt; <a href="/pflegeadmin/f/edit">Add</a>
+    &gt; <a href="/pflegeadmin/c/edit">Add</a>
   {% endif %}
 {% endblock %}
 
 {% block content %}
 
-  {% if family %}
-    <h1>Edit Family {{family.id}}</h1>
+  {% if carer %}
+    <h1>Edit carer {{carer.id}}</h1>
   {% else %}
-    <h1>Create New Family</h1>
+    <h1>Create New Carer</h1>
   {% endif %}
 
   {% for field in form %}
@@ -27,10 +28,10 @@
     {% endif %}
   {% endfor %}
 
-  {% if family %}
-    <form action="/pflegeadmin/f/{{family.id}}/edit/" method="post">
+  {% if carer %}
+    <form action="/pflegeadmin/c/{{carer.id}}/edit/" method="post">
   {% else %}
-    <form action="/pflegeadmin/f/edit/" method="post">
+    <form action="/pflegeadmin/c/edit/" method="post">
   {% endif %}
     
       {% csrf_token %}

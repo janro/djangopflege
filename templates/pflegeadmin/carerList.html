@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Carers{% endblock %}
+
+{% block breadcrumb %}
+  &gt; <a href="/pflegeadmin/c/">Carers</a>
+{% endblock %}
+
+{% block content %}
+
+  <h1>Carer List</h1>
+  
+  <table class="list">
+
+    <tr>
+      <td class="list_id">&#35;</td>
+      <td class="list_etc">First Name</td>
+      <td class="list_etc">Last Name</td>
+      <td class="list_etc">Phone Number</td>
+    </tr>
+
+    {% for carer in carer_list %}
+      <tr>
+        <td class="list_id"><a href="/pflegeadmin/c/{{carer.id}}/">{{carer.id}}</a></td>
+        <td class="list_etc">{{carer.firstname}}</td>
+        <td class="list_etc">{{carer.lastname}}</td>
+        <td class="list_etc">{{carer.phone}}</td>
+      </tr>
+    {% endfor %}
+
+  </table>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% include 'pflegeadmin/topicmenu.html' %}
+{% endblock %}

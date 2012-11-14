@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}summary{% endblock %}
+
+{% block breadcrumb %}
+  &gt; <a href="/pflegeadmin/c/">Carers</a>
+  &gt; <a href="/pflegeadmin/c/{{carer.id}}">{{carer.id}}</a>
+{% endblock %}
+
+{% block content %}
+
+  <h1>View Carer {{carer.id}}</h1>
+  
+    <table class="list">
+      <tr><td colspan="2" class="list_long_c">Basic Information</td></tr>
+      <tr><td class="list_long_l">Firstname</td>
+            <td class="list_long_r">{{carer.firstname}}</td></tr>
+      <tr><td class="list_long_l">Lastname</td>
+            <td class="list_long_r">{{carer.lastname}}</td></tr>
+      <tr><td class="list_long_l">Phone</td>
+            <td class="list_long_r">{{carer.phone}}</td></tr>
+
+      <tr><td colspan="2" class="list_long_c">Generell Information</td></tr>
+      <tr><td class="list_long_l">Date of Birth</td>
+            <td class="list_long_r">{{carer.date_of_birth}}</td></tr>
+      <tr><td class="list_long_l">Hometown</td>
+            <td class="list_long_r">{{carer.hometown}}</td></tr>
+      <tr><td class="list_long_l">Family</td>
+            <td class="list_long_r">{{carer.family}}</td></tr>
+      <tr><td class="list_long_l">Weight</td>
+            <td class="list_long_r">{{carer.weight}}</td></tr>
+      <tr><td class="list_long_l">Smoker</td>
+            <td class="list_long_r">{{carer.smoker}}</td></tr>
+      <tr><td class="list_long_l">Trade registered</td>
+            <td class="list_long_r">{{carer.trade_registered}}</td></tr>
+      
+      <tr><td colspan="2" class="list_long_c">Skills and Remarks</td></tr>
+      <tr><td class="list_long_l">Language skills</td>
+            <td class="list_long_r">{{carer.language_skills}}</td></tr>
+      <tr><td class="list_long_l">Care skills</td>
+            <td class="list_long_r">{{carer.care_skills}}</td></tr>
+      <tr><td colspan="2" class="list_long_l">Remarks</td></tr>
+      <tr><td colspan="2" class="list_long_r">{{carer.remark}}</td></tr>
+    </table>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% include 'pflegeadmin/topicmenu.html' %}
+{% endblock %}
