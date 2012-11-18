@@ -9,15 +9,51 @@
 {% block content %}
 
   <h1>Overview</h1>
-  <p>
-    {{carer_count}} Carers in Database
-  </p>
-  <p>
-    {{family_count}} Families in Database
-  </p>
+  <p> {{carer_count}} Carers in Database </p>
+  <p> {{family_count}} Families in Database </p>
+  <p> {{care_count}} Active Cares </p>
 
-  <h2>Next Transfers:</h2>
-  <p>todo</p>
+  {% if arrival_list %}
+    <h2>Arrivals:</h2>
+    <table class="list">
+      <tr>
+        <td class="list_sync">Arrival Date</td>
+        <td class="list_sync">Carer</td>
+        <td class="list_sync">Family</td>
+      </tr>
+
+      {% for care in arrival_list %}
+        <tr>
+          <td>{{care.start_date}}</td>
+          <td>
+            <a href="/pflegeadmin/c/{{care.carer.id}}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
+          </td>
+          <td><a href="/pflegeadmin/f/{{care.family.id}}">{{care.family.lastname_contact_person}}</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+
+  {% if departure_list %}
+    <h2>Next Departures:</h2>
+    <table class="list">
+      <tr>
+        <td class="list_sync">Date</td>
+        <td class="list_sync">Carer</td>
+        <td class="list_sync">Family</td>
+      </tr>
+
+      {% for care in departure_list %}
+        <tr>
+          <td>{{care.end_date}}</td>
+          <td>
+            <a href="/pflegeadmin/c/{{care.carer.id}}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
+          </td>
+          <td><a href="/pflegeadmin/f/{{care.family.id}}">{{care.family.lastname_contact_person}}</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
 
 {% endblock %}
 

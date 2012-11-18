@@ -78,10 +78,16 @@ class Family(models.Model):
       permissions = (('familyCreateDelete', 'Create or Delete'),)
 
 class Care(models.Model):
+
+  # carer
+  # family
+  # start_date
+  # end_date
+
   carer = models.ForeignKey(Carer)
   family = models.ForeignKey(Family)
-  start_date = models.DateField()
-  end_date = models.DateField()
+  start_date = models.DateField(null=False, blank=False)
+  end_date = models.DateField(null=True, blank=True)
 
 
 class FamilyPayment(models.Model):

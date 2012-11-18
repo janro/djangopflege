@@ -9,7 +9,7 @@
 
 {% block content %}
 
-  <h1>View Carer {{carer.id}}</h1>
+  <h1>{{carer.firstname}} {{carer.lastname}}</h1>
   
     <table class="list">
       <tr><td colspan="2" class="list_long_c">Basic Information</td></tr>
@@ -42,6 +42,29 @@
       <tr><td colspan="2" class="list_long_l">Remarks</td></tr>
       <tr><td colspan="2" class="list_long_r">{{carer.remark}}</td></tr>
     </table>
+
+  {% if care_list %}
+  <h2>Deployments</h2>
+
+    <table class = "list">
+      <tr>
+        <td class="list_sync">Start Date</td>
+        <td class="list_sync">End Date</td>
+        <td class="list_sync">Family</td>
+      </tr>
+
+      {% for care in care_list %}
+      <tr>
+        <td>{{care.start_date}}</td>
+        <td>{{care.end_date}}</td>
+        <td><a href="/pflegeadmin/f/{{care.family.id}}">{{care.family.lastname_contact_person}}</a></td>
+      </tr>
+      {% endfor %}  
+    </table>
+
+  {% endif %}
+
+
 
 {% endblock %}
 

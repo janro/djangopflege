@@ -241,3 +241,9 @@ td.list_long_c
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
 }
+
+td.list_sync
+{
+	width: 150px;
+	text-align: left;
+}

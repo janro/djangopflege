@@ -5,17 +5,29 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 from pflegeadmin.forms import FamilyForm, CarerForm
-from pflegeadmin.models import Carer, Family
+from pflegeadmin.models import Carer, Family, Care
+
+import datetime
 
 @login_required
 def summary(request):
-  family_count = Family.objects.all().count();
-  carer_count = Carer.objects.all().count();
+  family_count = Family.objects.all().count()
+  carer_count = Carer.objects.all().count()
+  care_count = Care.objects.filter(
+    start_date__lte = datetime.date.today()).filter(
+    end_date__gte = datetime.date.today()).count()
+
+  arrival_list = Care.objects.filter(start_date__gte = datetime.date.today()).order_by('-start_date')[0:5]
+  departure_list = Care.objects.filter(end_date__gte = datetime.date.today()).order_by('-end_date')[0:5]
   return render_to_response('pflegeadmin/summary.html',
     {'carer_count' : carer_count,
-    'family_count' : family_count},
+     'family_count' : family_count,
+     'care_count' : care_count,
+     'arrival_list' : arrival_list,
+     'departure_list' : departure_list},
     context_instance=RequestContext(request))
 
 @login_required
@@ -35,15 +47,23 @@ def carerList(request):
 @login_required
 def familyDetails(request, family_id):
   family = get_object_or_404(Family, pk=family_id)
+  try:
+    care_list = Care.objects.filter(family=family_id).order_by('-start_date')
+  except ObjectDoesNotExist:
+    care_list = {}
   return render_to_response('pflegeadmin/familyDetails.html',
-      {'family' : family},
+      {'family' : family, 'care_list' : care_list},
       context_instance=RequestContext(request))
 
 @login_required
 def carerDetails(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
+  try:
+    care_list = Care.objects.filter(carer=carer_id).order_by('-start_date')
+  except ObjectDoesNotExist:
+    care_list = {}
   return render_to_response('pflegeadmin/carerDetails.html',
-      {'carer' : carer},
+      {'carer' : carer, 'care_list' : care_list},
       context_instance=RequestContext(request))
 
 @permission_required('pflegeadmin.familyCreateDelete', raise_exception=True)
