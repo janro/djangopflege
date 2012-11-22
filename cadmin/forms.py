@@ -1,7 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 
-from pflegeadmin.models import Family, Carer
+from cadmin.models import Family, Carer
 
 class FamilyForm(ModelForm):
   class Meta:

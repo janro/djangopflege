@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
-from pflegeadmin.forms import FamilyForm, CarerForm
-from pflegeadmin.models import Carer, Family, Care
+from cadmin.forms import FamilyForm, CarerForm
+from cadmin.models import Carer, Family, Care
 
 import datetime
 
@@ -22,7 +22,7 @@ def summary(request):
 
   arrival_list = Care.objects.filter(start_date__gte = datetime.date.today()).order_by('-start_date')[0:5]
   departure_list = Care.objects.filter(end_date__gte = datetime.date.today()).order_by('-end_date')[0:5]
-  return render_to_response('pflegeadmin/summary.html',
+  return render_to_response('cadmin/summary.html',
     {'carer_count' : carer_count,
      'family_count' : family_count,
      'care_count' : care_count,
@@ -33,14 +33,14 @@ def summary(request):
 @login_required
 def familyList(request):
   family_list = Family.objects.all();
-  return render_to_response('pflegeadmin/familyList.html',
+  return render_to_response('cadmin/familyList.html',
     {'family_list' : family_list},
     context_instance=RequestContext(request))
 
 @login_required
 def carerList(request):
   carer_list = Carer.objects.all();
-  return render_to_response('pflegeadmin/carerList.html',
+  return render_to_response('cadmin/carerList.html',
     {'carer_list' : carer_list},
     context_instance=RequestContext(request))
 
@@ -51,7 +51,7 @@ def familyDetails(request, family_id):
     care_list = Care.objects.filter(family=family_id).order_by('-start_date')
   except ObjectDoesNotExist:
     care_list = {}
-  return render_to_response('pflegeadmin/familyDetails.html',
+  return render_to_response('cadmin/familyDetails.html',
       {'family' : family, 'care_list' : care_list},
       context_instance=RequestContext(request))
 
@@ -62,33 +62,33 @@ def carerDetails(request, carer_id):
     care_list = Care.objects.filter(carer=carer_id).order_by('-start_date')
   except ObjectDoesNotExist:
     care_list = {}
-  return render_to_response('pflegeadmin/carerDetails.html',
+  return render_to_response('cadmin/carerDetails.html',
       {'carer' : carer, 'care_list' : care_list},
       context_instance=RequestContext(request))
 
-@permission_required('pflegeadmin.familyCreateDelete', raise_exception=True)
+@permission_required('cadmin.familyCreateDelete', raise_exception=True)
 def familyDelete(request, family_id):
   family = get_object_or_404(Family, pk=family_id)
   family.delete()
-  return HttpResponseRedirect('/pflegeadmin/f/')
+  return HttpResponseRedirect('/cadmin/f/')
 
-@permission_required('pflegeadmin.carerCreateDelete', raise_exception=True)
+@permission_required('cadmin.carerCreateDelete', raise_exception=True)
 def carerDelete(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
   carer.delete()
-  return HttpResponseRedirect('/pflegeadmin/c/')
+  return HttpResponseRedirect('/cadmin/c/')
 
-@permission_required('pflegeadmin.familyCreateDelete', raise_exception=True)
+@permission_required('cadmin.familyCreateDelete', raise_exception=True)
 def familyUpdateForm(request, family_id):
   family = get_object_or_404(Family, pk=family_id)
   if request.method == 'POST':
     form = FamilyForm(request.POST, instance=family)
     if form.is_valid():
       family = form.save()
-      return HttpResponseRedirect('/pflegeadmin/f/'+str(family.id))
+      return HttpResponseRedirect('/cadmin/f/'+str(family.id))
   else:
     form = FamilyForm(instance=family)
-  return render_to_response('pflegeadmin/familyForm.html',
+  return render_to_response('cadmin/familyForm.html',
     {'form': form, 'family' : family, },
     context_instance=RequestContext(request))
 
@@ -99,23 +99,23 @@ def carerUpdateForm(request, carer_id):
     form = CarerForm(request.POST, instance=carer)
     if form.is_valid():
       carer = form.save()
-      return HttpResponseRedirect('/pflegeadmin/c/'+str(carer.id))
+      return HttpResponseRedirect('/cadmin/c/'+str(carer.id))
   else:
     form = CarerForm(instance=carer)
-  return render_to_response('pflegeadmin/carerForm.html',
+  return render_to_response('cadmin/carerForm.html',
     {'form': form, 'carer' : carer, },
     context_instance=RequestContext(request))
 
-@permission_required('pflegeadmin.carerCreateDelete', raise_exception=True)
+@permission_required('cadmin.carerCreateDelete', raise_exception=True)
 def familyCreateForm(request):
   if request.method == 'POST':
     form = FamilyForm(request.POST)
     if form.is_valid():
       family = form.save()
-      return HttpResponseRedirect('/pflegeadmin/f/'+str(family.id))
+      return HttpResponseRedirect('/cadmin/f/'+str(family.id))
   else:
     form = FamilyForm()
-  return render_to_response('pflegeadmin/familyForm.html',
+  return render_to_response('cadmin/familyForm.html',
     {'form': form, },
     context_instance=RequestContext(request))
 
@@ -125,9 +125,9 @@ def carerCreateForm(request):
     form = CarerForm(request.POST)
     if form.is_valid():
       carer = form.save()
-      return HttpResponseRedirect('/pflegeadmin/c/'+str(carer.id))
+      return HttpResponseRedirect('/cadmin/c/'+str(carer.id))
   else:
     form = CarerForm()
-  return render_to_response('pflegeadmin/carerForm.html',
+  return render_to_response('cadmin/carerForm.html',
     {'form': form, },
     context_instance=RequestContext(request))

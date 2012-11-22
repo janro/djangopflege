@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^pflegeadmin/', include('pflegeadmin.urls')),
+    url(r'^cadmin/', include('cadmin.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
     (r'^$', direct_to_template, {'template': 'index.html'}),

@@ -3,7 +3,7 @@
 {% block title %}Families{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="/pflegeadmin/f/">Families</a>
+  &gt; <a href="/cadmin/f/">Families</a>
 {% endblock %}
 
 {% block content %}
@@ -21,7 +21,7 @@
 
     {% for family in family_list %}
       <tr>
-        <td class="list_id"><a href="/pflegeadmin/f/{{family.id}}/">{{family.id}}</a></td>
+        <td class="list_id"><a href="/cadmin/f/{{family.id}}/">{{family.id}}</a></td>
         <td class="list_etc">{{family.firstname_contact_person}}</td>
         <td class="list_etc">{{family.lastname_contact_person}}</td>
         <td class="list_etc">{{family.phone_contact_person}}</td>
@@ -33,5 +33,5 @@
 {% endblock %}
 
 {% block topicmenu %}
-  {% include 'pflegeadmin/topicmenu.html' %}
+  {% include 'cadmin/topicmenu.html' %}
 {% endblock %}

@@ -120,7 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'pflegeadmin',
+    'cadmin',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -154,4 +154,4 @@ LOGGING = {
 
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
-LOGIN_REDIRECT_URL = '/pflegeadmin/'
+LOGIN_REDIRECT_URL = '/cadmin/'

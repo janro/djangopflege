@@ -3,12 +3,12 @@
 {% block title %}Summary{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="{{pflegeadmin.summary}}">Overview</a>
+  &gt; <a href="{{cadmin.summary}}">Summary</a>
 {% endblock %}
 
 {% block content %}
 
-  <h1>Overview</h1>
+  <h1>Summary</h1>
   <p> {{carer_count}} Carers in Database </p>
   <p> {{family_count}} Families in Database </p>
   <p> {{care_count}} Active Cares </p>
@@ -26,9 +26,9 @@
         <tr>
           <td>{{care.start_date}}</td>
           <td>
-            <a href="/pflegeadmin/c/{{care.carer.id}}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
+            <a href="/cadmin/c/{{care.carer.id}}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
           </td>
-          <td><a href="/pflegeadmin/f/{{care.family.id}}">{{care.family.lastname_contact_person}}</a></td>
+          <td><a href="/cadmin/f/{{care.family.id}}">{{care.family.lastname_contact_person}}</a></td>
         </tr>
       {% endfor %}
     </table>
@@ -47,9 +47,9 @@
         <tr>
           <td>{{care.end_date}}</td>
           <td>
-            <a href="/pflegeadmin/c/{{care.carer.id}}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
+            <a href="/cadmin/c/{{care.carer.id}}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
           </td>
-          <td><a href="/pflegeadmin/f/{{care.family.id}}">{{care.family.lastname_contact_person}}</a></td>
+          <td><a href="/cadmin/f/{{care.family.id}}">{{care.family.lastname_contact_person}}</a></td>
         </tr>
       {% endfor %}
     </table>
@@ -58,5 +58,5 @@
 {% endblock %}
 
 {% block topicmenu %}
-  {% include 'pflegeadmin/topicmenu.html' %}
+  {% include 'cadmin/topicmenu.html' %}
 {% endblock %}

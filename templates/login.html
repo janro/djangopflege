@@ -2,7 +2,7 @@
 
 {% block title %}Login{% endblock %}
 
-{% block breadcrumb %}&gt;<a href="/login">Login</a>{% endblock %}
+{% block breadcrumb %}&gt;<a href="{% url django.contrib.auth.views.login %}">Login</a>{% endblock %}
 
 {% block content %}
 
@@ -33,9 +33,9 @@
 
 {% block topicmenu %}
   {% if not user.is_authenticated %}
-    <a href="/login">Login</a>
+    <a href="{% url django.contrib.auth.views.login %}">Login</a>
   {% endif %}
   {% if user.is_authenticated %}
-    <a href="/logout">Logout</a>
+    <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
   {% endif %}
 {% endblock %}

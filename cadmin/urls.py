@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
-urlpatterns = patterns('pflegeadmin.views',
-    url(r'^$', 'summary'),
+urlpatterns = patterns('cadmin.views',
+    url(r'^/$', 'summary', name='summary'),
 
     # family section
     url(r'^f/$', 'familyList'),

@@ -1,0 +1,29 @@
+{% if user.is_authenticated %}
+  <a href="/cadmin/f/">Families</a>
+{% endif %}
+
+{% if user.is_authenticated and family %}
+  <a href="/cadmin/f/{{family.id}}/edit/">&lfloor;&nbsp;Edit</a>
+{% endif %}
+
+{% if perms.cadmin.familyCreateDelete %}
+  <a href="/cadmin/f/edit/">&lfloor;&nbsp;Add</a>
+  {% if family %}
+    <a href="/cadmin/f/{{family.id}}/delete/">&lfloor;&nbsp;Delete</a>
+  {% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+  <a href="/cadmin/c/">Carers</a>
+{% endif %}
+
+{% if user.is_authenticated and carer %}
+  <a href="/cadmin/c/{{carer.id}}/edit/">&lfloor;&nbsp;Edit</a>
+{% endif %}
+
+{% if perms.cadmin.carerCreateDelete %}
+  <a href="/cadmin/c/edit/">&lfloor;&nbsp;Add</a>
+  {% if carer %}
+    <a href="/cadmin/c/{{carer.id}}/delete/">&lfloor;&nbsp;Delete</a>
+  {% endif %}
+{% endif %}

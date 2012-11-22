@@ -1,23 +1,22 @@
-
 {% extends 'base.html' %}
 
-{% block title %}Carer Form{% endblock %}
+{% block title %}Family Form{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="/pflegeadmin/c/">Carers</a>
-  {% if carer %}  
-    &gt; <a href="/pflegeadmin/c/{{carer.id}}">{{carer.id}}</a>
+  &gt; <a href="/cadmin/f/">Families</a>
+  {% if family %}  
+    &gt; <a href="/cadmin/f/{{family.id}}">{{family.id}}</a>
   {% else %}
-    &gt; <a href="/pflegeadmin/c/edit">Add</a>
+    &gt; <a href="/cadmin/f/edit">Add</a>
   {% endif %}
 {% endblock %}
 
 {% block content %}
 
-  {% if carer %}
-    <h1>Edit carer {{carer.id}}</h1>
+  {% if family %}
+    <h1>Edit Family {{family.id}}</h1>
   {% else %}
-    <h1>Create New Carer</h1>
+    <h1>Create New Family</h1>
   {% endif %}
 
   {% for field in form %}
@@ -28,10 +27,10 @@
     {% endif %}
   {% endfor %}
 
-  {% if carer %}
-    <form action="/pflegeadmin/c/{{carer.id}}/edit/" method="post">
+  {% if family %}
+    <form action="/cadmin/f/{{family.id}}/edit/" method="post">
   {% else %}
-    <form action="/pflegeadmin/c/edit/" method="post">
+    <form action="/cadmin/f/edit/" method="post">
   {% endif %}
     
       {% csrf_token %}
@@ -53,5 +52,5 @@
 {% endblock %}
 
 {% block topicmenu %}
-  {% include 'pflegeadmin/topicmenu.html' %}
+  {% include 'cadmin/topicmenu.html' %}
 {% endblock %}
