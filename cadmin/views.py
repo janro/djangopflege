@@ -69,6 +69,16 @@ def carerDetails(request, carer_id):
 @permission_required('cadmin.familyCreateDelete', raise_exception=True)
 def familyDelete(request, family_id):
   family = get_object_or_404(Family, pk=family_id)
+
+  # delete all operation entries belonging to this family
+  try:
+    operations = Care.objects.filter(family=family_id)
+  except ObjectDoesNotExist:
+    care_list = {}
+
+  for operation in operations:
+    operation.delete()
+
   family.delete()
   return HttpResponseRedirect(
     reverse('cadmin.views.familyList', ))
@@ -76,6 +86,16 @@ def familyDelete(request, family_id):
 @permission_required('cadmin.carerCreateDelete', raise_exception=True)
 def carerDelete(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
+
+  # delete all operation entries belonging to this carer
+  try:
+    operations = Care.objects.filter(carer=carer_id)
+  except ObjectDoesNotExist:
+    care_list = {}
+
+  for operation in operations:
+    operation.delete()
+
   carer.delete()
   return HttpResponseRedirect(
     reverse('cadmin.views.carerList', ))
