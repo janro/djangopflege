@@ -13,7 +13,7 @@
     &lfloor;&nbsp;Add
   </a>
   {% if family %}
-    <a href="{% url cadmin.views.familyDelete family.id %">
+    <a href="{% url cadmin.views.familyDelete family.id %}">
       &lfloor;&nbsp;Delete
     </a>
   {% endif %}
@@ -36,7 +36,19 @@
     &lfloor;&nbsp;Add
   </a>
   {% if carer %}
-    <a href="{% url cadmin.views.carerDelete carer.id">
+    <a href="{% url cadmin.views.carerDelete carer.id %}">
+      &lfloor;&nbsp;Delete
+    </a>
+  {% endif %}
+{% endif %}
+
+{% if perms.cadmin.operationCreateDelete %}
+  <a href="{% url cadmin.views.summary %}">Operations</a>  
+  <a href="{% url cadmin.views.operationCreateForm %}">
+    &lfloor;&nbsp;Add
+  </a>
+  {% if operation %}
+    <a href="{% url cadmin.views.operationDelete operation.id %}">
       &lfloor;&nbsp;Delete
     </a>
   {% endif %}

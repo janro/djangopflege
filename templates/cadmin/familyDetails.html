@@ -44,9 +44,10 @@
     </table>
 
     {% if care_list %}
-      <h2>Employments</h2>
+      <h2>Operations</h2>
       <table class = "list">
         <tr>
+          <td class="list_id">&#35;</td>
           <td class="list_sync">Start Date</td>
           <td class="list_sync">End Date</td>
           <td class="list_sync">Family</td>
@@ -54,6 +55,11 @@
 
         {% for care in care_list %}
         <tr>
+          <td class="list_id">
+            <a href="{% url cadmin.views.operationUpdateForm care.id %}">
+              {{care.id}}
+            </a>
+          </td>
           <td>{{care.start_date}}</td>
           <td>{{care.end_date}}</td>
           <td>

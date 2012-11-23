@@ -21,7 +21,11 @@
 
     {% for carer in carer_list %}
       <tr>
-        <td class="list_id"><a href="{% url cadmin.views.carerDetails carer.id %}">{{carer.id}}</a></td>
+        <td class="list_id">
+          <a href="{% url cadmin.views.carerDetails carer.id %}">
+            {{carer.id}}
+          </a>
+        </td>
         <td class="list_etc">{{carer.firstname}}</td>
         <td class="list_etc">{{carer.lastname}}</td>
         <td class="list_etc">{{carer.phone}}</td>

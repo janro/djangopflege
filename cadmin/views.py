@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
-from cadmin.forms import FamilyForm, CarerForm
+from cadmin.forms import FamilyForm, CarerForm, OperationForm
 from cadmin.models import Carer, Family, Care
 
 import datetime
@@ -70,13 +70,15 @@ def carerDetails(request, carer_id):
 def familyDelete(request, family_id):
   family = get_object_or_404(Family, pk=family_id)
   family.delete()
-  return HttpResponseRedirect('/cadmin/f/')
+  return HttpResponseRedirect(
+    reverse('cadmin.views.familyList', ))
 
 @permission_required('cadmin.carerCreateDelete', raise_exception=True)
 def carerDelete(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
   carer.delete()
-  return HttpResponseRedirect('/cadmin/c/')
+  return HttpResponseRedirect(
+    reverse('cadmin.views.carerList', ))
 
 @permission_required('cadmin.familyCreateDelete', raise_exception=True)
 def familyUpdateForm(request, family_id):
@@ -85,7 +87,8 @@ def familyUpdateForm(request, family_id):
     form = FamilyForm(request.POST, instance=family)
     if form.is_valid():
       family = form.save()
-      return HttpResponseRedirect('/cadmin/f/'+str(family.id))
+      return HttpResponseRedirect(
+        reverse('cadmin.views.familyDetails', args=(family.id,)))
   else:
     form = FamilyForm(instance=family)
   return render_to_response('cadmin/familyForm.html',
@@ -99,7 +102,8 @@ def carerUpdateForm(request, carer_id):
     form = CarerForm(request.POST, instance=carer)
     if form.is_valid():
       carer = form.save()
-      return HttpResponseRedirect('/cadmin/c/'+str(carer.id))
+      return HttpResponseRedirect(
+        reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
     form = CarerForm(instance=carer)
   return render_to_response('cadmin/carerForm.html',
@@ -112,7 +116,8 @@ def familyCreateForm(request):
     form = FamilyForm(request.POST)
     if form.is_valid():
       family = form.save()
-      return HttpResponseRedirect('/cadmin/f/'+str(family.id))
+      return HttpResponseRedirect(
+        reverse('cadmin.views.familyDetails', args=(family.id,)))
   else:
     form = FamilyForm()
   return render_to_response('cadmin/familyForm.html',
@@ -125,9 +130,47 @@ def carerCreateForm(request):
     form = CarerForm(request.POST)
     if form.is_valid():
       carer = form.save()
-      return HttpResponseRedirect('/cadmin/c/'+str(carer.id))
+      return HttpResponseRedirect(
+        reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
     form = CarerForm()
   return render_to_response('cadmin/carerForm.html',
     {'form': form, },
     context_instance=RequestContext(request))
+
+@login_required
+def operationUpdateForm(request, operation_id):
+  operation = get_object_or_404(Care, pk=operation_id)
+  if request.method == 'POST':
+    form = OperationForm(request.POST, instance=operation)
+    if form.is_valid():
+      operation = form.save()
+      return HttpResponseRedirect(
+        reverse('cadmin.views.familyDetails', args=(operation.family.id,)))
+  else:
+    form = OperationForm(instance=operation)
+  return render_to_response('cadmin/operationForm.html',
+    {'form': form, 'operation' : operation, },
+    context_instance=RequestContext(request))
+
+@permission_required('cadmin.operationCreateDelete', raise_exception=True)
+def operationCreateForm(request):
+  if request.method == 'POST':
+    form = OperationForm(request.POST)
+    if form.is_valid():
+      operation = form.save()
+      return HttpResponseRedirect(
+        reverse('cadmin.views.familyDetails', args=(operation.family.id,)))
+  else:
+    form = OperationForm()
+  return render_to_response('cadmin/operationForm.html',
+    {'form': form, },
+    context_instance=RequestContext(request))
+
+@permission_required('cadmin.operationCreateDelete', raise_exception=True)
+def operationDelete(request, operation_id):
+  operation = get_object_or_404(Care, pk=operation_id)
+  family_id = operation.family.id
+  operation.delete()
+  return HttpResponseRedirect(
+    reverse('cadmin.views.familyDetails', args=(family_id,)))

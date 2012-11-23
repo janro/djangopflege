@@ -1,23 +1,22 @@
 
 {% extends 'base.html' %}
 
-{% block title %}Carer Form{% endblock %}
+{% block title %}Operation Form{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="{% url cadmin.views.carerList %}">Carers</a>
-  {% if carer %}  
-    &gt; <a href="{% url cadmin.views.carerDetails carer.id %}">{{carer.id}}</a>
+  {% if operation %}  
+    &gt; <a href="{% url cadmin.views.operationUpdateForm operation.id %}">{{operation.id}}</a>
   {% else %}
-    &gt; <a href="{% url cadmin.views.carerCreateForm %}">Add</a>
+    &gt; <a href="{% url cadmin.views.operationCreateForm %}">{{operation.id}}</a>
   {% endif %}
 {% endblock %}
 
 {% block content %}
 
-  {% if carer %}
-    <h1>Edit Carer {{carer.id}}</h1>
+  {% if operation %}
+    <h1>Edit Operation {{operation.id}}</h1>
   {% else %}
-    <h1>Create New Carer</h1>
+    <h1>Create New Operation</h1>
   {% endif %}
 
   {% for field in form %}
@@ -28,10 +27,10 @@
     {% endif %}
   {% endfor %}
 
-  {% if carer %}
-    <form action="{% url cadmin.views.carerUpdateForm carer.id %}" method="post">
+  {% if operation %}
+    <form action="{% url cadmin.views.operationUpdateForm operation.id %}" method="post">
   {% else %}
-    <form action="{% url cadmin.views.carerCreateForm %}" method="post">
+    <form action="{% url cadmin.views.operationCreateForm %}" method="post">
   {% endif %}
     
       {% csrf_token %}

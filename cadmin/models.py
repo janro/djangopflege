@@ -22,6 +22,11 @@ class Carer(models.Model):
     (4, 'Skill Level 4'),
   )
 
+  GENDER = (
+    (1, 'MALE'),
+    (2, 'FEMALE'),
+  )
+
   firstname = models.CharField(max_length=100, null=True, blank=False)
   lastname = models.CharField(max_length=100, null=True, blank=True)
   phone = models.CharField(max_length=20, null=True, blank=True)
@@ -35,7 +40,12 @@ class Carer(models.Model):
   care_skills = models.IntegerField(default=1, choices=SKILL_LEVELS, blank=True)
   remark = models.CharField(max_length=500, null=True, blank=True)
 
-  
+  def __unicode__(self):
+    full_name = self.firstname
+    full_name += ' '
+    full_name += self.lastname
+    return full_name
+
   class Meta:
     permissions = (('carerCreateDelete', 'Create or Delete'),)
 
@@ -74,6 +84,12 @@ class Family(models.Model):
   care_level = models.IntegerField(default=1, choices=CARE_LEVELS, blank=True)
   date_of_birth = models.DateField(null=True, blank=True)
 
+  def __unicode__(self):
+    full_name = self.firstname_care_person
+    full_name += ' '
+    full_name += self.lastname_care_person
+    return full_name
+
   class Meta:
       permissions = (('familyCreateDelete', 'Create or Delete'),)
 
@@ -88,6 +104,9 @@ class Care(models.Model):
   family = models.ForeignKey(Family)
   start_date = models.DateField(null=False, blank=False)
   end_date = models.DateField(null=True, blank=True)
+
+  class Meta:
+    permissions = (('operationCreateDelete', 'Create or Delete'),)
 
 
 class FamilyPayment(models.Model):
