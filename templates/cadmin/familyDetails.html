@@ -3,8 +3,8 @@
 {% block title %}summary{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="/cadmin/f/">Familien</a>
-  &gt; <a href="/cadmin/f/{{family.id}}">{{family.id}}</a>
+  &gt; <a href="{% url cadmin.views.familyList %}">Familien</a>
+  &gt; <a href="{% url cadmin.views.familyDetails family.id %}">{{family.id}}</a>
 {% endblock %}
 
 {% block content %}
@@ -57,7 +57,7 @@
           <td>{{care.start_date}}</td>
           <td>{{care.end_date}}</td>
           <td>
-            <a href="/cadmin/c/{{care.carer.id}}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
+            <a href="{% url cadmin.views.carerDetails care.carer.id %}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
           </td>
         </tr>
         {% endfor %}  

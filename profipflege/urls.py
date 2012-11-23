@@ -5,9 +5,14 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^cadmin/', include('cadmin.urls')),
-    url(r'^admin/', include(admin.site.urls)),
 
+    # cadmin app
+    (r'^ca/', include('cadmin.urls')),
+
+    # admin app
+    (r'^admin/', include(admin.site.urls)),
+
+    # etc
     (r'^$', direct_to_template, {'template': 'index.html'}),
     (r'^login/', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
     (r'^logout/', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}),

@@ -3,11 +3,11 @@
 {% block title %}Family Form{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="/cadmin/f/">Families</a>
+  &gt; <a href="{% url cadmin.views.familyList %}">Families</a>
   {% if family %}  
-    &gt; <a href="/cadmin/f/{{family.id}}">{{family.id}}</a>
+    &gt; <a href="{% url cadmin.views.familyDetails family.id %}">{{family.id}}</a>
   {% else %}
-    &gt; <a href="/cadmin/f/edit">Add</a>
+    &gt; <a href="{% url cadmin.views.familyCreateForm %}">Add</a>
   {% endif %}
 {% endblock %}
 
@@ -28,9 +28,9 @@
   {% endfor %}
 
   {% if family %}
-    <form action="/cadmin/f/{{family.id}}/edit/" method="post">
+    <form action="{% url cadmin.views.familyUpdateForm family.id %}" method="post">
   {% else %}
-    <form action="/cadmin/f/edit/" method="post">
+    <form action="{% url cadmin.views.familyCreateForm %}" method="post">
   {% endif %}
     
       {% csrf_token %}

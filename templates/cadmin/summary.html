@@ -3,7 +3,7 @@
 {% block title %}Summary{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="{{cadmin.summary}}">Summary</a>
+  &gt; <a href="{% url cadmin.views.summary %}">Summary</a>
 {% endblock %}
 
 {% block content %}
@@ -26,9 +26,9 @@
         <tr>
           <td>{{care.start_date}}</td>
           <td>
-            <a href="/cadmin/c/{{care.carer.id}}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
+            <a href="{% url cadmin.views.carerDetails care.carer.id %}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
           </td>
-          <td><a href="/cadmin/f/{{care.family.id}}">{{care.family.lastname_contact_person}}</a></td>
+          <td><a href="{% url cadmin.views.familyList care.family.id %}">{{care.family.lastname_contact_person}}</a></td>
         </tr>
       {% endfor %}
     </table>
@@ -47,9 +47,9 @@
         <tr>
           <td>{{care.end_date}}</td>
           <td>
-            <a href="/cadmin/c/{{care.carer.id}}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
+            <a href="{% url cadmin.views.carerDetails care.carer.id %}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
           </td>
-          <td><a href="/cadmin/f/{{care.family.id}}">{{care.family.lastname_contact_person}}</a></td>
+          <td><a href="{% url cadmin.views.familyDetails care.family.id %}">{{care.family.lastname_contact_person}}</a></td>
         </tr>
       {% endfor %}
     </table>

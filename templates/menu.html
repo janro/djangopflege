@@ -9,12 +9,9 @@
 
 <!-- logged-in-features -->
 {% if user.is_authenticated %}
-  {% url 'cadmin.summary' as the_url %}
-  
-  {{ the_url }}
-
-  <a href="{{the_url}}">Summary</a>
-
+  <a href="{% url cadmin.views.summary %}">Summary</a>
+  <a href="{% url cadmin.views.familyList %}">Families</a>
+  <a href="{% url cadmin.views.carerList %}">Carer</a>
 {% endif %}
 
 <!-- admin feature -->
@@ -24,5 +21,5 @@
 
 <!-- further logged-in-features -->
 {% if user.is_authenticated %}
-  <a href="/logout">Logout</a>
+  <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
 {% endif %}

@@ -3,7 +3,7 @@
 {% block title %}Families{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="/cadmin/f/">Families</a>
+  &gt; <a href="{% url cadmin.views.familyList %}">Families</a>
 {% endblock %}
 
 {% block content %}
@@ -21,7 +21,11 @@
 
     {% for family in family_list %}
       <tr>
-        <td class="list_id"><a href="/cadmin/f/{{family.id}}/">{{family.id}}</a></td>
+        <td class="list_id">
+          <a href="{% url cadmin.views.familyDetails family.id %}">
+            {{family.id}}
+          </a>
+        </td>
         <td class="list_etc">{{family.firstname_contact_person}}</td>
         <td class="list_etc">{{family.lastname_contact_person}}</td>
         <td class="list_etc">{{family.phone_contact_person}}</td>

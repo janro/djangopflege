@@ -4,11 +4,11 @@
 {% block title %}Carer Form{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="/cadmin/c/">Carers</a>
+  &gt; <a href="{% url cadmin.views.carerList %}">Carers</a>
   {% if carer %}  
-    &gt; <a href="/cadmin/c/{{carer.id}}">{{carer.id}}</a>
+    &gt; <a href="{% url cadmin.views.carerDetails carer.id %}">{{carer.id}}</a>
   {% else %}
-    &gt; <a href="/cadmin/c/edit">Add</a>
+    &gt; <a href="{% url cadmin.views.carerCreateForm %}">Add</a>
   {% endif %}
 {% endblock %}
 
@@ -29,9 +29,9 @@
   {% endfor %}
 
   {% if carer %}
-    <form action="/cadmin/c/{{carer.id}}/edit/" method="post">
+    <form action="{% url cadmin.views.carerUpdateForm carer.id %}" method="post">
   {% else %}
-    <form action="/cadmin/c/edit/" method="post">
+    <form action="{% url cadmin.views.carerCreateForm %}" method="post">
   {% endif %}
     
       {% csrf_token %}
