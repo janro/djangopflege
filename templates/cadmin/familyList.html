@@ -2,33 +2,29 @@
 
 {% block title %}Families{% endblock %}
 
-{% block breadcrumb %}
-  &gt; <a href="{% url cadmin.views.familyList %}">Families</a>
-{% endblock %}
-
 {% block content %}
 
   <h1>Family List</h1>
   
-  <table class="list">
+  <table class="table table-striped">
 
     <tr>
-      <td class="list_id">&#35;</td>
-      <td class="list_etc">First Name</td>
-      <td class="list_etc">Last Name</td>
-      <td class="list_etc">Phone Number</td>
+      <td>&#35;</td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Phone Number</td>
     </tr>
 
     {% for family in family_list %}
       <tr>
-        <td class="list_id">
+        <td>
           <a href="{% url cadmin.views.familyDetails family.id %}">
             {{family.id}}
           </a>
         </td>
-        <td class="list_etc">{{family.firstname_contact_person}}</td>
-        <td class="list_etc">{{family.lastname_contact_person}}</td>
-        <td class="list_etc">{{family.phone_contact_person}}</td>
+        <td>{{family.firstname_contact_person}}</td>
+        <td>{{family.lastname_contact_person}}</td>
+        <td>{{family.phone_contact_person}}</td>
       </tr>
     {% endfor %}
 

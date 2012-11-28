@@ -2,15 +2,6 @@
 
 {% block title %}Family Form{% endblock %}
 
-{% block breadcrumb %}
-  &gt; <a href="{% url cadmin.views.familyList %}">Families</a>
-  {% if family %}  
-    &gt; <a href="{% url cadmin.views.familyDetails family.id %}">{{family.id}}</a>
-  {% else %}
-    &gt; <a href="{% url cadmin.views.familyCreateForm %}">Add</a>
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 
   {% if family %}
@@ -19,33 +10,38 @@
     <h1>Create New Family</h1>
   {% endif %}
 
-  {% for field in form %}
-    {%if field.errors %}
-      <div id="block">
-        {{field.label_tag}}: {{field.errors}}
-      </div>
-    {% endif %}
-  {% endfor %}
+  {% if form.errors %}
+    <div class="alert alert-error">
+      {% for field in form %}
+        {% if field.errors %}
+          {{field.label_tag}}{{field.errors}}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 
   {% if family %}
-    <form action="{% url cadmin.views.familyUpdateForm family.id %}" method="post">
+    <form action="{% url cadmin.views.familyUpdateForm family.id %}" method="post" class="form-horizontal">
   {% else %}
-    <form action="{% url cadmin.views.familyCreateForm %}" method="post">
+    <form action="{% url cadmin.views.familyCreateForm %}" method="post" class="form-horizontal">
   {% endif %}
     
       {% csrf_token %}
-  
-      <table class="form">
-        {% for field in form %}
-          <tr class="form">
-            <td class="form"> {{field.label_tag}} </td>
-            <td class="form"> {{field}}           </td>
-          </tr>
-        {% endfor %}
-      </table>
+      
+      {% for field in form %}
 
-      <input type="submit" value="Save" />
-      <input type="reset" value="Cancel" />
+        <div class="control-group">
+          <label class="control-label" for="inputEmail">{{field.label_tag}}</label>
+          
+          <div class="controls">
+            {{field}}
+
+          </div>
+        </div>
+      {% endfor %}
+
+      <input type="submit" value="Save" class="btn btn-primary"/>
+      <input type="reset" value="Cancel" class="btn" />
     </form>
 
 

@@ -1,59 +1,94 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="{{ STATIC_URL }}style.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+    <title>Care Admin - {%block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-      Armela-Senior Pflege - {%block title %}{% endblock %}
-    </title>
+    <!-- Le styles -->
+    <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="{{STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet">
+  
   </head>
-
   <body>
-    <div id="main">
 
-      <div id="topmenu">
-        {% include 'menu.html' %}
-      </div>
+   <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Care Admin</a>
+          <div class="nav-collapse collapse">
 
-      <div id="header">
-        <span class="title">Armela-Senior <span class="darktitle">Pflege</span></span><br/>
-      </div>
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">{{user.username}}</a>
+            </p>
 
-      <div id="content">
+              {% include 'menu.html' %}
 
-        <div id="breadcrumb">
-          <a href="/">Home</a>
-          {% block breadcrumb %}
-            <!-- will be filled up by childs -->
-          {% endblock %}
+          </div><!--/.nav-collapse -->
         </div>
-
-        {% block content %}
-          <!-- will be filled up by childs -->
-
-          <!-- use if neccesarry -->
-          <!-- <div id="block"> -->
-          <!-- </div> -->          
-        {% endblock %}
-
-
-        <div id="footer">
-          &copy; 2012 Profipflege
-        </div>
-
-      </div>
-
-      <div id="lefty">
-        <div id="menu">
-          {% block topicmenu %}
-            <!-- will be filled up by childs -->
-          {% endblock %}
-        </div>
-        <!-- <p>possible block 2</p> -->
       </div>
     </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+
+            {% block topicmenu %}
+              <!-- will be filled up by childs -->
+            {% endblock %}            
+
+          </div><!--/.well -->
+        </div><!--/span-->
+
+        <div class="span9">
+          <div class="row-fluid">
+  
+            {% block content %}
+              <!-- will be filled up by childs -->
+            {% endblock %}
+   
+          </div><!--/row-->
+        </div><!--/span-->
+      
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Armela Senior Pflege 2012</p>
+      </footer>
+
+    </div>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{STATIC_URL}}js/jquery.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-transition.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-alert.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-modal.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-dropdown.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-scrollspy.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-tab.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-tooltip.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-popover.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-button.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-collapse.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-carousel.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap-typeahead.js"></script>
   </body>
 </html>

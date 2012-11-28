@@ -11,52 +11,54 @@
 
   <h1>{{carer.firstname}} {{carer.lastname}}</h1>
   
-    <table class="list">
-      <tr><td colspan="2" class="list_long_c">Basic Information</td></tr>
-      <tr><td class="list_long_l">Firstname</td>
-            <td class="list_long_r">{{carer.firstname}}</td></tr>
-      <tr><td class="list_long_l">Lastname</td>
-            <td class="list_long_r">{{carer.lastname}}</td></tr>
-      <tr><td class="list_long_l">Phone</td>
-            <td class="list_long_r">{{carer.phone}}</td></tr>
 
-      <tr><td colspan="2" class="list_long_c">Generell Information</td></tr>
-      <tr><td class="list_long_l">Date of Birth</td>
-            <td class="list_long_r">{{carer.date_of_birth}}</td></tr>
-      <tr><td class="list_long_l">Hometown</td>
-            <td class="list_long_r">{{carer.hometown}}</td></tr>
-      <tr><td class="list_long_l">Family</td>
-            <td class="list_long_r">{{carer.family}}</td></tr>
-      <tr><td class="list_long_l">Weight</td>
-            <td class="list_long_r">{{carer.weight}}</td></tr>
-      <tr><td class="list_long_l">Smoker</td>
-            <td class="list_long_r">{{carer.smoker}}</td></tr>
-      <tr><td class="list_long_l">Trade registered</td>
-            <td class="list_long_r">{{carer.trade_registered}}</td></tr>
+    <table class="table table-bordered">
+      <tr class="info"><td colspan="2">Basic Information</td></tr>
+      <tr><td>Firstname</td>
+            <td>{{carer.firstname}}</td></tr>
+      <tr><td>Lastname</td>
+            <td>{{carer.lastname}}</td></tr>
+      <tr><td>Phone</td>
+            <td>{{carer.phone}}</td></tr>
+
+      <tr class="info"><td colspan="2">Generell Information</td></tr>
+      <tr><td>Date of Birth</td>
+            <td>{{carer.date_of_birth}}</td></tr>
+      <tr><td>Hometown</td>
+            <td>{{carer.hometown}}</td></tr>
+      <tr><td>Family</td>
+            <td>{{carer.family}}</td></tr>
+      <tr><td>Weight</td>
+            <td>{{carer.weight}}</td></tr>
+      <tr><td>Smoker</td>
+            <td>{{carer.smoker}}</td></tr>
+      <tr><td>Trade registered</td>
+            <td>{{carer.trade_registered}}</td></tr>
       
-      <tr><td colspan="2" class="list_long_c">Skills and Remarks</td></tr>
-      <tr><td class="list_long_l">Language skills</td>
-            <td class="list_long_r">{{carer.language_skills}}</td></tr>
-      <tr><td class="list_long_l">Care skills</td>
-            <td class="list_long_r">{{carer.care_skills}}</td></tr>
-      <tr><td colspan="2" class="list_long_l">Remarks</td></tr>
-      <tr><td colspan="2" class="list_long_r">{{carer.remark}}</td></tr>
+      <tr class="info"><td colspan="2">Skills and Remarks</td></tr>
+      <tr><td>Language skills</td>
+            <td>{{carer.language_skills}}</td></tr>
+      <tr><td>Care skills</td>
+            <td>{{carer.care_skills}}</td></tr>
+      
+      <tr><td>Remarks</td><td>{{carer.remark}}</td></tr>
     </table>
+
 
   {% if care_list %}
   <h2>Operations</h2>
 
-    <table class = "list">
+    <table class = "table table-striped">
       <tr>
-        <td class="list_id">&#35;</td>
-        <td class="list_sync">Start Date</td>
-        <td class="list_sync">End Date</td>
-        <td class="list_sync">Family</td>
+        <td>&#35;</td>
+        <td>Start Date</td>
+        <td>End Date</td>
+        <td>Family</td>
       </tr>
 
       {% for care in care_list %}
       <tr>
-        <td class="list_id">
+        <td>
           <a href="{% url cadmin.views.operationUpdateForm care.id%}">
             {{care.id}}
           </a>

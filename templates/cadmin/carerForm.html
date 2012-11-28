@@ -3,50 +3,46 @@
 
 {% block title %}Carer Form{% endblock %}
 
-{% block breadcrumb %}
-  &gt; <a href="{% url cadmin.views.carerList %}">Carers</a>
-  {% if carer %}  
-    &gt; <a href="{% url cadmin.views.carerDetails carer.id %}">{{carer.id}}</a>
-  {% else %}
-    &gt; <a href="{% url cadmin.views.carerCreateForm %}">Add</a>
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 
   {% if carer %}
-    <h1>Edit Carer {{carer.id}}</h1>
+    <h1>Edit {{carer.firstname}} {{carer.lastname}}</h1>
   {% else %}
     <h1>Create New Carer</h1>
   {% endif %}
 
-  {% for field in form %}
-    {%if field.errors %}
-      <div id="block">
-        {{field.label_tag}}: {{field.errors}}
-      </div>
-    {% endif %}
-  {% endfor %}
+  {% if form.errors %}
+    <div class="alert alert-error">
+      {% for field in form %}
+        {% if field.errors %}
+          {{field.label_tag}}{{field.errors}}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 
   {% if carer %}
-    <form action="{% url cadmin.views.carerUpdateForm carer.id %}" method="post">
+    <form action="{% url cadmin.views.carerUpdateForm carer.id %}" method="post" class="form-horizontal">
   {% else %}
-    <form action="{% url cadmin.views.carerCreateForm %}" method="post">
+    <form action="{% url cadmin.views.carerCreateForm %}" method="post" class="form-horizontal">
   {% endif %}
     
       {% csrf_token %}
-  
-      <table class="form">
-        {% for field in form %}
-          <tr class="form">
-            <td class="form"> {{field.label_tag}} </td>
-            <td class="form"> {{field}}           </td>
-          </tr>
-        {% endfor %}
-      </table>
+      
+      {% for field in form %}
 
-      <input type="submit" value="Save" />
-      <input type="reset" value="Cancel" />
+        <div class="control-group">
+          <label class="control-label" for="inputEmail">{{field.label_tag}}</label>
+          
+          <div class="controls">
+            {{field}}
+
+          </div>
+        </div>
+      {% endfor %}
+
+      <input type="submit" value="Save" class="btn btn-primary"/>
+      <input type="reset" value="Cancel" class="btn" />
     </form>
 
 
