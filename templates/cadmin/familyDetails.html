@@ -11,63 +11,80 @@
 
   <h1>Familie {{family.lastname_contact_person}}</h1>
   
-    <table class="list">
-      <tr><td colspan="2" class="list_long_c">Contact Person</td></tr>
-      <tr><td class="list_long_l">Firstname</td>
-        <td class="list_long_r">{{family.firstname_contact_person}}</td></tr>
-      <tr><td class="list_long_l">Lastname</td>
-        <td class="list_long_r">{{family.lastname_contact_person}}</td></tr>
-      <tr><td class="list_long_l">Phone</td>
-        <td class="list_long_r">{{family.phone_contact_person}}</td></tr>
+  <div class="tabbable">
+    
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#A" data-toggle="tab">Contact Person</a></li>
+      <li><a href="#B" data-toggle="tab">Care Person</a></li>
+      <li><a href="#C" data-toggle="tab">Address</a></li>
+    </ul>
+    
+    <div class="tab-content">
       
-      <tr><td colspan="2" class="list_long_c">Care Person</td></tr>
-      <tr><td class="list_long_l">Firstname</td>
-        <td class="list_long_r">{{family.firstname_care_person}}</td></tr>
-      <tr><td class="list_long_l">Lastname</td>
-        <td class="list_long_r">{{family.lastname_care_person}}</td></tr>
-      <tr><td class="list_long_l">Phone</td>
-        <td class="list_long_r">{{family.phone_care_person}}</td></tr>
-      
-      <tr><td colspan="2" class="list_long_c">Generell Informations</td></tr>
-      <tr><td class="list_long_l">Street</td>
-        <td class="list_long_r">{{family.street}}</td></tr>
-      <tr><td class="list_long_l">Number</td>
-        <td class="list_long_r">{{family.number}}</td></tr>
-      <tr><td class="list_long_l">Postal code</td>
-        <td class="list_long_r">{{family.postal_code}}</td></tr>
-      <tr><td class="list_long_l">City</td>
-        <td class="list_long_r">{{family.city}}</td></tr>
-      <tr><td class="list_long_l">Care level</td>
-        <td class="list_long_r">{{family.care_level}}</td></tr>
-      <tr><td class="list_long_l">Date of Birth</td>
-        <td class="list_long_r">{{family.date_of_birth}}</td></tr>
-    </table>
+      <div class="tab-pane active" id="A">
+        <dl>
+          <dt>Firstname</dt>
+          <dd>{{family.firstname_contact_person}}</dd>
+          <dt>Lastname</dt>
+          <dd>{{family.lastname_contact_person}}</dd>
+          <dt>Phone</dt>
+          <dd>{{family.phone_contact_person}}</dd>
+        </dl>
+      </div>
+
+      <div class="tab-pane" id="B">
+        <dl>
+          <dt>Firstname</dt>
+          <dd>{{family.firstname_care_person}}</dd>
+          <dt>Lastname</dt>
+          <dd>{{family.lastname_care_person}}</dd>
+          <dt>Phone</dt>
+          <dd>{{family.phone_care_person}}</dd>
+          <dt>Care level</dt>
+          <dd>{{family.care_level}}</dd>
+          <dt>Date of Birth</dt>
+          <dd>{{family.date_of_birth}}</dd>
+        </dl>
+      </div>
+
+      <div class="tab-pane" id="C">
+        <h3>Address</h3>
+        <address>
+          {{family.street}} {{family.number}}<br>
+          {{family.postal_code}} {{family.city}}<br>
+        </address>
+      </div>
+
+    </div>
+  </div>
 
     {% if care_list %}
-      <h2>Operations</h2>
-      <table class = "list">
+    <h2>Operations</h2>
+
+      <table class = "table table-striped">
         <tr>
-          <td class="list_id">&#35;</td>
-          <td class="list_sync">Start Date</td>
-          <td class="list_sync">End Date</td>
-          <td class="list_sync">Family</td>
+          <td>&#35;</td>
+          <td>Start Date</td>
+          <td>End Date</td>
+          <td>Family</td>
         </tr>
 
         {% for care in care_list %}
         <tr>
-          <td class="list_id">
+          <td>
             <a href="{% url cadmin.views.operationUpdateForm care.id %}">
               {{care.id}}
             </a>
           </td>
           <td>{{care.start_date}}</td>
           <td>{{care.end_date}}</td>
-          <td>
-            <a href="{% url cadmin.views.carerDetails care.carer.id %}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
-          </td>
+          <td><a href="{% url cadmin.views.carerDetails care.carer.id %}">
+              {{care.carer.firstname}}&nbsp;{{care.carer.lastname}}
+          </a></td>
         </tr>
         {% endfor %}  
       </table>
+
     {% endif %}
 
 {% endblock %}
