@@ -5,13 +5,11 @@
 
   <!-- not-logged-in features -->
   {% if not user.is_authenticated %}
-    <li><a href="{% url profipflege.views.index %}">Home</a></li>
     <li><a href="{% url django.contrib.auth.views.login %}">Login</a></li>
   {% endif %}
 
   <!-- logged-in-features -->
   {% if user.is_authenticated %}
-    <!-- <a href="{% url profipflege.views.index %}">Home</a> -->
     <li><a href="{% url cadmin.views.summary %}">Summary</a></li>
     <li><a href="{% url cadmin.views.familyList %}">Families</a></li>
     <li><a href="{% url cadmin.views.carerList %}">Carer</a></li>
@@ -24,7 +22,7 @@
 
   <!-- further logged-in-features -->
   {% if user.is_authenticated %}
-    <li><a href="{% url django.contrib.auth.views.logout %}">Logout</a></li>
+    <li><a href="{% url profipflege.views.logoutView %}">Logout</a></li>
   {% endif %}
 
 </ul>     

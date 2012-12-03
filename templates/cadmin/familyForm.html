@@ -5,13 +5,15 @@
 {% block content %}
 
   {% if family %}
-    <h1>Edit Family {{family.id}}</h1>
+    <h1>Edit Family {{family.lastname_contact_person}}</h1>
   {% else %}
     <h1>Create New Family</h1>
   {% endif %}
 
   {% if form.errors %}
     <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Error!</strong></br>
       {% for field in form %}
         {% if field.errors %}
           {{field.label_tag}}{{field.errors}}

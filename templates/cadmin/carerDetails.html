@@ -11,38 +11,57 @@
 
   <h1>{{carer.firstname}} {{carer.lastname}}</h1>
   
-
-    <table class="table table-bordered">
-      <tr class="info"><td colspan="2">Basic Information</td></tr>
-      <tr><td>Firstname</td>
-            <td>{{carer.firstname}}</td></tr>
-      <tr><td>Lastname</td>
-            <td>{{carer.lastname}}</td></tr>
-      <tr><td>Phone</td>
-            <td>{{carer.phone}}</td></tr>
-
-      <tr class="info"><td colspan="2">Generell Information</td></tr>
-      <tr><td>Date of Birth</td>
-            <td>{{carer.date_of_birth}}</td></tr>
-      <tr><td>Hometown</td>
-            <td>{{carer.hometown}}</td></tr>
-      <tr><td>Family</td>
-            <td>{{carer.family}}</td></tr>
-      <tr><td>Weight</td>
-            <td>{{carer.weight}}</td></tr>
-      <tr><td>Smoker</td>
-            <td>{{carer.smoker}}</td></tr>
-      <tr><td>Trade registered</td>
-            <td>{{carer.trade_registered}}</td></tr>
+  <div class="tabbable">
+    
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#A" data-toggle="tab">Basic Information</a></li>
+      <li><a href="#B" data-toggle="tab">Additional Information</a></li>
+      <li><a href="#C" data-toggle="tab">Skills and Remarks</a></li>
+    </ul>
+    
+    <div class="tab-content">
       
-      <tr class="info"><td colspan="2">Skills and Remarks</td></tr>
-      <tr><td>Language skills</td>
-            <td>{{carer.language_skills}}</td></tr>
-      <tr><td>Care skills</td>
-            <td>{{carer.care_skills}}</td></tr>
+      <div class="tab-pane active" id="A">
+        <dl>
+          <dt>Firstname</dt>
+          <dd>{{carer.firstname}}</dd>
+          <dt>Lastname</dt>
+          <dd>{{carer.lastname}}</dd>
+          <dt>Phone</dt>
+          <dd>{{carer.phone}}</dd>
+        </dl>
+      </div>
       
-      <tr><td>Remarks</td><td>{{carer.remark}}</td></tr>
-    </table>
+      <div class="tab-pane" id="B">
+        <dl>
+          <dt>Date of Birth</dt>
+          <dd>{{carer.date_of_birth}}</dd>
+          <dt>Hometown</dt>
+          <dd>{{carer.hometown}}</dd>
+          <dt>Family</dt>
+          <dd>{{carer.family}}</dd>
+          <dt>Weight</dt>
+          <dd>{{carer.weight}}</dd>
+          <dt><td>Smoker</dt>
+          <dd>{{carer.smoker}}</dd>
+          <dt>Trade registered</dt>
+          <dd>{{carer.trade_registered}}</dd>
+        </dl>
+      </div>
+
+      <div class="tab-pane" id="C">
+        <dl>
+          <dt>Language skills</dt>
+          <dd>{{carer.language_skills}}</dd>
+          <dt>Care skills</dt>
+          <dd>{{carer.care_skills}}</dd>
+          <dt>Remarks</dt>
+          <dd>{{carer.remark}}</dd>
+        </dl>
+      </div>
+
+    </div>
+  </div>
 
 
   {% if care_list %}
@@ -65,7 +84,9 @@
         </td>
         <td>{{care.start_date}}</td>
         <td>{{care.end_date}}</td>
-        <td><a href="{% url cadmin.views.familyDetails care.family.id %}">{{care.family.lastname_contact_person}}</a></td>
+        <td><a href="{% url cadmin.views.familyDetails care.family.id %}">
+          {{care.family.lastname_contact_person}}
+        </a></td>
       </tr>
       {% endfor %}  
     </table>

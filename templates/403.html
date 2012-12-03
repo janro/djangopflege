@@ -1,17 +1,23 @@
-{% extends 'base.html' %}
+{% if user.is_authenticated %}
 
-{% block title %}Error{% endblock %}
+  {% extends 'base.html' %}
+  {% block title %}Error{% endblock %}
+  {% block content %}
 
-{% block breadcrumb %}{% endblock %}
+    <div class="row-fluid">
+      <div class="span8">
+        <h1>Error 403</h1>
+        You do not have the required permissions to access this page!
+      </div>
+    </div>
 
-{% block content %}
+  {% endblock %}
+  {% block topicmenu %}
+  {% endblock %}
 
-  <div id="block">
-    Error 403<br />
-    You do not have the required permissions to access this page!
-  </div>
+{% else %}
 
-{% endblock %}
+  <h1>Error 403</h1>
+  You do not have the required permissions to access this page!
 
-{% block topicmenu %}
-{% endblock %}
+{% endif %}
