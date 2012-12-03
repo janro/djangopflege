@@ -2,30 +2,29 @@
 
 {% block title %}Summary{% endblock %}
 
-{% block breadcrumb %}
-  &gt; <a href="{% url cadmin.views.summary %}">Summary</a>
-{% endblock %}
-
 {% block content %}
 
   <h1>Summary</h1>
-  <p> {{carer_count}} Carers in Database </p>
-  <p> {{family_count}} Families in Database </p>
-  <p> {{care_count}} Active Cares </p>
+
+    <div class="well">
+      {{carer_count}} Carers in Database </br>
+      {{family_count}} Families in Database </br>
+      {{care_count}} Active Cares
+    </div>
 
   {% if arrival_list %}
     <h2>Arrivals:</h2>
-    <table class="list">
+    <table class="table table-stripped">
       <tr>
-        <td class="list_id">&#35;</td>
-        <td class="list_sync">Date</td>
-        <td class="list_sync">Carer</td>
-        <td class="list_sync">Family</td>
+        <td>&#35;</td>
+        <td>Date</td>
+        <td>Carer</td>
+        <td>Family</td>
       </tr>
 
       {% for care in arrival_list %}
         <tr>
-          <td class="list_id">
+          <td>
             <a href="{% url cadmin.views.operationUpdateForm care.id %}">
               {{care.id}}
             </a>
@@ -42,17 +41,17 @@
 
   {% if departure_list %}
     <h2>Next Departures:</h2>
-    <table class="list">
+    <table class="table table-stripped">
       <tr>
-        <td class="list_id">
+        <td>
           <a href="{% url cadmin.views.operationUpdateForm care.id %}">
             {{care.id}}
           </a>
         </td>
-        <td class="list_id">&#35;</td>
-        <td class="list_sync">Date</td>
-        <td class="list_sync">Carer</td>
-        <td class="list_sync">Family</td>
+        <td>&#35;</td>
+        <td>Date</td>
+        <td>Carer</td>
+        <td>Family</td>
       </tr>
 
       {% for care in departure_list %}
