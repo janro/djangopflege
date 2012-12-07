@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Summary{% endblock %}
+
+{% block content %}
+
+  <div class="row-fluid">
+    <div class="span12">
+      <h1>Operation Plan</h1>
+      <div class="gantt">
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% include 'cadmin/topicmenu.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{STATIC_URL}}js/jquery.fn.gantt.js"></script>
+
+<script>
+
+$(function() {
+
+  "use strict";
+
+  $(".gantt").gantt({
+    source: 
+    [
+      {% for operation in operations %}
+      
+        {
+          name: "{{operation.family.lastname_care_person}}",
+          desc: "{{operation.family.city}}",
+          values: [{
+            from: "/Date({{operation.start_date|date:"U"}}000)/",
+            to: "/Date({{operation.end_date|date:"U"}}000)/",
+            label: "{{operation.carer.firstname}} {{operation.carer.lastname}}", 
+            customClass: "ganttRed"
+          }]
+        },
+
+
+      {% endfor %}
+    ],
+
+//1355266800000
+//1322401600000
+
+
+    navigate: "scroll",
+    scale: "weeks",
+    maxScale: "months",
+    minScale: "days",
+    itemsPerPage: 10,
+
+    onItemClick: function(data) {
+    //   alert("Item clicked - show some details");
+    },
+    onAddClick: function(dt, rowId) {
+    //   alert("Empty space clicked - add an item!");
+    },
+    onRender: function() {
+      if (window.console && typeof console.log === "function") {
+        console.log("chart rendered");
+      }
+    }
+
+  });
+
+  $(".gantt").popover({
+    selector: ".bar",
+    title: "I'm a popover",
+    content: "And I'm the content of said popover."
+  });
+
+  prettyPrint();
+
+});
+
+</script>
+{% endblock %}

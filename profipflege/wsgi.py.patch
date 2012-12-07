@@ -1,0 +1,19 @@
+--- wsgi.py.orig	2012-11-06 20:15:10.000000000 +0100
++++ wsgi.py	2012-12-07 22:34:55.251066116 +0100
+@@ -13,7 +13,10 @@
+ framework.
+ 
+ """
+-import os
++import os, sys
++sys.path.append('/srv/http/djangopflege')
++sys.path.append('/srv/http/djangopflege/profipflege')
++sys.path.append('/srv/http/djangopflege/cadmin')
+ 
+ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "profipflege.settings")
+ 
+@@ -26,3 +29,4 @@
+ # Apply WSGI middleware here.
+ # from helloworld.wsgi import HelloWorldApplication
+ # application = HelloWorldApplication(application)
++
