@@ -2,6 +2,8 @@
 
 {% block title %}Family Form{% endblock %}
 
+{% block styles %}<link href="css/datepicker.css" rel="stylesheet">{% endblock %}
+
 {% block content %}
 
   {% if family %}
@@ -30,17 +32,66 @@
     
       {% csrf_token %}
       
-      {% for field in form %}
-
+      
+        
+        <h2>Contact Person</h2>
         <div class="control-group">
-          <label class="control-label" for="inputEmail">{{field.label_tag}}</label>
-          
-          <div class="controls">
-            {{field}}
+          <label class="control-label">Firstname</label>
+          <div class="controls">{{form.firstname_contact_person}}</div>
+        </div>
+          <div class="control-group">
+          <label class="control-label">Lastname</label>
+        <div class="controls">{{form.lastname_contact_person}}</div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Phone</label>
+          <div class="controls">{{form.phone_contact_person}}</div>
+        </div>
 
+        <h2>Care Person</h2>
+        <div class="control-group">
+          <label class="control-label">Firstname</label>
+          <div class="controls">{{form.firstname_care_person}}</div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Lastname</label>
+          <div class="controls">{{form.lastname_care_person}}</div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Phone</label>
+          <div class="controls">{{form.phone_care_person}}</div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Date of Birth</label>
+          <div class="controls">
+            <input type="text" name="date_of_birth" id="id_date_of_birth" />
+            <!-- <input type="text" class="span2" value="02-16-2012" id="dp1" > -->
           </div>
         </div>
-      {% endfor %}
+
+
+        <h2>Address</h2>
+        <div class="control-group">
+          <label class="control-label">Street</label>
+          <div class="controls">{{form.street}}</div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Number</label>
+          <div class="controls">{{form.number}}</div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Postal Code</label>
+          <div class="controls">{{form.postal_code}}</div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">City</label>
+          <div class="controls">{{form.city}}</div>
+        </div>
+
+  # care_level
+  # date_of_birth
+      
+      
 
       <input type="submit" value="Save" class="btn btn-primary"/>
       <input type="reset" value="Cancel" class="btn" />
@@ -51,4 +102,13 @@
 
 {% block topicmenu %}
   {% include 'cadmin/topicmenu.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{STATIC_URL}}js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+$('#id_date_of_birth').datepicker({
+        format: 'mm-dd-yyyy'
+      });
+</script>
 {% endblock %}
