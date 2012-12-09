@@ -3,49 +3,64 @@
 
 {% block title %}Operation Form{% endblock %}
 
-{% block breadcrumb %}
-  {% if operation %}  
-    &gt; <a href="{% url cadmin.views.operationUpdateForm operation.id %}">{{operation.id}}</a>
-  {% else %}
-    &gt; <a href="{% url cadmin.views.operationCreateForm %}">{{operation.id}}</a>
-  {% endif %}
+{% block styles %}
+  <link href="{{STATIC_URL}}css/datepicker.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 
   {% if operation %}
-    <h1>Edit Operation {{operation.id}}</h1>
+    <h1>Edit Operation</h1>
   {% else %}
     <h1>Create New Operation</h1>
   {% endif %}
 
-  {% for field in form %}
-    {%if field.errors %}
-      <div id="block">
-        {{field.label_tag}}: {{field.errors}}
-      </div>
-    {% endif %}
-  {% endfor %}
+  {% if form.errors %}
+    <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Error!</strong></br>
+      {% for field in form %}
+        {% if field.errors %}
+          {{field.label_tag}}{{field.errors}}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 
   {% if operation %}
-    <form action="{% url cadmin.views.operationUpdateForm operation.id %}" method="post">
+    <form action="{% url cadmin.views.operationUpdateForm operation.id %}" method="post" class="form-horizontal">
   {% else %}
-    <form action="{% url cadmin.views.operationCreateForm %}" method="post">
+    <form action="{% url cadmin.views.operationCreateForm %}" method="post" class="form-horizontal">
   {% endif %}
     
       {% csrf_token %}
-  
-      <table class="form">
-        {% for field in form %}
-          <tr class="form">
-            <td class="form"> {{field.label_tag}} </td>
-            <td class="form"> {{field}}           </td>
-          </tr>
-        {% endfor %}
-      </table>
 
-      <input type="submit" value="Save" />
-      <input type="reset" value="Cancel" />
+      <div class="control-group">
+        <label class="control-label">Carer</label>
+        <div class="controls">{{form.carer}}</div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">Family</label>
+        <div class="controls">{{form.family}}</div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">Start Date</label>
+        <div class="controls">
+          <input type="text" name="start_date" id="id_start_date" />
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">End Date</label>
+        <div class="controls">
+          <input type="text" name="end_date" id="id_end_date" />
+        </div>
+      </div>
+
+      <input type="submit" value="Save" class="btn btn-primary"/>
+      <input type="reset" value="Cancel" class="btn" />
     </form>
 
 
@@ -53,4 +68,16 @@
 
 {% block topicmenu %}
   {% include 'cadmin/topicmenu.html' %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{STATIC_URL}}js/bootstrap-datepicker.js"></script>
+  <script type="text/javascript">
+    $('#id_start_date').datepicker({
+            format: 'yyyy-mm-dd'
+          });
+    $('#id_end_date').datepicker({
+            format: 'yyyy-mm-dd'
+          });
+  </script>
 {% endblock %}

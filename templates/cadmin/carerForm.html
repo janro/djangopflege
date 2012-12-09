@@ -3,6 +3,10 @@
 
 {% block title %}Carer Form{% endblock %}
 
+{% block styles %}
+  <link href="{{STATIC_URL}}css/datepicker.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 
   {% if carer %}
@@ -31,25 +35,77 @@
     
       {% csrf_token %}
       
-      {% for field in form %}
-
+      <h2>Carer</h2>
+      <div class="control-group">
+        <label class="control-label">Firstname</label>
+        <div class="controls">{{form.firstname}}</div>
+      </div>
         <div class="control-group">
-          <label class="control-label" for="inputEmail">{{field.label_tag}}</label>
-          
-          <div class="controls">
-            {{field}}
-
-          </div>
+        <label class="control-label">Lastname</label>
+      <div class="controls">{{form.lastname}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Phone</label>
+        <div class="controls">{{form.phone}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Date of Birth</label>
+        <div class="controls">
+          <input type="text" name="date_of_birth" id="id_date_of_birth" />
         </div>
-      {% endfor %}
+      </div>
+
+      <h2>Skills and Remarks</h2>
+      <div class="control-group">
+        <label class="control-label">Weight</label>
+        <div class="controls">{{form.weight}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Hometown</label>
+        <div class="controls">{{form.hometown}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Language Skills</label>
+        <div class="controls">{{form.language_skills}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Care Skills</label>
+        <div class="controls">{{form.care_skills}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Family</label>
+        <div class="controls">{{form.family}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Smoker</label>
+        <div class="controls">{{form.smoker}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Trade Registered</label>
+        <div class="controls">{{form.trade_registered}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Remarks</label>
+        <div class="controls">
+          <textarea id="id_remark" type="text" name="remark" rows="3" maxlength="500"></textarea>
+        </div>
+      </div>
 
       <input type="submit" value="Save" class="btn btn-primary"/>
       <input type="reset" value="Cancel" class="btn" />
     </form>
 
-
 {% endblock %}
 
 {% block topicmenu %}
   {% include 'cadmin/topicmenu.html' %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{STATIC_URL}}js/bootstrap-datepicker.js"></script>
+  <script type="text/javascript">
+    $('#id_date_of_birth').datepicker({
+            format: 'yyyy-mm-dd'
+          });
+  </script>
 {% endblock %}

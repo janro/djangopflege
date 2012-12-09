@@ -43,11 +43,6 @@
     <h2>Next Departures:</h2>
     <table class="table table-stripped">
       <tr>
-        <td>
-          <a href="{% url cadmin.views.operationUpdateForm care.id %}">
-            {{care.id}}
-          </a>
-        </td>
         <td>&#35;</td>
         <td>Date</td>
         <td>Carer</td>
@@ -56,6 +51,11 @@
 
       {% for care in departure_list %}
         <tr>
+          <td>
+            <a href="{% url cadmin.views.operationUpdateForm care.id %}">
+              {{care.id}}
+            </a>
+          </td>
           <td>{{care.end_date}}</td>
           <td>
             <a href="{% url cadmin.views.carerDetails care.carer.id %}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
