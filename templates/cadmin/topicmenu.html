@@ -42,7 +42,7 @@
     <li class="nav-header">Operations</li>
 
     {% if perms.cadmin.operationCreateDelete %}
-      <li><a href="{% url cadmin.views.summary %}">Operations</a></li> 
+      <li><a href="{% url cadmin.views.operations %}">Operations</a></li> 
       <li><a href="{% url cadmin.views.operationCreateForm %}">Add</a></li>
       {% if operation %}
         <li><a href="{% url cadmin.views.operationDelete operation.id %}">Delete</a></li>

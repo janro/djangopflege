@@ -19,6 +19,7 @@ urlpatterns = patterns('cadmin.views',
     (r'^c/(?P<carer_id>\d+)/delete/$', 'carerDelete'),
 
     # operations
+    (r'^op/$', 'operations'),
     (r'^op/edit/$', 'operationCreateForm'),
     (r'^op/(?P<operation_id>\d+)/edit/$', 'operationUpdateForm'),
     (r'^op/(?P<operation_id>\d+)/delete/$', 'operationDelete'),

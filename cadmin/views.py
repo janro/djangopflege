@@ -194,3 +194,11 @@ def operationDelete(request, operation_id):
   operation.delete()
   return HttpResponseRedirect(
     reverse('cadmin.views.familyDetails', args=(family_id,)))
+
+@login_required
+def operations(request):
+  operationList = Care.objects.all()
+
+  return render_to_response('cadmin/operationPlan.html',
+    {'operationList' : operationList, },
+    context_instance=RequestContext(request))
