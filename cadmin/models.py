@@ -64,7 +64,7 @@ class Family(models.Model):
   # number
   # postal_code
   # city
-  # operation_level
+  # care_level
   # date_of_birth
 
   CARE_LEVELS = (
@@ -84,7 +84,7 @@ class Family(models.Model):
   number = models.IntegerField(null=True, blank=True)
   postal_code = models.IntegerField(null=True, blank=True)
   city = models.CharField(max_length=100, null=True, blank=True)
-  operation_level = models.IntegerField(default=1, choices=CARE_LEVELS, blank=True)
+  care_level = models.IntegerField(default=1, choices=CARE_LEVELS, blank=True)
   date_of_birth = models.DateField(null=True, blank=True)
 
   def __unicode__(self):
