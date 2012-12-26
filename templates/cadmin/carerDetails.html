@@ -3,7 +3,7 @@
 {% block title %}summary{% endblock %}
 
 {% block breadcrumb %}
-  &gt; <a href="{% url cadmin.views.carerList %}">Carers</a>
+  &gt; <a href="{% url cadmin.views.carerList %}">Operationrs</a>
   &gt; <a href="{% url cadmin.views.carerDetails carer.id %}">{{carer.id}}</a>
 {% endblock %}
 
@@ -53,8 +53,8 @@
         <dl>
           <dt>Language skills</dt>
           <dd>{{carer.language_skills}}</dd>
-          <dt>Care skills</dt>
-          <dd>{{carer.care_skills}}</dd>
+          <dt>Operation skills</dt>
+          <dd>{{carer.operation_skills}}</dd>
           <dt>Remarks</dt>
           <dd>{{carer.remark}}</dd>
         </dl>
@@ -64,7 +64,7 @@
   </div>
 
 
-  {% if care_list %}
+  {% if operation_list %}
   <h2>Operations</h2>
 
     <table class = "table table-striped">
@@ -75,17 +75,17 @@
         <td>Family</td>
       </tr>
 
-      {% for care in care_list %}
+      {% for operation in operation_list %}
       <tr>
         <td>
-          <a href="{% url cadmin.views.operationUpdateForm care.id%}">
-            {{care.id}}
+          <a href="{% url cadmin.views.operationUpdateForm operation.id%}">
+            {{operation.id}}
           </a>
         </td>
-        <td>{{care.start_date}}</td>
-        <td>{{care.end_date}}</td>
-        <td><a href="{% url cadmin.views.familyDetails care.family.id %}">
-          {{care.family.lastname_contact_person}}
+        <td>{{operation.start_date}}</td>
+        <td>{{operation.end_date}}</td>
+        <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
+          {{operation.family.lastname_contact_person}}
         </a></td>
       </tr>
       {% endfor %}  

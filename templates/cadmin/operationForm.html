@@ -24,6 +24,7 @@
           {{field.label_tag}}{{field.errors}}
         {% endif %}
       {% endfor %}
+      {{form.non_field_errors}}
     </div>
   {% endif %}
 
@@ -46,13 +47,15 @@
       <div class="control-group">
         <label class="control-label">Start Date</label>
         <div class="controls">
-          <input type="text" name="start_date" id="id_start_date" />
+          <input type="text" name="start_date" id="id_start_date"
+           value="{{form.start_date.value}}"/>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">End Date</label>
         <div class="controls">
-          <input type="text" name="end_date" id="id_end_date" />
+          <input type="text" name="end_date" id="id_end_date"
+           value="{{form.end_date.value}}"/>
         </div>
       </div>
 

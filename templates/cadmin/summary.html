@@ -7,14 +7,14 @@
   <h1>Summary</h1>
 
     <div class="well">
-      {{carer_count}} Carers in Database </br>
+      {{carer_count}} Operationrs in Database </br>
       {{family_count}} Families in Database </br>
-      {{care_count}} Active Cares
+      {{operation_count}} Active Operations
     </div>
 
   {% if arrival_list %}
     <h2>Arrivals:</h2>
-    <table class="table table-stripped">
+    <table class="table table-striped">
       <tr>
         <td>&#35;</td>
         <td>Date</td>
@@ -22,18 +22,18 @@
         <td>Family</td>
       </tr>
 
-      {% for care in arrival_list %}
+      {% for operation in arrival_list %}
         <tr>
           <td>
-            <a href="{% url cadmin.views.operationUpdateForm care.id %}">
-              {{care.id}}
+            <a href="{% url cadmin.views.operationUpdateForm operation.id %}">
+              {{operation.id}}
             </a>
           </td>
-          <td>{{care.start_date}}</td>
+          <td>{{operation.start_date}}</td>
           <td>
-            <a href="{% url cadmin.views.carerDetails care.carer.id %}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
+            <a href="{% url cadmin.views.carerDetails operation.carer.id %}">{{operation.carer.firstname}}&nbsp;{{operation.carer.lastname}}</a>
           </td>
-          <td><a href="{% url cadmin.views.familyDetails care.family.id %}">{{care.family.lastname_contact_person}}</a></td>
+          <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">{{operation.family.lastname_contact_person}}</a></td>
         </tr>
       {% endfor %}
     </table>
@@ -41,7 +41,7 @@
 
   {% if departure_list %}
     <h2>Next Departures:</h2>
-    <table class="table table-stripped">
+    <table class="table table-striped">
       <tr>
         <td>&#35;</td>
         <td>Date</td>
@@ -49,18 +49,18 @@
         <td>Family</td>
       </tr>
 
-      {% for care in departure_list %}
+      {% for operation in departure_list %}
         <tr>
           <td>
-            <a href="{% url cadmin.views.operationUpdateForm care.id %}">
-              {{care.id}}
+            <a href="{% url cadmin.views.operationUpdateForm operation.id %}">
+              {{operation.id}}
             </a>
           </td>
-          <td>{{care.end_date}}</td>
+          <td>{{operation.end_date}}</td>
           <td>
-            <a href="{% url cadmin.views.carerDetails care.carer.id %}">{{care.carer.firstname}}&nbsp;{{care.carer.lastname}}</a>
+            <a href="{% url cadmin.views.carerDetails operation.carer.id %}">{{operation.carer.firstname}}&nbsp;{{operation.carer.lastname}}</a>
           </td>
-          <td><a href="{% url cadmin.views.familyDetails care.family.id %}">{{care.family.lastname_contact_person}}</a></td>
+          <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">{{operation.family.lastname_contact_person}}</a></td>
         </tr>
       {% endfor %}
     </table>

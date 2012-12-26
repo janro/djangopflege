@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
-from cadmin.forms import FamilyForm, CarerForm, OperationForm
-from cadmin.models import Carer, Family, Care
+from cadmin.forms import FamilyForm, OperationrForm, OperationForm
+from cadmin.models import Carer, Family, Operation
 
 import datetime
 
@@ -16,16 +16,16 @@ import datetime
 def summary(request):
   family_count = Family.objects.all().count()
   carer_count = Carer.objects.all().count()
-  care_count = Care.objects.filter(
+  operation_count = Operation.objects.filter(
     start_date__lte = datetime.date.today()).filter(
     end_date__gte = datetime.date.today()).count()
 
-  arrival_list = Care.objects.filter(start_date__gte = datetime.date.today()).order_by('-start_date')[0:5]
-  departure_list = Care.objects.filter(end_date__gte = datetime.date.today()).order_by('-end_date')[0:5]
+  arrival_list = Operation.objects.filter(start_date__gte = datetime.date.today()).order_by('-start_date')[0:5]
+  departure_list = Operation.objects.filter(end_date__gte = datetime.date.today()).order_by('-end_date')[0:5]
   return render_to_response('cadmin/summary.html',
     {'carer_count' : carer_count,
      'family_count' : family_count,
-     'care_count' : care_count,
+     'operation_count' : operation_count,
      'arrival_list' : arrival_list,
      'departure_list' : departure_list},
     context_instance=RequestContext(request))
@@ -48,22 +48,22 @@ def carerList(request):
 def familyDetails(request, family_id):
   family = get_object_or_404(Family, pk=family_id)
   try:
-    care_list = Care.objects.filter(family=family_id).order_by('-start_date')
+    operation_list = Operation.objects.filter(family=family_id).order_by('-start_date')
   except ObjectDoesNotExist:
-    care_list = {}
+    operation_list = {}
   return render_to_response('cadmin/familyDetails.html',
-      {'family' : family, 'care_list' : care_list},
+      {'family' : family, 'operation_list' : operation_list},
       context_instance=RequestContext(request))
 
 @login_required
 def carerDetails(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
   try:
-    care_list = Care.objects.filter(carer=carer_id).order_by('-start_date')
+    operation_list = Operation.objects.filter(carer=carer_id).order_by('-start_date')
   except ObjectDoesNotExist:
-    care_list = {}
+    operation_list = {}
   return render_to_response('cadmin/carerDetails.html',
-      {'carer' : carer, 'care_list' : care_list},
+      {'carer' : carer, 'operation_list' : operation_list},
       context_instance=RequestContext(request))
 
 @permission_required('cadmin.familyCreateDelete', raise_exception=True)
@@ -72,9 +72,9 @@ def familyDelete(request, family_id):
 
   # delete all operation entries belonging to this family
   try:
-    operations = Care.objects.filter(family=family_id)
+    operations = Operation.objects.filter(family=family_id)
   except ObjectDoesNotExist:
-    care_list = {}
+    operation_list = {}
 
   for operation in operations:
     operation.delete()
@@ -89,9 +89,9 @@ def carerDelete(request, carer_id):
 
   # delete all operation entries belonging to this carer
   try:
-    operations = Care.objects.filter(carer=carer_id)
+    operations = Operation.objects.filter(carer=carer_id)
   except ObjectDoesNotExist:
-    care_list = {}
+    operation_list = {}
 
   for operation in operations:
     operation.delete()
@@ -119,13 +119,13 @@ def familyUpdateForm(request, family_id):
 def carerUpdateForm(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
   if request.method == 'POST':
-    form = CarerForm(request.POST, instance=carer)
+    form = OperationrForm(request.POST, instance=carer)
     if form.is_valid():
       carer = form.save()
       return HttpResponseRedirect(
         reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
-    form = CarerForm(instance=carer)
+    form = OperationrForm(instance=carer)
   return render_to_response('cadmin/carerForm.html',
     {'form': form, 'carer' : carer, },
     context_instance=RequestContext(request))
@@ -147,20 +147,20 @@ def familyCreateForm(request):
 @login_required
 def carerCreateForm(request):
   if request.method == 'POST':
-    form = CarerForm(request.POST)
+    form = OperationrForm(request.POST)
     if form.is_valid():
       carer = form.save()
       return HttpResponseRedirect(
         reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
-    form = CarerForm()
+    form = OperationrForm()
   return render_to_response('cadmin/carerForm.html',
     {'form': form, },
     context_instance=RequestContext(request))
 
 @login_required
 def operationUpdateForm(request, operation_id):
-  operation = get_object_or_404(Care, pk=operation_id)
+  operation = get_object_or_404(Operation, pk=operation_id)
   if request.method == 'POST':
     form = OperationForm(request.POST, instance=operation)
     if form.is_valid():
@@ -189,7 +189,7 @@ def operationCreateForm(request):
 
 @permission_required('cadmin.operationCreateDelete', raise_exception=True)
 def operationDelete(request, operation_id):
-  operation = get_object_or_404(Care, pk=operation_id)
+  operation = get_object_or_404(Operation, pk=operation_id)
   family_id = operation.family.id
   operation.delete()
   return HttpResponseRedirect(
@@ -197,7 +197,7 @@ def operationDelete(request, operation_id):
 
 @login_required
 def operations(request):
-  operationList = Care.objects.all()
+  operationList = Operation.objects.all()
 
   return render_to_response('cadmin/operationPlan.html',
     {'operationList' : operationList, },
