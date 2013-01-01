@@ -1,0 +1,17 @@
+{% if registration_list %}
+
+<table class = "table table-striped">
+  <tr>
+    <td>Date</td>
+    <td>Action</td>
+  </tr>
+
+  {% for registration in registration_list %}
+  <tr>
+    <td>{{registration.date}}</td>
+    <td>{{registration.action}}</td>
+  </tr>
+  {% endfor %}  
+</table>
+
+{% endif %}

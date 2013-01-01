@@ -63,35 +63,29 @@
     </div>
   </div>
 
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#operations" data-toggle="tab">Operations</a></li>
+        {% if perms.cadmin.carerPaymentView %}
+        <li><a href="#payment" data-toggle="tab">Payment</a></li>
+        {% endif %}
+        <li><a href="#registrations" data-toggle="tab">Registrations</a></li>
+    </ul>
 
-  {% if operation_list %}
-  <h2>Operations</h2>
-
-    <table class = "table table-striped">
-      <tr>
-        <td>&#35;</td>
-        <td>Start Date</td>
-        <td>End Date</td>
-        <td>Family</td>
-      </tr>
-
-      {% for operation in operation_list %}
-      <tr>
-        <td>
-          <a href="{% url cadmin.views.operationUpdateForm operation.id%}">
-            {{operation.id}}
-          </a>
-        </td>
-        <td>{{operation.start_date}}</td>
-        <td>{{operation.end_date}}</td>
-        <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
-          {{operation.family.lastname_contact_person}}
-        </a></td>
-      </tr>
-      {% endfor %}  
-    </table>
-
-  {% endif %}
+    <div class="tab-content">
+      <div class="tab-pane active" id="operations">
+        <!-- filled by script -->
+      </div>
+      {% if perms.cadmin.carerPaymentView %}
+      <div class="tab-pane" id="payment">
+        <!-- filled by script -->
+      </div>
+      {% endif %}
+      <div class="tab-pane" id="registrations">
+        <!-- filled by script -->
+      </div>
+    </div>
+  </div>
 
 
 
@@ -99,4 +93,13 @@
 
 {% block topicmenu %}
   {% include 'cadmin/topicmenu.html' %}
+{% endblock %}
+
+{% block scripts %}
+  <script> $("#operations").load("{% url cadmin.views.ajaxCarerOperationList carer.id %}"); </script>
+  {% if perms.cadmin.carerPaymentView %}
+  <script> $("#payment").load("{% url cadmin.views.ajaxCarerPaymentList carer.id %}"); </script>
+  {% endif %}
+  <script> $("#registrations").load("{% url cadmin.views.ajaxCarerRegistrationList carer.id %}"); </script>
+  </script>
 {% endblock %}

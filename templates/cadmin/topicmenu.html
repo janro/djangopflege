@@ -1,53 +1,64 @@
 <ul class="nav nav-list">
+{% if user.is_authenticated %}
 
-  {% if user.is_authenticated %}
+  <!-- Family Section -->
 
-    <!-- Family Section -->
-    
-    <li class="nav-header">Families</li>
-    <li><a href="{% url cadmin.views.familyList %}">Family List</a></li>
-  
-    {% if family %}
-      <li><a href="{% url cadmin.views.familyUpdateForm family.id %}">Edit</a></li>
-    {% endif %}
+  <li class="nav-header">Families</li>
+  <li><a href="{% url cadmin.views.familyList %}">Family List</a></li>
 
-    {% if perms.cadmin.familyCreateDelete %}
-      {% if family %}
-        <li><a href="{% url cadmin.views.familyDelete family.id %}">Delete</a></li>
-      {% endif %}
-      <li><a href="{% url cadmin.views.familyCreateForm %}">Add</a></li>
-    {% endif %}
-
-
-    <!-- Carer Section -->
-
-    <li class="nav-header">Operationrs</li>
-    <li><a href="{% url cadmin.views.carerList %}">Carer List</a></li>
-
-
-    {% if carer %}
-      <li><a href="{% url cadmin.views.carerUpdateForm carer.id %}">Edit</a></li>
-    {% endif %}
-
-    {% if perms.cadmin.carerCreateDelete %} 
-      {% if carer %}
-        <li><a href="{% url cadmin.views.carerDelete carer.id %}">Delete</a></li>
-      {% endif %}
-      <li><a href="{% url cadmin.views.carerCreateForm %}">Add</a></li>
-    {% endif %}
-
-    
-    <!-- Operation Section -->    
-
-    <li class="nav-header">Operations</li>
-
-    {% if perms.cadmin.operationCreateDelete %}
-      <li><a href="{% url cadmin.views.operations %}">Operations</a></li> 
-      <li><a href="{% url cadmin.views.operationCreateForm %}">Add</a></li>
-      {% if operation %}
-        <li><a href="{% url cadmin.views.operationDelete operation.id %}">Delete</a></li>
-      {% endif %}
-    {% endif %}
-
+  {% if family %}
+  <li><a href="{% url cadmin.views.familyUpdateForm family.id %}">Edit</a></li>
   {% endif %}
+
+  {% if perms.cadmin.familyCreateDelete and family%}
+  <li><a href="{% url cadmin.views.familyDelete family.id %}">Delete</a></li>
+  {% endif %}
+
+  {% if perms.cadmin.familyCreateDelete %}
+  <li><a href="{% url cadmin.views.familyCreateForm %}">Add</a></li>
+  {% endif %}
+
+
+  <!-- Carer Section -->
+
+  <li class="nav-header">Carer</li>
+  <li><a href="{% url cadmin.views.carerList %}">Carer List</a></li>
+
+  {% if carer %}
+  <li><a href="{% url cadmin.views.carerUpdateForm carer.id %}">Edit</a></li>
+  {% endif %}
+
+  {% if perms.cadmin.carerPaymentView and carer%}
+  <li><a href="{% url cadmin.views.carerPaymentAddForm carer.id %}">Payment Action</a></li>
+  {% endif %}
+
+  {% if carer%}
+  <li><a href="{% url cadmin.views.carerTradeRegisterActionAddForm carer.id %}">Registration Action</a></li>
+  {% endif %}
+
+  {% if perms.cadmin.carerCreateDelete and carer%} 
+  <li><a href="{% url cadmin.views.carerDelete carer.id %}">Delete</a></li>
+  {% endif %}
+
+  {% if perms.cadmin.carerCreateDelete%} 
+  <li><a href="{% url cadmin.views.carerCreateForm %}">Add</a></li>
+  {% endif %}
+
+  <!-- Operation Section -->    
+
+  <li class="nav-header">Operations</li>
+
+  {% if perms.cadmin.operationCreateDelete %}
+  <li><a href="{% url cadmin.views.operations %}">Operations</a></li> 
+  {% endif %}
+
+  {% if perms.cadmin.operationCreateDelete %}
+  <li><a href="{% url cadmin.views.operationCreateForm %}">Add</a></li>
+  {% endif %}
+
+  {% if perms.cadmin.operationCreateDelete and operation %}
+  <li><a href="{% url cadmin.views.operationDelete operation.id %}">Delete</a></li>
+  {% endif %}
+
+{% endif %}
 </ul>

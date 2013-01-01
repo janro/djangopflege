@@ -17,6 +17,12 @@ urlpatterns = patterns('cadmin.views',
     (r'^c/(?P<carer_id>\d+)/edit/$', 'carerUpdateForm'),
     (r'^c/(?P<carer_id>\d+)/$', 'carerDetails'),
     (r'^c/(?P<carer_id>\d+)/delete/$', 'carerDelete'),
+    (r'^c/(?P<carer_id>\d+)/pm/add$', 'carerPaymentAddForm'),
+    (r'^c/(?P<carer_id>\d+)/re/add$', 'carerTradeRegisterActionAddForm'),
+    # carer ajax load
+    (r'^c/(?P<carer_id>\d)/ajax/op/$','ajaxCarerOperationList'),
+    (r'^c/(?P<carer_id>\d)/ajax/pm/$','ajaxCarerPaymentList'),
+    (r'^c/(?P<carer_id>\d)/ajax/re/$','ajaxCarerRegistrationList'),
 
     # operations
     (r'^op/$', 'operations'),

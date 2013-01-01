@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
 from cadmin.forms import FamilyForm, OperationrForm, OperationForm
-from cadmin.models import Carer, Family, Operation
+from cadmin.models import Carer, Family, Operation, CarerPayment, TradeRegister
 
 import datetime
 
@@ -39,7 +39,7 @@ def familyList(request):
 
 @login_required
 def carerList(request):
-  carer_list = Carer.objects.all();
+  carer_list = Carer.objects.all().order_by('lastname')
   return render_to_response('cadmin/carerList.html',
     {'carer_list' : carer_list},
     context_instance=RequestContext(request))
@@ -58,12 +58,8 @@ def familyDetails(request, family_id):
 @login_required
 def carerDetails(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
-  try:
-    operation_list = Operation.objects.filter(carer=carer_id).order_by('-start_date')
-  except ObjectDoesNotExist:
-    operation_list = {}
   return render_to_response('cadmin/carerDetails.html',
-      {'carer' : carer, 'operation_list' : operation_list},
+      {'carer' : carer},
       context_instance=RequestContext(request))
 
 @permission_required('cadmin.familyCreateDelete', raise_exception=True)
@@ -198,7 +194,67 @@ def operationDelete(request, operation_id):
 @login_required
 def operations(request):
   operationList = Operation.objects.all()
-
   return render_to_response('cadmin/operationPlan.html',
     {'operationList' : operationList, },
+    context_instance=RequestContext(request))
+
+@login_required
+def ajaxCarerOperationList(request, carer_id):
+  carer = get_object_or_404(Carer, pk=carer_id)
+  try:
+    operation_list = Operation.objects.filter(carer=carer_id).order_by('-start_date')
+  except ObjectDoesNotExist:
+    operation_list = {}
+  return render_to_response('cadmin/ajax/operationList.html',
+      {'operation_list' : operation_list},
+      context_instance=RequestContext(request))
+
+@permission_required('cadmin.carerPaymentView', raise_exception=True)
+def ajaxCarerPaymentList(request, carer_id):
+  carer = get_object_or_404(Carer, pk=carer_id)
+  try:
+    payment_list = CarerPayment.objects.filter(carer=carer_id).order_by('-date')
+  except ObjectDoesNotExist:
+    payment_list = {}
+  return render_to_response('cadmin/ajax/paymentList.html',
+      {'payment_list' : payment_list},
+      context_instance=RequestContext(request))
+
+@login_required
+def ajaxCarerRegistrationList(request, carer_id):
+  carer = get_object_or_404(Carer, pk=carer_id)
+  try:
+    registration_list = TradeRegister.objects.filter(carer=carer_id).order_by('-date')
+  except ObjectDoesNotExist:
+    registration_list = {}
+  return render_to_response('cadmin/ajax/registrationList.html',
+      {'registration_list' : registration_list},
+      context_instance=RequestContext(request))
+
+@permission_required('cadmin.carerPaymentView', raise_exception=True)
+def carerPaymentAddForm(request):
+  if request.method == 'POST':
+    form = CarerPaymentForm(request.POST)
+    if form.is_valid():
+      carer_payment = form.save()
+      return HttpResponseRedirect(
+        reverse('cadmin.views.carerDetails', args=(carer_payment.carer.id,)))
+  else:
+    form = CarerPaymentForm()
+  return render_to_response('cadmin/forms/carerPaymentForm.html',
+    {'form': form, },
+    context_instance=RequestContext(request))
+
+@login_required
+def carerTradeRegisterActionAddForm(request):
+  if request.method == 'POST':
+    form = CarerTradeRegisterForm(request.POST)
+    if form.is_valid():
+      trade_registration = form.save()
+      return HttpResponseRedirect(
+        reverse('cadmin.views.carerDetails', args=(trade_registration.carer.id,)))
+  else:
+    form = CarerPaymentForm()
+  return render_to_response('cadmin/forms/carerTradeRegistrationForm.html',
+    {'form': form, },
     context_instance=RequestContext(request))

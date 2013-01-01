@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.exceptions import ObjectDoesNotExist
@@ -146,8 +147,8 @@ class FamilyPayment(models.Model):
 
 class CarerPayment(models.Model):
   carer = models.ForeignKey(Carer)
-  amount = models.IntegerField()
-  date = models.DateField()
+  date = models.DateField(null=False, blank=False)
+  amount = models.IntegerField(null=False, blank=False)
 
   class Meta:
     permissions = (('carerPaymentView', 'View Carer Payment'),)

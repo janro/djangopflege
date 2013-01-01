@@ -1,7 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 
-from cadmin.models import Family, Carer, Operation
+from cadmin.models import Family, Carer, Operation, CarerPayment, TradeRegister
 
 class FamilyForm(ModelForm):
   class Meta:
@@ -13,4 +13,12 @@ class OperationrForm(ModelForm):
 
 class OperationForm(ModelForm):
   class Meta:
-    model = Operation    
+    model = Operation
+
+class CarerPaymentForm(ModelForm):
+  class Meta:
+    model = CarerPayment
+
+class CarerTradeRegisterForm(ModelForm):
+  class Meta:
+    model = TradeRegister

@@ -1,0 +1,17 @@
+{% if payment_list %}
+
+<table class = "table table-striped">
+  <tr>
+    <td>Date</td>    
+    <td>Amount</td>
+  </tr>
+
+  {% for payment in payment_list %}
+  <tr>
+    <td>{{payment.date}}</td>
+    <td>{{payment.amount}} &#8364;</td>
+  </tr>
+  {% endfor %}  
+</table>
+
+{% endif %}

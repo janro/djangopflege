@@ -1,0 +1,27 @@
+{% if operation_list %}
+
+<table class = "table table-striped">
+  <tr>
+    <td>&#35;</td>
+    <td>Start Date</td>
+    <td>End Date</td>
+    <td>Family</td>
+  </tr>
+
+  {% for operation in operation_list %}
+  <tr>
+    <td>
+      <a href="{% url cadmin.views.operationUpdateForm operation.id%}">
+        {{operation.id}}
+      </a>
+    </td>
+    <td>{{operation.start_date}}</td>
+    <td>{{operation.end_date}}</td>
+    <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
+      {{operation.family.lastname_contact_person}}
+    </a></td>
+  </tr>
+  {% endfor %}  
+</table>
+
+{% endif %}
