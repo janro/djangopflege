@@ -2,7 +2,8 @@
 
 <table class = "table table-striped">
   <tr>
-    <td>Date</td>    
+    <td>Date</td>
+    <td>Method</td>    
     <td>Amount</td>
     <td>Actions</td>
   </tr>
@@ -10,6 +11,7 @@
   {% for payment in payment_list %}
   <tr>
     <td>{{payment.date}}</td>
+    <td>{{payment.method}}</td>
     <td>{{payment.amount}} &#8364;</td>
     <td>
       <a href="{% url cadmin.views.carerPaymentEditForm payment.carer.id payment.id %}">

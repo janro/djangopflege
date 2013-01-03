@@ -146,9 +146,16 @@ class FamilyPayment(models.Model):
       permissions = (('familyPaymentView', 'View Family Payment'),)
 
 class CarerPayment(models.Model):
+
+  PAYMENT_METHODS = (
+    (1, 'Cash'),
+    (2, 'Bank Transaction'),
+  )
+
   carer = models.ForeignKey(Carer)
   date = models.DateField(null=False, blank=False)
   amount = models.IntegerField(null=False, blank=False)
+  method = models.IntegerField(default=1, choices=PAYMENT_METHODS, blank=False)
 
   class Meta:
     permissions = (('carerPaymentView', 'View Carer Payment'),)
