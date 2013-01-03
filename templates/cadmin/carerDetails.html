@@ -69,7 +69,7 @@
         {% if perms.cadmin.carerPaymentView %}
         <li><a href="#payment" data-toggle="tab">Payment</a></li>
         {% endif %}
-        <li><a href="#registrations" data-toggle="tab">Registrations</a></li>
+        <!-- <li><a href="#registrations" data-toggle="tab">Registrations</a></li> -->
     </ul>
 
     <div class="tab-content">
@@ -81,9 +81,9 @@
         <!-- filled by script -->
       </div>
       {% endif %}
-      <div class="tab-pane" id="registrations">
+      <!-- <div class="tab-pane" id="registrations"> -->
         <!-- filled by script -->
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 
@@ -100,6 +100,5 @@
   {% if perms.cadmin.carerPaymentView %}
   <script> $("#payment").load("{% url cadmin.views.ajaxCarerPaymentList carer.id %}"); </script>
   {% endif %}
-  <script> $("#registrations").load("{% url cadmin.views.ajaxCarerRegistrationList carer.id %}"); </script>
-  </script>
+  <!-- <script> $("#registrations").load("{% url cadmin.views.ajaxCarerRegistrationList carer.id %}"); </script> -->
 {% endblock %}

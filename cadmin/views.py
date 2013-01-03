@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
-from cadmin.forms import FamilyForm, OperationrForm, OperationForm
+from cadmin.forms import FamilyForm, OperationrForm, OperationForm, CarerPaymentForm
 from cadmin.models import Carer, Family, Operation, CarerPayment, TradeRegister
 
 import datetime
@@ -232,7 +232,7 @@ def ajaxCarerRegistrationList(request, carer_id):
       context_instance=RequestContext(request))
 
 @permission_required('cadmin.carerPaymentView', raise_exception=True)
-def carerPaymentAddForm(request):
+def carerPaymentAddForm(request, carer_id):
   if request.method == 'POST':
     form = CarerPaymentForm(request.POST)
     if form.is_valid():
@@ -241,8 +241,10 @@ def carerPaymentAddForm(request):
         reverse('cadmin.views.carerDetails', args=(carer_payment.carer.id,)))
   else:
     form = CarerPaymentForm()
+    
+  carer = get_object_or_404(Carer, pk=carer_id)
   return render_to_response('cadmin/forms/carerPaymentForm.html',
-    {'form': form, },
+    {'form': form, 'carer' : carer,},
     context_instance=RequestContext(request))
 
 @login_required

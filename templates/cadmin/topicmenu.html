@@ -29,11 +29,7 @@
   {% endif %}
 
   {% if perms.cadmin.carerPaymentView and carer%}
-  <li><a href="{% url cadmin.views.carerPaymentAddForm carer.id %}">Payment Action</a></li>
-  {% endif %}
-
-  {% if carer%}
-  <li><a href="{% url cadmin.views.carerTradeRegisterActionAddForm carer.id %}">Registration Action</a></li>
+  <li><a href="{% url cadmin.views.carerPaymentAddForm carer.id %}">Pay</a></li>
   {% endif %}
 
   {% if perms.cadmin.carerCreateDelete and carer%} 
