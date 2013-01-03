@@ -241,22 +241,34 @@ def carerPaymentAddForm(request, carer_id):
         reverse('cadmin.views.carerDetails', args=(carer_payment.carer.id,)))
   else:
     form = CarerPaymentForm()
-    
+
   carer = get_object_or_404(Carer, pk=carer_id)
   return render_to_response('cadmin/forms/carerPaymentForm.html',
     {'form': form, 'carer' : carer,},
     context_instance=RequestContext(request))
 
-@login_required
-def carerTradeRegisterActionAddForm(request):
+@permission_required('cadmin.carerPaymentView', raise_exception=True)
+def carerPaymentEditForm(request, carer_id, payment_id):
+  carer_payment = get_object_or_404(CarerPayment, pk=payment_id)
+
   if request.method == 'POST':
-    form = CarerTradeRegisterForm(request.POST)
+    form = CarerPaymentForm(request.POST, instance=carer_payment)
     if form.is_valid():
-      trade_registration = form.save()
+      carer_payment = form.save()
       return HttpResponseRedirect(
-        reverse('cadmin.views.carerDetails', args=(trade_registration.carer.id,)))
+        reverse('cadmin.views.carerDetails', args=(carer_payment.carer.id,)))
   else:
-    form = CarerPaymentForm()
-  return render_to_response('cadmin/forms/carerTradeRegistrationForm.html',
-    {'form': form, },
+    form = CarerPaymentForm(instance=carer_payment)
+
+  carer = get_object_or_404(Carer, pk=carer_id)
+  return render_to_response('cadmin/forms/carerPaymentForm.html',
+    {'form': form, 'carer' : carer, 'carer_payment' : carer_payment},
     context_instance=RequestContext(request))
+
+@permission_required('cadmin.carerPaymentView', raise_exception=True)
+def carerPaymentDelete(request, carer_id, payment_id):
+  carer_payment = get_object_or_404(CarerPayment, pk=payment_id)
+  carer_id = carer_payment.carer.id
+  carer_payment.delete()
+  return HttpResponseRedirect(
+    reverse('cadmin.views.carerDetails', args=(carer_payment.carer.id,)))
