@@ -107,7 +107,7 @@ def familyUpdateForm(request, family_id):
         reverse('cadmin.views.familyDetails', args=(family.id,)))
   else:
     form = FamilyForm(instance=family)
-  return render_to_response('cadmin/familyForm.html',
+  return render_to_response('cadmin/forms/familyForm.html',
     {'form': form, 'family' : family, },
     context_instance=RequestContext(request))
 
@@ -122,7 +122,7 @@ def carerUpdateForm(request, carer_id):
         reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
     form = OperationrForm(instance=carer)
-  return render_to_response('cadmin/carerForm.html',
+  return render_to_response('cadmin/forms/carerForm.html',
     {'form': form, 'carer' : carer, },
     context_instance=RequestContext(request))
 
@@ -136,7 +136,7 @@ def familyCreateForm(request):
         reverse('cadmin.views.familyDetails', args=(family.id,)))
   else:
     form = FamilyForm()
-  return render_to_response('cadmin/familyForm.html',
+  return render_to_response('cadmin/forms/familyForm.html',
     {'form': form, },
     context_instance=RequestContext(request))
 
@@ -150,7 +150,7 @@ def carerCreateForm(request):
         reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
     form = OperationrForm()
-  return render_to_response('cadmin/carerForm.html',
+  return render_to_response('cadmin/forms/carerForm.html',
     {'form': form, },
     context_instance=RequestContext(request))
 
@@ -165,7 +165,7 @@ def operationUpdateForm(request, operation_id):
         reverse('cadmin.views.familyDetails', args=(operation.family.id,)))
   else:
     form = OperationForm(instance=operation)
-  return render_to_response('cadmin/operationForm.html',
+  return render_to_response('cadmin/forms/operationForm.html',
     {'form': form, 'operation' : operation, },
     context_instance=RequestContext(request))
 
@@ -179,7 +179,7 @@ def operationCreateForm(request):
         reverse('cadmin.views.familyDetails', args=(operation.family.id,)))
   else:
     form = OperationForm()
-  return render_to_response('cadmin/operationForm.html',
+  return render_to_response('cadmin/forms/operationForm.html',
     {'form': form, },
     context_instance=RequestContext(request))
 
