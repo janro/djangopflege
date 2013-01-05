@@ -39,7 +39,14 @@ class Carer(models.Model):
   weight = models.IntegerField(null=True, blank=True)
   family = models.BooleanField()
   smoker = models.BooleanField()
-  trade_registered = models.BooleanField()
+  #remove:
+  trade_registered = models.BooleanField() 
+  #add:
+  #staatsbuergerschaft
+  #sozialversicherungsnummer
+  #reisepassnummer
+  #kontonummer
+  #blz
   language_skills = models.IntegerField(default=1, choices=SKILL_LEVELS, blank=True)
   operation_skills = models.IntegerField(default=1, choices=SKILL_LEVELS, blank=True)
   remark = models.CharField(max_length=500, null=True, blank=True)
@@ -73,6 +80,8 @@ class Family(models.Model):
     (2, 'Level 2'),
     (3, 'Level 3'),
     (4, 'Level 4'),
+    (5, 'Level 5'),
+    (6, 'Level 6'),
   )
   
   firstname_contact_person = models.CharField(max_length=100, null=True, blank=True)
