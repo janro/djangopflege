@@ -1,4 +1,7 @@
+# Machine Specific Files #
+##########################
 settings.py
+wsgi.py
 
 # Compiled source #
 ###################
