@@ -1,5 +1,3 @@
-
-
 # Django settings for profipflege project.
 
 DEBUG = True
