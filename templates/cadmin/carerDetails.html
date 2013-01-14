@@ -39,24 +39,24 @@
           <dt>Hometown</dt>
           <dd>{{carer.hometown}}</dd>
           <dt>Family</dt>
-          <dd>{{carer.family}}</dd>
+          <dd>{% if carer.family %}yes{% else %}no{% endif %}</dd>
           <dt>Weight</dt>
           <dd>{{carer.weight}}</dd>
           <dt><td>Smoker</dt>
-          <dd>{{carer.smoker}}</dd>
+          <dd>{% if carer.smoker %}yes{% else %}no{% endif %}</dd>
           <dt>Trade registered</dt>
-          <dd>{{carer.trade_registered}}</dd>
+          <dd>{% if carer.trade_registered %}yes{% else %}no{% endif %}</dd>
         </dl>
       </div>
 
       <div class="tab-pane" id="C">
         <dl>
           <dt>Language skills</dt>
-          <dd>{{carer.language_skills}}</dd>
+          <dd>{{carer.get_language_skills_display}}</dd>
           <dt>Operation skills</dt>
-          <dd>{{carer.operation_skills}}</dd>
+          <dd>{{carer.get_operation_skills_display}}</dd>
           <dt>Remarks</dt>
-          <dd>{{carer.remark}}</dd>
+          <dd>{% if carer.remark %}{{carer.remark}}{% else %}none{% endif %}</dd>
         </dl>
       </div>
 

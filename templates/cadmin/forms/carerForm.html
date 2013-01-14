@@ -69,7 +69,17 @@
       </div>
       <div class="control-group">
         <label class="control-label">Operation Skills</label>
-        <div class="controls">{{form.operation_skills}}</div>
+        <div class="controls">
+
+          <!--{{form.operation_skills}}-->
+
+          <select name="direction">
+            {% for k,v in form.language_skills %}
+            <option value="{{ k }}"/>{{ v }}
+            {% endfor %}
+          </select>
+
+        </div>
       </div>
       <div class="control-group">
         <label class="control-label">Family</label>

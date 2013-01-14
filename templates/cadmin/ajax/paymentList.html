@@ -11,7 +11,7 @@
   {% for payment in payment_list %}
   <tr>
     <td>{{payment.date}}</td>
-    <td>{{payment.method}}</td>
+    <td>{{payment.get_method_display}}</td>
     <td>{{payment.amount}} &#8364;</td>
     <td>
       <a href="{% url cadmin.views.carerPaymentEditForm payment.carer.id payment.id %}">
