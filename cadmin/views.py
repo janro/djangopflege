@@ -206,7 +206,20 @@ def ajaxCarerOperationList(request, carer_id):
   except ObjectDoesNotExist:
     operation_list = {}
   return render_to_response('cadmin/ajax/operationList.html',
-      {'operation_list' : operation_list},
+      {'operation_list' : operation_list,
+       'carer' : carer},
+      context_instance=RequestContext(request))
+
+@login_required
+def ajaxFamilyOperationList(request, family_id):
+  family = get_object_or_404(Family, pk=family_id)
+  try:
+    operation_list = Operation.objects.filter(family=family_id).order_by('-start_date')
+  except ObjectDoesNotExist:
+    operation_list = {}
+  return render_to_response('cadmin/ajax/operationList.html',
+      {'operation_list' : operation_list,
+       'family' : family},
       context_instance=RequestContext(request))
 
 @permission_required('cadmin.carerPaymentView', raise_exception=True)

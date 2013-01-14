@@ -87,6 +87,7 @@ class Family(models.Model):
   firstname_contact_person = models.CharField(max_length=100, null=True, blank=True)
   lastname_contact_person = models.CharField(max_length=100, null=True, blank=False)
   phone_contact_person = models.CharField(max_length=20, null=True, blank=False)
+  #error...
   firstname_operation_person = models.CharField(max_length=100, null=True, blank=True)
   lastname_operation_person = models.CharField(max_length=100, null=True, blank=True)
   phone_operation_person = models.CharField(max_length=20, null=True, blank=True)

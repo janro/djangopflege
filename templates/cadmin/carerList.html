@@ -13,6 +13,7 @@
       <td>First Name</td>
       <td>Last Name</td>
       <td>Phone Number</td>
+      <td>Actions</td>
     </tr>
 
     {% for carer in carer_list %}
@@ -25,6 +26,33 @@
         <td>{{carer.firstname}}</td>
         <td>{{carer.lastname}}</td>
         <td>{{carer.phone}}</td>
+        <td>
+          <a href="{% url cadmin.views.carerUpdateForm carer.id %}">
+            <span class="label">Edit</span>
+          </a>
+          &nbsp;
+          <a href="#deleteModal" data-toggle="modal">
+            <span class="label">Delete</span>
+          </a>
+
+          <!-- Modal -->
+          <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <h3 id="myModalLabel">Confirm</h3>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure that you want delete this carer?</p>
+              <small>
+                ({{carer.firstname}} {{carer.firstname}})
+              </small>
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              <a href="{% url cadmin.views.carerDelete carer.id %}" role="button" class="btn btn-primary">Conirm</a>
+            </div>
+          </div>
+          <!-- End Modal -->
+        </td>
       </tr>
     {% endfor %}
 

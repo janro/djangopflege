@@ -96,9 +96,12 @@
 {% endblock %}
 
 {% block scripts %}
-  <script> $("#operations").load("{% url cadmin.views.ajaxCarerOperationList carer.id %}"); </script>
+  <script>
+    $("#operations").load("{% url cadmin.views.ajaxCarerOperationList carer.id %}");
+  </script>
   {% if perms.cadmin.carerPaymentView %}
-  <script> $("#payment").load("{% url cadmin.views.ajaxCarerPaymentList carer.id %}"); </script>
+  <script>
+    $("#payment").load("{% url cadmin.views.ajaxCarerPaymentList carer.id %}");
+  </script>
   {% endif %}
-  <!-- <script> $("#registrations").load("{% url cadmin.views.ajaxCarerRegistrationList carer.id %}"); </script> -->
 {% endblock %}

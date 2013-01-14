@@ -11,6 +11,9 @@ urlpatterns = patterns('cadmin.views',
     (r'^f/(?P<family_id>\d+)/$', 'familyDetails'),
     (r'^f/(?P<family_id>\d+)/delete/$', 'familyDelete'),
 
+    # family ajax load
+    (r'^f/(?P<family_id>\d+)/ajax/op/$','ajaxFamilyOperationList'),
+
     # carer section
     (r'^c/$', 'carerList'),
     (r'^c/edit/$', 'carerCreateForm'),

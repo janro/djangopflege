@@ -58,37 +58,27 @@
     </div>
   </div>
 
-    {% if operation_list %}
-    <h2>Operations</h2>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#operations" data-toggle="tab">Operations</a></li>
+    </ul>
 
-      <table class = "table table-striped">
-        <tr>
-          <td>&#35;</td>
-          <td>Start Date</td>
-          <td>End Date</td>
-          <td>Family</td>
-        </tr>
-
-        {% for operation in operation_list %}
-        <tr>
-          <td>
-            <a href="{% url cadmin.views.operationUpdateForm operation.id %}">
-              {{operation.id}}
-            </a>
-          </td>
-          <td>{{operation.start_date}}</td>
-          <td>{{operation.end_date}}</td>
-          <td><a href="{% url cadmin.views.carerDetails operation.carer.id %}">
-              {{operation.carer.firstname}}&nbsp;{{operation.carer.lastname}}
-          </a></td>
-        </tr>
-        {% endfor %}  
-      </table>
-
-    {% endif %}
+    <div class="tab-content">
+      <div class="tab-pane active" id="operations">
+        <!-- filled by script -->
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
 
 {% block topicmenu %}
   {% include 'cadmin/topicmenu.html' %}
+{% endblock %}
+
+
+{% block scripts %}
+  <script>
+    $("#operations").load("{% url cadmin.views.ajaxFamilyOperationList family.id %}");
+  </script>
 {% endblock %}
