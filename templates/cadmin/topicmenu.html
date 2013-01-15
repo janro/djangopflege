@@ -57,7 +57,9 @@
   {% endif %}
 
   {% if perms.cadmin.operationCreateDelete and operation %}
-  <li><a href="{% url cadmin.views.operationDelete operation.id %}">Delete</a></li>
+  <li><a href="#operationDeleteDialog" data-toggle="modal">Delete</a></li>
+  <!-- include the modal embedded in this file -->
+  {% include 'cadmin/dialogs/operationDeleteDialog.html' %}
   {% endif %}
 
 {% endif %}
