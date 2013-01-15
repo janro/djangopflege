@@ -34,7 +34,8 @@
             <a href="{% url cadmin.views.carerDetails operation.carer.id %}">{{operation.carer.firstname}}&nbsp;{{operation.carer.lastname}}</a>
           </td>
           <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
-            {{operation.family.firstname_care_person}} {{operation.family.lastname_care_person}}</a></td>
+            {{operation.family.firstname_care_person}}&nbsp;{{operation.family.lastname_care_person}}
+          </a></td>
         </tr>
       {% endfor %}
     </table>
@@ -47,7 +48,7 @@
         <td>&#35;</td>
         <td>Date</td>
         <td>Carer</td>
-        <td>Family</td>
+        <td>Care Person</td>
       </tr>
 
       {% for operation in departure_list %}
@@ -61,7 +62,9 @@
           <td>
             <a href="{% url cadmin.views.carerDetails operation.carer.id %}">{{operation.carer.firstname}}&nbsp;{{operation.carer.lastname}}</a>
           </td>
-          <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">{{operation.family.lastname_contact_person}}</a></td>
+          <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
+            {{operation.family.firstname_care_person}}&nbsp;{{operation.family.lastname_care_person}}
+          </a></td>
         </tr>
       {% endfor %}
     </table>
