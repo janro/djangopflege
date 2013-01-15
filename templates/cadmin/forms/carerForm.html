@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <h2>Skills and Remarks</h2>
+      <h2>Skills and Additionals</h2>
       <div class="control-group">
         <label class="control-label">Weight</label>
         <div class="controls">{{form.weight}}</div>
@@ -69,17 +69,7 @@
       </div>
       <div class="control-group">
         <label class="control-label">Operation Skills</label>
-        <div class="controls">
-
-          <!--{{form.operation_skills}}-->
-
-          <select name="direction">
-            {% for k,v in form.language_skills %}
-            <option value="{{ k }}"/>{{ v }}
-            {% endfor %}
-          </select>
-
-        </div>
+        <div class="controls">{{form.operation_skills}}</div>
       </div>
       <div class="control-group">
         <label class="control-label">Family</label>
@@ -90,9 +80,29 @@
         <div class="controls">{{form.smoker}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Trade Registered</label>
-        <div class="controls">{{form.trade_registered}}</div>
+        <label class="control-label">Nationality</label>
+        <div class="controls">{{form.nationality}}</div>
       </div>
+      <div class="control-group">
+        <label class="control-label">Insurance Number</label>
+        <div class="controls">{{form.insurance_number}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">ID Card Number</label>
+        <div class="controls">{{form.id_card_number}}</div>
+      </div>
+
+      <h2>Bank Information</h2>
+      <div class="control-group">
+        <label class="control-label">IBAN</label>
+        <div class="controls">{{form.iban}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">BIC</label>
+        <div class="controls">{{form.bic}}</div>
+      </div>
+
+      <h2>Remarks</h2>
       <div class="control-group">
         <label class="control-label">Remarks</label>
         <div class="controls">

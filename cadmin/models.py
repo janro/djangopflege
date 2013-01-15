@@ -14,7 +14,11 @@ class Carer(models.Model):
   # family
   # weight
   # smoker
-  # trade_registered
+  # nationality
+  # insurance_number
+  # id_card_number
+  # iban
+  # bic
   # language_skills
   # operation_skills
   # remark
@@ -38,15 +42,12 @@ class Carer(models.Model):
   hometown = models.CharField(max_length=100, null=True, blank=True)
   weight = models.IntegerField(null=True, blank=True)
   family = models.BooleanField()
-  smoker = models.BooleanField()
-  #remove:
-  trade_registered = models.BooleanField() 
-  #add:
-  #staatsbuergerschaft
-  #sozialversicherungsnummer
-  #reisepassnummer
-  #kontonummer
-  #blz
+  smoker = models.BooleanField() 
+  nationality = models.CharField(max_length=100, null=True, blank=True)
+  insurance_number = models.CharField(max_length=100, null=True, blank=True)
+  id_card_number = models.CharField(max_length=100, null=True, blank=True)
+  iban = models.CharField(max_length=100, null=True, blank=True)
+  bic = models.CharField(max_length=100, null=True, blank=True)
   language_skills = models.IntegerField(default=1, choices=SKILL_LEVELS, blank=True)
   operation_skills = models.IntegerField(default=1, choices=SKILL_LEVELS, blank=True)
   remark = models.CharField(max_length=500, null=True, blank=True)
@@ -65,9 +66,9 @@ class Family(models.Model):
   # firstname_contact_person
   # lastname_contact_person
   # phone_contact_person
-  # firstname_operation_person
-  # lastname_operation_person
-  # phone_operation_person
+  # firstname_care_person
+  # lastname_care_person
+  # phone_care_person
   # street
   # number
   # postal_code
@@ -87,10 +88,9 @@ class Family(models.Model):
   firstname_contact_person = models.CharField(max_length=100, null=True, blank=True)
   lastname_contact_person = models.CharField(max_length=100, null=True, blank=False)
   phone_contact_person = models.CharField(max_length=20, null=True, blank=False)
-  #error...
-  firstname_operation_person = models.CharField(max_length=100, null=True, blank=True)
-  lastname_operation_person = models.CharField(max_length=100, null=True, blank=True)
-  phone_operation_person = models.CharField(max_length=20, null=True, blank=True)
+  firstname_care_person = models.CharField(max_length=100, null=True, blank=True)
+  lastname_care_person = models.CharField(max_length=100, null=True, blank=True)
+  phone_care_person = models.CharField(max_length=20, null=True, blank=True)
   street = models.CharField(max_length=100, null=True, blank=True)
   number = models.IntegerField(null=True, blank=True)
   postal_code = models.IntegerField(null=True, blank=True)
@@ -99,9 +99,9 @@ class Family(models.Model):
   date_of_birth = models.DateField(null=True, blank=True)
 
   def __unicode__(self):
-    full_name = self.firstname_operation_person
+    full_name = self.firstname_care_person
     full_name += ' '
-    full_name += self.lastname_operation_person
+    full_name += self.lastname_care_person
     return full_name
 
   class Meta:
@@ -150,7 +150,7 @@ class Operation(models.Model):
 
 class FamilyPayment(models.Model):
   family = models.ForeignKey(Family)
-  family_pays = models.IntegerField()
+  amount = models.IntegerField()
 
   class Meta:
       permissions = (('familyPaymentView', 'View Family Payment'),)

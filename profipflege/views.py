@@ -1,6 +1,9 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -17,15 +20,16 @@ def logoutView(request):
     {'logged_out' : logged_out, },
     context_instance=RequestContext(request))
 
-# def login_view(request):
-#     username = request.POST['username']
-#     password = request.POST['password']
-#     user = authenticate(username=username, password=password)
-#     if user is not None:
-#         if user.is_active:
-#             login(request, user)
-#             # Redirect to a success page.
-#         else:
-#             # Return a 'disabled account' error message
-#     else:
-#         # Return an 'invalid login' error message.
+def loginView(request):
+  if request.method == 'POST':
+    form = AuthenticationForm(request.POST)
+    if form.is_valid():
+      print('valid')
+      return HttpResponseRedirect(reverse('cadmin.views.summary'))
+    else:
+      print('invalid')
+  else:
+    form = AuthenticationForm()
+  return render_to_response('login2.html',
+    {'form' : form, },
+    context_instance=RequestContext(request))

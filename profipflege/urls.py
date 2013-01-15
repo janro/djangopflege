@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('profipflege.views',
     #(r'^$', 'index'),
     (r'^logout/', 'logoutView'),
+    (r'^login2/', 'loginView'),
 )
 
 urlpatterns += patterns('',

@@ -46,7 +46,7 @@
   <body>
     <div class="container">
 
-      <form method="post" action="{% url django.contrib.auth.views.login %}" class="form-signin">
+      <form method="post" action="{% url views.loginView %}" class="form-signin">
         {% csrf_token %}
         <h2 class="form-signin-heading">Login</h2>
 
