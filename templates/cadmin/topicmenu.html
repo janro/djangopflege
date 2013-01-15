@@ -11,7 +11,9 @@
   {% endif %}
 
   {% if perms.cadmin.familyCreateDelete and family%}
-  <li><a href="{% url cadmin.views.familyDelete family.id %}">Delete</a></li>
+  <li><a href="#familyDeleteDialog" data-toggle="modal">Delete</a></li>
+  <!-- include the modal embedded in this file -->
+  {% include 'cadmin/dialogs/familyDeleteDialog.html' %}
   {% endif %}
 
   {% if perms.cadmin.familyCreateDelete %}
@@ -33,7 +35,9 @@
   {% endif %}
 
   {% if perms.cadmin.carerCreateDelete and carer%} 
-  <li><a href="{% url cadmin.views.carerDelete carer.id %}">Delete</a></li>
+  <li><a href="#carerDeleteDialog" data-toggle="modal">Delete</a></li>
+  <!-- include the modal embedded in this file -->
+  {% include 'cadmin/dialogs/carerDeleteDialog.html' %}
   {% endif %}
 
   {% if perms.cadmin.carerCreateDelete%} 
