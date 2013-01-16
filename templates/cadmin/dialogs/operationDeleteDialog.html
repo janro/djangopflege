@@ -8,18 +8,18 @@
 <!-- Modal -->
 <div id="operationDeleteDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-    <h3 id="myModalLabel">Confirm</h3>
+    <h3 id="myModalLabel">Warnung</h3>
   </div>
   <div class="modal-body">
-    <p>Are you sure that you want delete this operation?</p>
+    <p>Sind Sie sicher dass Sie diesen Einsatz l&ouml;schen wollen?</p>
     <small>
-      ({{operation.carer.firstname}} {{operation.carer.firstname}} for
-      {{operation.family.firstname_care_person}} {{operation.family.lastname_care_person}} from {{operation.start_date}} to {{operation.end_date}})
+      ({{operation.carer.firstname}} {{operation.carer.firstname}} f&uuml;r
+      {{operation.family.firstname_care_person}} {{operation.family.lastname_care_person}} von {{operation.start_date}} bis {{operation.end_date}})
     </small>
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <a href="{% url cadmin.views.operationDelete operation.id %}" role="button" class="btn btn-primary">Conirm</a>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Abbrechen</button>
+    <a href="{% url cadmin.views.operationDelete operation.id %}" role="button" class="btn btn-primary">Best&auml;tigen</a>
   </div>
 </div>
 <!-- End Modal -->

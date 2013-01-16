@@ -9,15 +9,15 @@
 {% block content %}
 
   {% if payment %}
-    <h1>Bearbeite Zahlung {{payment.carer}}</h1>
+    <h1>Bearbeite Zahlung <small>{{payment.family}}</small></h1>
   {% else %}
-    <h1>Zahlung hinzuf&uuml;gen <small>{{carer}}</small></h1>
+    <h1>Zahlung Hinzuf&uuml;gen <small>{{family}}</small></h1>
   {% endif %}
 
   {% if form.errors %}
     <div class="alert alert-error">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Error!</strong></br>
+      <strong>Fehler!</strong></br>
       {% for field in form %}
         {% if field.errors %}
           {{field.label_tag}}{{field.errors}}
@@ -27,15 +27,15 @@
   {% endif %}
 
   {% if carer_payment %}
-    <form action="{% url cadmin.views.carerPaymentEditForm carer.id carer_payment.id %}" method="post" class="form-horizontal">
+    <form action="{% url cadmin.views.familyPaymentEditForm family.id family_payment.id %}" method="post" class="form-horizontal">
   {% else %}
-    <form action="{% url cadmin.views.carerPaymentAddForm carer.id %}" method="post" class="form-horizontal">
+    <form action="{% url cadmin.views.familyPaymentAddForm family.id %}" method="post" class="form-horizontal">
   {% endif %}
     
       {% csrf_token %}
 
       <!-- hidden field for carer - who is obvious! -->
-      <input type="hidden" name="carer" id="id_carer" value="{{carer.id}}"/>
+      <input type="hidden" name="family" id="id_family" value="{{family.id}}"/>
 
       <div class="control-group">
         <label class="control-label">Methode</label>
@@ -51,9 +51,13 @@
           <input type="text" name="date" id="id_date" value="{{form.date.value}}"/>
         </div>
       </div>
+      <div class="control-group">
+        <label class="control-label">Kontoauszugsnummer</label>
+        <div class="controls">{{form.account_print_number}}</div>
+      </div>
 
       <input type="submit" value="Speichern" class="btn btn-primary"/>
-      <input type="reset" value="Verwerfen" class="btn" />
+      <input type="reset" value="Abbrechen" class="btn" />
     </form>
 
 {% endblock %}

@@ -2,27 +2,21 @@
 
 <table class = "table table-striped">
   <tr>
-    <td>&#35;</td>
-    <td>Start Date</td>
-    <td>End Date</td>
+    <td>Von</td>
+    <td>Bis</td>
     <!-- Make the list modular -->
     <!-- Display care person if this is an operation list for an carer -->
     <!-- Display carer if this is an operation list for a care person -->
     {% if carer %}
-    <td>Care Person</td>
+    <td>Zu pflegende Person</td>
     {% elif family %}
-    <td>Carer</td>
+    <td>PflegerInn</td>
     {% endif %}
-    <td>Actions</td>
+    <td>Aktionen</td>
   </tr>
 
   {% for operation in operation_list %}
   <tr>
-    <td>
-      <a href="{% url cadmin.views.operationUpdateForm operation.id%}">
-        {{operation.id}}
-      </a>
-    </td>
     <td>{{operation.start_date}}</td>
     <td>{{operation.end_date}}</td>
 
@@ -32,18 +26,18 @@
     </a></td>
     {% elif family %}
     <td><a href="{% url cadmin.views.carerDetails operation.carer.id %}">
-      {{operation.carer.firstname}} {{operation.carer.lastname}}
+      {{operation.carer}}
     </a></td>
     {% endif %}
     
     <td>
 
       <a href="{% url cadmin.views.operationUpdateForm operation.id %}">
-        <span class="label">Edit</span>
+        <span class="label">Bearbeiten</span>
       </a>
       &nbsp;
       <a href="#operationDeleteDialog" data-toggle="modal">
-        <span class="label">Delete</span>
+        <span class="label">L&ouml;schen</span>
       </a>
       <!-- include the modal embedded in this file -->
       {% include 'cadmin/dialogs/operationDeleteDialog.html' %}
@@ -53,5 +47,5 @@
 </table>
 
 {% else %}
-no operations
+Keine Eintr&auml;ge vorhanden!
 {% endif %}

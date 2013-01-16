@@ -1,54 +1,55 @@
 {% extends 'base.html' %}
 
-{% block title %}summary{% endblock %}
-
-{% block breadcrumb %}
-  &gt; <a href="{% url cadmin.views.carerList %}">Operationrs</a>
-  &gt; <a href="{% url cadmin.views.carerDetails carer.id %}">{{carer.id}}</a>
-{% endblock %}
+{% block title %}PflegerInnen &Uuml;bersicht{% endblock %}
 
 {% block content %}
 
-  <h1>{{carer.firstname}} {{carer.lastname}}</h1>
+  <h1>{{carer}}</h1>
   
   <div class="tabbable">
     
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#A" data-toggle="tab">Basic Information</a></li>
-      <li><a href="#B" data-toggle="tab">Additional Information</a></li>
-      <li><a href="#C" data-toggle="tab">Skills and Remarks</a></li>
+      <li class="active"><a href="#A" data-toggle="tab">Basisinformationen</a></li>
+      <li><a href="#B" data-toggle="tab">Zusatzinformationen</a></li>
+      <li><a href="#C" data-toggle="tab">F&auml;higkeiten und Notitzen</a></li>
     </ul>
     
     <div class="tab-content">
       
       <div class="tab-pane active" id="A">
         <dl>
-          <dt>Firstname</dt>
+          <dt>Vorname</dt>
           <dd>{{carer.firstname}}</dd>
-          <dt>Lastname</dt>
+          <dt>Nachname</dt>
           <dd>{{carer.lastname}}</dd>
-          <dt>Phone</dt>
+          <dt>Telephonnummer</dt>
           <dd>{{carer.phone}}</dd>
         </dl>
       </div>
       
       <div class="tab-pane" id="B">
         <dl>
-          <dt>Date of Birth</dt>
+          <dt>Geburtsdatum</dt>
           <dd>{{carer.date_of_birth}}</dd>
-          <dt>Hometown</dt>
+          <dt>Heimatort</dt>
           <dd>{{carer.hometown}}</dd>
-          <dt>Family</dt>
+          <dt>Familie</dt>
           <dd>{% if carer.family %}yes{% else %}no{% endif %}</dd>
-          <dt>Weight</dt>
+          <dt>Gewicht</dt>
           <dd>{{carer.weight}}</dd>
-          <dt><td>Smoker</dt>
+          <dt>Gr&ouml;&szlig;e</dt>
+          <dd>{{carer.height}}</dd>
+          <dt><td>Raucher</dt>
           <dd>{% if carer.smoker %}yes{% else %}no{% endif %}</dd>
-          <dt>Nationality</dt>
+          <dt><td>Kinder</dt>
+          <dd>{% if carer.children %}yes{% else %}no{% endif %}</dd>
+          <dt><td>F&uuml;rerschein</dt>
+          <dd>{% if carer.driving_license %}yes{% else %}no{% endif %}</dd>
+          <dt>Nationalit&auml;t</dt>
           <dd>{{carer.nationality}}</dd>
-          <dt>Insurance Number</dt>
+          <dt>Versicherungsnummer</dt>
           <dd>{{carer.insurance_number}}</dd>
-          <dt>ID Card Number</dt>
+          <dt>Reisepassnummer</dt>
           <dd>{{carer.id_card_number}}</dd>
           <dt>IBAN</dt>
           <dd>{{carer.iban}}</dd>
@@ -59,12 +60,12 @@
 
       <div class="tab-pane" id="C">
         <dl>
-          <dt>Language skills</dt>
+          <dt>Sprachf&auml;higkeiten</dt>
           <dd>{{carer.get_language_skills_display}}</dd>
-          <dt>Operation skills</dt>
+          <dt>Pflegef&auml;higkeiten</dt>
           <dd>{{carer.get_operation_skills_display}}</dd>
-          <dt>Remarks</dt>
-          <dd>{% if carer.remark %}{{carer.remark}}{% else %}none{% endif %}</dd>
+          <dt>Notitzen</dt>
+          <dd>{% if carer.remark %}{{carer.remark}}{% else %}keine{% endif %}</dd>
         </dl>
       </div>
 
@@ -73,9 +74,9 @@
 
   <div class="tabbable">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#operations" data-toggle="tab">Operations</a></li>
+        <li class="active"><a href="#operations" data-toggle="tab">Eins&auml;tze</a></li>
         {% if perms.cadmin.carerPaymentView %}
-        <li><a href="#payment" data-toggle="tab">Payment</a></li>
+        <li><a href="#payment" data-toggle="tab">Zahlungen</a></li>
         {% endif %}
         <!-- <li><a href="#registrations" data-toggle="tab">Registrations</a></li> -->
     </ul>

@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Families{% endblock %}
+{% block title %}Familien{% endblock %}
 
 {% block content %}
 
-  <h1>Family List</h1>
+  <h1>Familien Liste</h1>
   
   <table class="table table-striped">
 
     <tr>
-      <td>First Name</td>
-      <td>Last Name</td>
-      <td>Phone Number</td>
-      <td>Actions</td>
+      <td>Vorname</td>
+      <td>Nachname</td>
+      <td>Telephonnummer</td>
+      <td>Aktionen</td>
     </tr>
 
     {% for family in family_list %}
@@ -22,15 +22,15 @@
         <td>{{family.phone_contact_person}}</td>
         <td>
           <a href="{% url cadmin.views.familyDetails family.id %}">
-            <span class="label">View</span>
+            <span class="label">Zeigen</span>
           </a>
           &nbsp;
           <a href="{% url cadmin.views.familyUpdateForm family.id %}">
-            <span class="label">Edit</span>
+            <span class="label">Bearbeiten</span>
           </a>
           &nbsp;
           <a href="#familyDeleteDialog" data-toggle="modal">
-            <span class="label">Delete</span>
+            <span class="label">L&ouml;schen</span>
           </a>
           <!-- include the modal embedded in this file -->
           {% include 'cadmin/dialogs/familyDeleteDialog.html' %}

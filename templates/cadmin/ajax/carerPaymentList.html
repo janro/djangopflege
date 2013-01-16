@@ -2,10 +2,10 @@
 
 <table class = "table table-striped">
   <tr>
-    <td>Date</td>
-    <td>Method</td>    
-    <td>Amount</td>
-    <td>Actions</td>
+    <td>Datum</td>
+    <td>Methode</td>    
+    <td>Betrag</td>
+    <td>Aktionen</td>
   </tr>
 
   {% for payment in payment_list %}
@@ -15,25 +15,25 @@
     <td>{{payment.amount}} &#8364;</td>
     <td>
       <a href="{% url cadmin.views.carerPaymentEditForm payment.carer.id payment.id %}">
-        <span class="label">Edit</span>
+        <span class="label">Bearbeiten</span>
       </a>
       &nbsp;
       <a href="#deleteModal" data-toggle="modal">
-        <span class="label">Delete</span>
+        <span class="label">L&ouml;schen</span>
       </a>
 
       <!-- Modal -->
       <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
-          <h3 id="myModalLabel">Confirm</h3>
+          <h3 id="myModalLabel">Warnung!</h3>
         </div>
         <div class="modal-body">
-          <p>Are you sure that you want delete this transaction?</p>
-          <small>({{payment.carer.firstname}} {{payment.carer.firstname}} {{payment.amount}} &#8364; on {{payment.date}})</small>
+          <p>Sind Sie sicher dass Sie diesen Eintrag l&ouml;schen wollen?</p>
+          <small>({{payment.carer}} {{payment.amount}} &#8364; am {{payment.date}})</small>
         </div>
         <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-          <a href="{% url cadmin.views.carerPaymentDelete payment.carer.id payment.id %}" role="button" class="btn btn-primary">Conirm</a>
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Abbrechen</button>
+          <a href="{% url cadmin.views.carerPaymentDelete payment.carer.id payment.id %}" role="button" class="btn btn-primary">Best&auml;tigen</a>
         </div>
       </div>
       <!-- End Modal -->

@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}Summary{% endblock %}
+{% block title %}Zusammenfassung{% endblock %}
 
 {% block content %}
 
   <h1>Summary</h1>
 
     <div class="well">
-      {{carer_count}} Carer in Database </br>
-      {{family_count}} Families in Database </br>
-      {{operation_count}} Active Operations
+      {{carer_count}} PflegerInnen in Datenbank </br>
+      {{family_count}} Familien in Datenbank </br>
+      {{operation_count}} Aktive Eins&auml;tze
     </div>
 
   {% if arrival_list %}
-    <h2>Arrivals:</h2>
+    <h2>Ank&uuml;nfte:</h2>
     <table class="table table-striped">
       <tr>
-        <td>Date</td>
-        <td>Carer</td>
-        <td>Care Person</td>
-        <td>Actions</td>
+        <td>Datum</td>
+        <td>PflegerInn</td>
+        <td>Zu Pflegende Person</td>
+        <td>Aktionen</td>
       </tr>
 
       {% for operation in arrival_list %}
@@ -31,20 +31,20 @@
           <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
             {{operation.family.firstname_care_person}}&nbsp;{{operation.family.lastname_care_person}}
           </a></td>
-          <td><a href="{% url cadmin.views.operationUpdateForm operation.id %}"><span class="label">Edit</span></a></td>
+          <td><a href="{% url cadmin.views.operationUpdateForm operation.id %}"><span class="label">Bearbeiten</span></a></td>
         </tr>
       {% endfor %}
     </table>
   {% endif %}
 
   {% if departure_list %}
-    <h2>Departures:</h2>
+    <h2>Abbreisen:</h2>
     <table class="table table-striped">
       <tr>
-        <td>Date</td>
-        <td>Carer</td>
-        <td>Care Person</td>
-        <td>Actions</td>
+        <td>Datum</td>
+        <td>PflegerInn</td>
+        <td>Zu Pflegende Person</td>
+        <td>Aktionen</td>
       </tr>
 
       {% for operation in departure_list %}
@@ -56,7 +56,7 @@
           <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
             {{operation.family.firstname_care_person}}&nbsp;{{operation.family.lastname_care_person}}
           </a></td>
-          <td><a href="{% url cadmin.views.operationUpdateForm operation.id %}"><span class="label">Edit</span></a></td>
+          <td><a href="{% url cadmin.views.operationUpdateForm operation.id %}"><span class="label">Bearbeiten</span></a></td>
         </tr>
       {% endfor %}
     </table>

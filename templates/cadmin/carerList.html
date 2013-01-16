@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Operationrs{% endblock %}
+{% block title %}PflegerInnen{% endblock %}
 
 {% block content %}
 
-  <h1>Carer List</h1>
+  <h1>PflegerInnen Liste</h1>
   
   <table class="table table-striped">
 
     <tr>
-      <td>First Name</td>
-      <td>Last Name</td>
-      <td>Phone Number</td>
-      <td>Actions</td>
+      <td>Vorname</td>
+      <td>Nachname</td>
+      <td>Telephonnummer</td>
+      <td>Aktionen</td>
     </tr>
 
     {% for carer in carer_list %}
@@ -22,15 +22,15 @@
         <td>{{carer.phone}}</td>
         <td>
           <a href="{% url cadmin.views.carerDetails carer.id %}">
-            <span class="label">View</span>
+            <span class="label">Zeigen</span>
           </a>
           &nbsp;
           <a href="{% url cadmin.views.carerUpdateForm carer.id %}">
-            <span class="label">Edit</span>
+            <span class="label">Bearbeiten</span>
           </a>
           &nbsp;
           <a href="#carerDeleteDialog" data-toggle="modal">
-            <span class="label">Delete</span>
+            <span class="label">L&ouml;schen</span>
           </a>
           <!-- include the modal embedded in this file -->
           {% include 'cadmin/dialogs/carerDeleteDialog.html' %}

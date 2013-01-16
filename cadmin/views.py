@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
-from cadmin.forms import FamilyForm, OperationrForm, OperationForm, CarerPaymentForm
-from cadmin.models import Carer, Family, Operation, CarerPayment, TradeRegister
+from cadmin.forms import FamilyForm, CarerForm, OperationForm, CarerPaymentForm, FamilyPaymentForm
+from cadmin.models import Carer, Family, Operation, CarerPayment, TradeRegister, FamilyPayment
 
 import datetime
 
@@ -115,13 +115,13 @@ def familyUpdateForm(request, family_id):
 def carerUpdateForm(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
   if request.method == 'POST':
-    form = OperationrForm(request.POST, instance=carer)
+    form = CarerForm(request.POST, instance=carer)
     if form.is_valid():
       carer = form.save()
       return HttpResponseRedirect(
         reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
-    form = OperationrForm(instance=carer)
+    form = CarerForm(instance=carer)
   return render_to_response('cadmin/forms/carerForm.html',
     {'form': form, 'carer' : carer, },
     context_instance=RequestContext(request))
@@ -143,13 +143,13 @@ def familyCreateForm(request):
 @login_required
 def carerCreateForm(request):
   if request.method == 'POST':
-    form = OperationrForm(request.POST)
+    form = CarerForm(request.POST)
     if form.is_valid():
       carer = form.save()
       return HttpResponseRedirect(
         reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
-    form = OperationrForm()
+    form = CarerForm()
   return render_to_response('cadmin/forms/carerForm.html',
     {'form': form, },
     context_instance=RequestContext(request))
@@ -229,7 +229,18 @@ def ajaxCarerPaymentList(request, carer_id):
     payment_list = CarerPayment.objects.filter(carer=carer_id).order_by('-date')
   except ObjectDoesNotExist:
     payment_list = {}
-  return render_to_response('cadmin/ajax/paymentList.html',
+  return render_to_response('cadmin/ajax/carerPaymentList.html',
+      {'payment_list' : payment_list},
+      context_instance=RequestContext(request))
+
+@permission_required('cadmin.familyPaymentView', raise_exception=True)
+def ajaxFamilyPaymentList(request, family_id):
+  family = get_object_or_404(Family, pk=family_id)
+  try:
+    payment_list = FamilyPayment.objects.filter(family=family_id).order_by('-date')
+  except ObjectDoesNotExist:
+    payment_list = {}
+  return render_to_response('cadmin/ajax/familyPaymentList.html',
       {'payment_list' : payment_list},
       context_instance=RequestContext(request))
 
@@ -285,3 +296,47 @@ def carerPaymentDelete(request, carer_id, payment_id):
   carer_payment.delete()
   return HttpResponseRedirect(
     reverse('cadmin.views.carerDetails', args=(carer_payment.carer.id,)))
+
+#-----------------------------------------------------------------------
+
+@permission_required('cadmin.familyPaymentView', raise_exception=True)
+def familyPaymentAddForm(request, family_id):
+  if request.method == 'POST':
+    form = FamilyPaymentForm(request.POST)
+    if form.is_valid():
+      family_payment = form.save()
+      return HttpResponseRedirect(
+        reverse('cadmin.views.familyDetails', args=(family_payment.family.id,)))
+  else:
+    form = FamilyPaymentForm()
+
+  family = get_object_or_404(Family, pk=family_id)
+  return render_to_response('cadmin/forms/familyPaymentForm.html',
+    {'form': form, 'family' : family,},
+    context_instance=RequestContext(request))
+
+@permission_required('cadmin.familyPaymentView', raise_exception=True)
+def familyPaymentEditForm(request, family_id, payment_id):
+  family_payment = get_object_or_404(FamilyPayment, pk=payment_id)
+
+  if request.method == 'POST':
+    form = FamilyPaymentForm(request.POST, instance=family_payment)
+    if form.is_valid():
+      family_payment = form.save()
+      return HttpResponseRedirect(
+        reverse('cadmin.views.familyDetails', args=(family_payment.family.id,)))
+  else:
+    form = FamilyPaymentForm(instance=family_payment)
+
+  family = get_object_or_404(Family, pk=family_id)
+  return render_to_response('cadmin/forms/familyPaymentForm.html',
+    {'form': form, 'family' : family, 'family_payment' : family_payment},
+    context_instance=RequestContext(request))
+
+@permission_required('cadmin.familyPaymentView', raise_exception=True)
+def familyPaymentDelete(request, family_id, payment_id):
+  family_payment = get_object_or_404(FamilyPayment, pk=payment_id)
+  family_id = family_payment.family.id
+  family_payment.delete()
+  return HttpResponseRedirect(
+    reverse('cadmin.views.carerDetails', args=(family_payment.family.id,)))
