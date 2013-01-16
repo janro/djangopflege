@@ -56,18 +56,20 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#operations" data-toggle="tab">Eins&auml;tze</a></li>
+        {% if perms.cadmin.familyPaymentView %}
         <li><a href="#payment" data-toggle="tab">Zahlungen</a></li>
+        {% endif %}
     </ul>
 
     <div class="tab-content">
       <div class="tab-pane active" id="operations">
         <!-- filled by script -->
       </div>
-    </div>
-    <div class="tab-content">
+      {% if perms.cadmin.familyPaymentView %}
       <div class="tab-pane" id="payment">
         <!-- filled by script -->
       </div>
+      {% endif %}
     </div>
   </div>
 
