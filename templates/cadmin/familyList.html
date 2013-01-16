@@ -9,7 +9,6 @@
   <table class="table table-striped">
 
     <tr>
-      <td>&#35;</td>
       <td>First Name</td>
       <td>Last Name</td>
       <td>Phone Number</td>
@@ -18,15 +17,14 @@
 
     {% for family in family_list %}
       <tr>
-        <td>
-          <a href="{% url cadmin.views.familyDetails family.id %}">
-            {{family.id}}
-          </a>
-        </td>
         <td>{{family.firstname_contact_person}}</td>
         <td>{{family.lastname_contact_person}}</td>
         <td>{{family.phone_contact_person}}</td>
         <td>
+          <a href="{% url cadmin.views.familyDetails family.id %}">
+            <span class="label">View</span>
+          </a>
+          &nbsp;
           <a href="{% url cadmin.views.familyUpdateForm family.id %}">
             <span class="label">Edit</span>
           </a>
