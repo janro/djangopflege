@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Carer Form{% endblock %}
+{% block title %}PflegerInnen Formular{% endblock %}
 
 {% block styles %}
   <link href="{{STATIC_URL}}css/datepicker.css" rel="stylesheet">
@@ -9,9 +9,9 @@
 {% block content %}
 
   {% if carer %}
-    <h1>Edit {{carer.firstname}} {{carer.lastname}}</h1>
+    <h1>Bearbeite {{carer}}</h1>
   {% else %}
-    <h1>Create New Carer</h1>
+    <h1>PflegerInn hinzuf&uuml;gen</h1>
   {% endif %}
 
   {% if form.errors %}
@@ -34,29 +34,29 @@
     
       {% csrf_token %}
       
-      <h2>Carer</h2>
+      <h2>Basisinformationen</h2>
       <div class="control-group">
-        <label class="control-label">Firstname</label>
+        <label class="control-label">Vorname</label>
         <div class="controls">{{form.firstname}}</div>
       </div>
         <div class="control-group">
-        <label class="control-label">Lastname</label>
+        <label class="control-label">Nachname</label>
       <div class="controls">{{form.lastname}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Phone</label>
+        <label class="control-label">Telephonnummer</label>
         <div class="controls">{{form.phone}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Date of Birth</label>
+        <label class="control-label">Geburtsdatum</label>
         <div class="controls">
           <input type="text" name="date_of_birth" id="id_date_of_birth" value="{{form.date_of_birth.value}}"/>
         </div>
       </div>
 
-      <h2>Skills and Additionals</h2>
+      <h2>Zusatzinformationen und F&auml;higkeiten</h2>
       <div class="control-group">
-        <label class="control-label">Weight</label>
+        <label class="control-label">Gewicht</label>
         <div class="controls">{{form.weight}}</div>
       </div>
       <div class="control-group">
@@ -64,19 +64,19 @@
         <div class="controls">{{form.height}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Hometown</label>
+        <label class="control-label">Heimatort</label>
         <div class="controls">{{form.hometown}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Language Skills</label>
+        <label class="control-label">Sprachf&auml;higkeiten</label>
         <div class="controls">{{form.language_skills}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Operation Skills</label>
+        <label class="control-label">Pflegef&auml;higkeiten</label>
         <div class="controls">{{form.operation_skills}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Family</label>
+        <label class="control-label">Familie</label>
         <div class="controls">{{form.family}}</div>
       </div>
       <div class="control-group">
@@ -84,7 +84,7 @@
         <div class="controls">{{form.children}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Smoker</label>
+        <label class="control-label">Raucher</label>
         <div class="controls">{{form.smoker}}</div>
       </div>
       <div class="control-group">
@@ -92,19 +92,19 @@
         <div class="controls">{{form.driving_license}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Nationality</label>
+        <label class="control-label">Nationalit&auml;t</label>
         <div class="controls">{{form.nationality}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">Insurance Number</label>
+        <label class="control-label">Versicherungsnummer</label>
         <div class="controls">{{form.insurance_number}}</div>
       </div>
       <div class="control-group">
-        <label class="control-label">ID Card Number</label>
+        <label class="control-label">Reisepassnummer</label>
         <div class="controls">{{form.id_card_number}}</div>
       </div>
 
-      <h2>Bank Information</h2>
+      <h2>Bank Informationen</h2>
       <div class="control-group">
         <label class="control-label">IBAN</label>
         <div class="controls">{{form.iban}}</div>
@@ -114,16 +114,16 @@
         <div class="controls">{{form.bic}}</div>
       </div>
 
-      <h2>Remarks</h2>
+      <h2>Notitzen</h2>
       <div class="control-group">
-        <label class="control-label">Remarks</label>
+        <label class="control-label">Notitzen</label>
         <div class="controls">
           <textarea id="id_remark" type="text" name="remark" rows="3" maxlength="500"></textarea>
         </div>
       </div>
 
-      <input type="submit" value="Save" class="btn btn-primary"/>
-      <input type="reset" value="Cancel" class="btn" />
+      <input type="submit" value="Speichern" class="btn btn-primary"/>
+      <input type="reset" value="Verwerfen" class="btn" />
     </form>
 
 {% endblock %}

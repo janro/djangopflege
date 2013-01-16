@@ -48,28 +48,28 @@
 
       <form method="post" action="{% url django.contrib.auth.views.login %}" class="form-signin">
         {% csrf_token %}
-        <h2 class="form-signin-heading">Login</h2>
+        <h2 class="form-signin-heading">Anmeldung</h2>
 
         {% if form.errors %}
           <div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Error!</strong></br>Wrong Username or Password!
+            <strong>Fehler!</strong></br>Falscher Benutzername oder Passwort!
           </div>
         {% endif %}
 
         {% if logged_out %}
           <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Success!</strong></br>Logout Successfull!
+            <strong>Erfolg!</strong></br>Erfolgreich Abgemeldet!
           </div>
         {% endif %}
 
-        <input name="username" type="text" class="input-block-level" placeholder="Username">
-        <input name="password" type="password" class="input-block-level" placeholder="Password">
+        <input name="username" type="text" class="input-block-level" placeholder="Benutzername">
+        <input name="password" type="password" class="input-block-level" placeholder="Passwort">
 
         <input type="hidden" name="next" value="{% url cadmin.views.summary %}" />
 
-        <button class="btn btn-large btn-primary" type="submit">Login</button>
+        <button class="btn btn-large btn-primary" type="submit">Anmelden</button>
 
       </form>
     </div>

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Formular: Zahlung Familie{% endblock %}
+{% block title %}Zahlung Familie Formular{% endblock %}
 
 {% block styles %}
   <link href="{{STATIC_URL}}css/datepicker.css" rel="stylesheet">
@@ -9,9 +9,9 @@
 {% block content %}
 
   {% if payment %}
-    <h1>Bearbeite Bezahlung <small>{{payment.family}}</small></h1>
+    <h1>Bearbeite Zahlung <small>{{payment.family}}</small></h1>
   {% else %}
-    <h1>Bezahlung Hinzuf&uuml;gen <small>{{family}}</small></h1>
+    <h1>Zahlung Hinzuf&uuml;gen <small>{{family}}</small></h1>
   {% endif %}
 
   {% if form.errors %}

@@ -8,18 +8,18 @@
 <!-- Modal -->
 <div id="familyDeleteDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-    <h3 id="myModalLabel">Confirm</h3>
+    <h3 id="myModalLabel">Warnung</h3>
   </div>
   <div class="modal-body">
-    <p>Are you sure that you want delete this Family?</p>
+    <p>Sind Sie sicher dass Sie diese Familie l&ouml;schen wollen?</p>
     <small>
-      (Care Person: {{family.firstname_care_person}} {{family.lastname_care_person}}
-       Contact Person: {{family.firstname_contact_person}} {{family.lastname_contact_person}})
+      (Zu Pflegende Person: {{family.firstname_care_person}} {{family.lastname_care_person}}
+       Kontakt Person: {{family.firstname_contact_person}} {{family.lastname_contact_person}})
     </small>
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <a href="{% url cadmin.views.familyDelete family.id %}" role="button" class="btn btn-primary">Conirm</a>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Abbrechen</button>
+    <a href="{% url cadmin.views.familyDelete family.id %}" role="button" class="btn btn-primary">Best&auml;tigen</a>
   </div>
 </div>
 <!-- End Modal -->
