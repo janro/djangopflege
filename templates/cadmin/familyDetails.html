@@ -61,10 +61,16 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#operations" data-toggle="tab">Operations</a></li>
+        <li><a href="#payment" data-toggle="tab">Payment</a></li>
     </ul>
 
     <div class="tab-content">
       <div class="tab-pane active" id="operations">
+        <!-- filled by script -->
+      </div>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane" id="payment">
         <!-- filled by script -->
       </div>
     </div>
@@ -80,5 +86,8 @@
 {% block scripts %}
   <script>
     $("#operations").load("{% url cadmin.views.ajaxFamilyOperationList family.id %}");
+  </script>
+  <script>
+    $("#payment").load("{% url cadmin.views.ajaxFamilyPaymentList family.id %}");
   </script>
 {% endblock %}

@@ -13,6 +13,9 @@ class Carer(models.Model):
   # hometown
   # family
   # weight
+  # height
+  # children
+  # driving_license
   # smoker
   # nationality
   # insurance_number
@@ -24,10 +27,10 @@ class Carer(models.Model):
   # remark
 
   SKILL_LEVELS = (
-    (1, 'Skill Level 1'),
-    (2, 'Skill Level 2'),
-    (3, 'Skill Level 3'),
-    (4, 'Skill Level 4'),
+    (1, 'Stufe 1'),
+    (2, 'Stufe 2'),
+    (3, 'Stufe 3'),
+    (4, 'Stufe 4'),
   )
 
   GENDER = (
@@ -41,8 +44,11 @@ class Carer(models.Model):
   date_of_birth = models.DateField(null=True, blank=True)
   hometown = models.CharField(max_length=100, null=True, blank=True)
   weight = models.IntegerField(null=True, blank=True)
+  height = models.IntegerField(null=True, blank=True)
   family = models.BooleanField()
+  children = models.BooleanField()
   smoker = models.BooleanField() 
+  driving_license = models.BooleanField()
   nationality = models.CharField(max_length=100, null=True, blank=True)
   insurance_number = models.CharField(max_length=100, null=True, blank=True)
   id_card_number = models.CharField(max_length=100, null=True, blank=True)
@@ -77,12 +83,12 @@ class Family(models.Model):
   # date_of_birth
 
   CARE_LEVELS = (
-    (1, 'Level 1'),
-    (2, 'Level 2'),
-    (3, 'Level 3'),
-    (4, 'Level 4'),
-    (5, 'Level 5'),
-    (6, 'Level 6'),
+    (1, 'Stufe 1'),
+    (2, 'Stufe 2'),
+    (3, 'Stufe 3'),
+    (4, 'Stufe 4'),
+    (5, 'Stufe 5'),
+    (6, 'Stufe 6'),
   )
   
   firstname_contact_person = models.CharField(max_length=100, null=True, blank=True)
@@ -149,8 +155,23 @@ class Operation(models.Model):
     permissions = (('operationCreateDelete', 'Create or Delete'),)
 
 class FamilyPayment(models.Model):
+
+  # family
+  # amount
+  # date
+  # account_print_number
+  # method
+
+  PAYMENT_METHODS = (
+    (1, 'Bar'),
+    (2, 'Elektronisch'),
+  )
+
   family = models.ForeignKey(Family)
-  amount = models.IntegerField()
+  amount = models.IntegerField(null=False, blank=False)
+  date = models.DateField(null=False, blank=False)
+  account_print_number = models.IntegerField(null=True, blank=True)
+  method = models.IntegerField(default=1, choices=PAYMENT_METHODS, blank=False)
 
   class Meta:
       permissions = (('familyPaymentView', 'View Family Payment'),)
@@ -158,8 +179,8 @@ class FamilyPayment(models.Model):
 class CarerPayment(models.Model):
 
   PAYMENT_METHODS = (
-    (1, 'Cash'),
-    (2, 'Bank Transaction'),
+    (1, 'Bar'),
+    (2, 'Elektronisch'),
   )
 
   carer = models.ForeignKey(Carer)

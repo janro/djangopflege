@@ -42,8 +42,14 @@
           <dd>{% if carer.family %}yes{% else %}no{% endif %}</dd>
           <dt>Weight</dt>
           <dd>{{carer.weight}}</dd>
+          <dt>Gr&ouml;&szlig;e</dt>
+          <dd>{{carer.height}}</dd>
           <dt><td>Smoker</dt>
           <dd>{% if carer.smoker %}yes{% else %}no{% endif %}</dd>
+          <dt><td>Kinder</dt>
+          <dd>{% if carer.children %}yes{% else %}no{% endif %}</dd>
+          <dt><td>F&uuml;rerschein</dt>
+          <dd>{% if carer.driving_license %}yes{% else %}no{% endif %}</dd>
           <dt>Nationality</dt>
           <dd>{{carer.nationality}}</dd>
           <dt>Insurance Number</dt>

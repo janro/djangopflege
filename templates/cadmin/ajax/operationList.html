@@ -2,7 +2,6 @@
 
 <table class = "table table-striped">
   <tr>
-    <td>&#35;</td>
     <td>Start Date</td>
     <td>End Date</td>
     <!-- Make the list modular -->
@@ -18,11 +17,6 @@
 
   {% for operation in operation_list %}
   <tr>
-    <td>
-      <a href="{% url cadmin.views.operationUpdateForm operation.id%}">
-        {{operation.id}}
-      </a>
-    </td>
     <td>{{operation.start_date}}</td>
     <td>{{operation.end_date}}</td>
 
