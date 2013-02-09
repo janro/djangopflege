@@ -11,7 +11,8 @@
     <tr>
       <td>Vorname</td>
       <td>Nachname</td>
-      <td>Telephonnummer</td>
+      <td>Tel. AT</td>
+      <td>Tel. RO</td>
       <td>Aktionen</td>
     </tr>
 
@@ -19,7 +20,8 @@
       <tr>
         <td>{{carer.firstname}}</td>
         <td>{{carer.lastname}}</td>
-        <td>{{carer.phone}}</td>
+        <td>{{carer.phone_at}}</td>
+        <td>{{carer.phone_ro}}</td>
         <td>
           <a href="{% url cadmin.views.carerDetails carer.id %}">
             <span class="label">Zeigen</span>
