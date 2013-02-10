@@ -28,6 +28,7 @@ class Carer(models.Model):
   # remark
 
   SKILL_LEVELS = (
+    (0, 'Unbekannt'),
     (1, 'Stufe 1'),
     (2, 'Stufe 2'),
     (3, 'Stufe 3'),
@@ -43,7 +44,7 @@ class Carer(models.Model):
   lastname = models.CharField(max_length=100, blank=True)
   phone_at = models.CharField(max_length=20, blank=True)
   phone_ro = models.CharField(max_length=20, blank=True)
-  date_of_birth = models.DateField(blank=True)
+  date_of_birth = models.DateField(null=True, blank=True)
   hometown = models.CharField(max_length=100, blank=True)
   weight = models.IntegerField(null=True, blank=True)
   height = models.IntegerField(null=True, blank=True)
@@ -56,8 +57,8 @@ class Carer(models.Model):
   id_card_number = models.CharField(max_length=100, blank=True)
   iban = models.CharField(max_length=100, blank=True)
   bic = models.CharField(max_length=100, blank=True)
-  language_skills = models.IntegerField(default=1, choices=SKILL_LEVELS, blank=True)
-  operation_skills = models.IntegerField(default=1, choices=SKILL_LEVELS, blank=True)
+  language_skills = models.IntegerField(default=0, choices=SKILL_LEVELS, blank=False)
+  operation_skills = models.IntegerField(default=0, choices=SKILL_LEVELS, blank=False)
   remark = models.CharField(max_length=500, null=True, blank=True)
 
   def __unicode__(self):
@@ -104,7 +105,7 @@ class Family(models.Model):
   postal_code = models.IntegerField(null=True, blank=True)
   city = models.CharField(max_length=100, blank=True)
   care_level = models.IntegerField(default=1, choices=CARE_LEVELS, blank=True)
-  date_of_birth = models.DateField(blank=True)
+  date_of_birth = models.DateField(null=True, blank=True)
 
   def __unicode__(self):
     full_name = self.firstname_care_person
@@ -125,7 +126,7 @@ class Operation(models.Model):
   carer = models.ForeignKey(Carer)
   family = models.ForeignKey(Family)
   start_date = models.DateField(auto_now_add=True, blank=False)
-  end_date = models.DateField(blank=True)
+  end_date = models.DateField(null=True, blank=True)
 
   def clean(self):
     # Check all Operations for Intersections
