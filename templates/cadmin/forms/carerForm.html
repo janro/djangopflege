@@ -54,7 +54,7 @@
       <div class="control-group">
         <label class="control-label">Geburtsdatum</label>
         <div class="controls">
-          <input type="text" name="date_of_birth" id="id_date_of_birth" value="{{form.date_of_birth.value}}"/>
+          <input type="text" name="date_of_birth" id="id_date_of_birth" value="{{form.date_of_birth.value|default_if_none:""}}"/>
         </div>
       </div>
 

@@ -9,8 +9,8 @@
   <table class="table table-striped">
 
     <tr>
-      <td>Vorname</td>
       <td>Nachname</td>
+      <td>Vorname</td>
       <td>Tel. AT</td>
       <td>Tel. RO</td>
       <td>Aktionen</td>
@@ -18,10 +18,10 @@
 
     {% for carer in carer_list %}
       <tr>
-        <td>{{carer.firstname}}</td>
         <td>{{carer.lastname}}</td>
-        <td>{{carer.phone_at}}</td>
-        <td>{{carer.phone_ro}}</td>
+        <td>{{carer.firstname}}</td>
+        <td>{{carer.phone_at|default_if_none:"&nbsp;"}}</td>
+        <td>{{carer.phone_ro|default_if_none:"&nbsp;"}}</td>
         <td>
           <a href="{% url cadmin.views.carerDetails carer.id %}">
             <span class="label">Zeigen</span>
