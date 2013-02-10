@@ -32,15 +32,15 @@
       <div class="tab-pane" id="B">
         <dl>
           <dt>Geburtsdatum</dt>
-          <dd>{{carer.date_of_birth}}</dd>
+          <dd>{{carer.date_of_birth|default_if_none:''}}</dd>
           <dt>Heimatort</dt>
           <dd>{{carer.hometown}}</dd>
           <dt>Familie</dt>
           <dd>{% if carer.family %}yes{% else %}no{% endif %}</dd>
           <dt>Gewicht</dt>
-          <dd>{{carer.weight}}</dd>
+          <dd>{{carer.weight|default_if_none:''}}</dd>
           <dt>Gr&ouml;&szlig;e</dt>
-          <dd>{{carer.height}}</dd>
+          <dd>{{carer.height|default_if_none:''}}</dd>
           <dt><td>Raucher</dt>
           <dd>{% if carer.smoker %}yes{% else %}no{% endif %}</dd>
           <dt><td>Kinder</dt>

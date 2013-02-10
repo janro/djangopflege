@@ -125,8 +125,8 @@ class Operation(models.Model):
 
   carer = models.ForeignKey(Carer)
   family = models.ForeignKey(Family)
-  start_date = models.DateField(auto_now_add=True, blank=False)
-  end_date = models.DateField(null=True, blank=True)
+  start_date = models.DateField(null=False, blank=False)
+  end_date = models.DateField(null=False, blank=False)
 
   def clean(self):
     # Check all Operations for Intersections
