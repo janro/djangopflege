@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 
 from cadmin.forms import FamilyForm, CarerForm, OperationForm, CarerPaymentForm, FamilyPaymentForm
 from cadmin.models import Carer, Family, Operation, CarerPayment, TradeRegister, FamilyPayment
@@ -65,6 +66,7 @@ def carerDetails(request, carer_id):
 @permission_required('cadmin.familyCreateDelete', raise_exception=True)
 def familyDelete(request, family_id):
   family = get_object_or_404(Family, pk=family_id)
+  # delete operations and payments!!
 
   # delete all operation entries belonging to this family
   try:
@@ -72,16 +74,29 @@ def familyDelete(request, family_id):
   except ObjectDoesNotExist:
     operation_list = {}
 
-  for operation in operations:
+  for operation in operation_list:
     operation.delete()
 
+  # delete all payment entries belonging to this family
+  try:
+    payments = FamilyPayment.objects.filter(family=family_id)
+  except ObjectDoesNotExist:
+    payment_list = {}
+
+  for payment in payment_list:
+    payment.delete()
+
+
+  # finally delete the family
   family.delete()
+  messages.add_message(request, messages.INFO, 'Eintrag geloescht!')
   return HttpResponseRedirect(
     reverse('cadmin.views.familyList', ))
 
 @permission_required('cadmin.carerCreateDelete', raise_exception=True)
 def carerDelete(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
+  #delete operations and payments!!
 
   # delete all operation entries belonging to this carer
   try:
@@ -89,10 +104,21 @@ def carerDelete(request, carer_id):
   except ObjectDoesNotExist:
     operation_list = {}
 
-  for operation in operations:
+  for operation in operation_list:
     operation.delete()
 
+  # delete all payments entries belonging to this carer
+  try:
+    payments = CarerPayment.objects.filter(carer=carer_id)
+  except ObjectDoesNotExist:
+    payment_list = {}
+
+  for payment in payment_list:
+    payment.delete()
+
+  # finally delete the carer
   carer.delete()
+  messages.add_message(request, messages.INFO, 'Eintrag geloescht!')
   return HttpResponseRedirect(
     reverse('cadmin.views.carerList', ))
 
@@ -188,12 +214,14 @@ def operationDelete(request, operation_id):
   operation = get_object_or_404(Operation, pk=operation_id)
   family_id = operation.family.id
   operation.delete()
+  messages.add_message(request, messages.INFO, 'Eintrag geloescht!')
   return HttpResponseRedirect(
     reverse('cadmin.views.familyDetails', args=(family_id,)))
 
 @login_required
 def operations(request):
   operationList = Operation.objects.all()
+  messages.add_message(request, messages.INFO, 'Noch nicht Verfuegbar!')
   return render_to_response('cadmin/operationPlan.html',
     {'operationList' : operationList, },
     context_instance=RequestContext(request))
@@ -294,6 +322,7 @@ def carerPaymentDelete(request, carer_id, payment_id):
   carer_payment = get_object_or_404(CarerPayment, pk=payment_id)
   carer_id = carer_payment.carer.id
   carer_payment.delete()
+  messages.add_message(request, messages.INFO, 'Eintrag geloescht!')
   return HttpResponseRedirect(
     reverse('cadmin.views.carerDetails', args=(carer_payment.carer.id,)))
 
@@ -338,5 +367,6 @@ def familyPaymentDelete(request, family_id, payment_id):
   family_payment = get_object_or_404(FamilyPayment, pk=payment_id)
   family_id = family_payment.family.id
   family_payment.delete()
+  messages.add_message(request, messages.INFO, 'Eintrag geloescht!')
   return HttpResponseRedirect(
     reverse('cadmin.views.carerDetails', args=(family_payment.family.id,)))

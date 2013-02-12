@@ -1,14 +1,16 @@
 {% if payment_list %}
 
 <table class = "table table-striped">
-  <tr>
-    <td>Datum</td>
-    <td>Methode</td>    
-    <td>Betrag</td>
-    <td>Kontoauszugsnummer</td>
-    <td>Aktionen</td>
-  </tr>
-
+  <thead>
+    <tr>
+      <th>Datum</th>
+      <th>Methode</th>    
+      <th>Betrag</th>
+      <th>Kontoauszugsnummer</th>
+      <th>Aktionen</th>
+    </tr>
+  </thead>
+  <tbody>
   {% for payment in payment_list %}
   <tr>
     <td>{{payment.date}}</td>
@@ -20,12 +22,12 @@
         <span class="label">Bearbeiten</span>
       </a>
       &nbsp;
-      <a href="#deleteModal" data-toggle="modal">
+      <a href="#deleteModal{{payment.id}}" data-toggle="modal">
         <span class="label">L&ouml;schen</span>
       </a>
 
       <!-- Modal -->
-      <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div id="deleteModal{{payment.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
           <h3 id="myModalLabel">Warnung!</h3>
         </div>
@@ -40,10 +42,10 @@
       </div>
       <!-- End Modal -->
 
-
     </td>
   </tr>
-  {% endfor %}  
+  {% endfor %}
+  </tbody>
 </table>
 
 {% endif %}

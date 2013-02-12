@@ -5,17 +5,22 @@
 {% block content %}
 
   <h1>PflegerInnen Liste</h1>
+  <p class="muted">
+    Sortiert nach Nachnamen der pflegenden Personen.
+  </p>
+
   
   <table class="table table-striped">
-
-    <tr>
-      <td>Nachname</td>
-      <td>Vorname</td>
-      <td>Tel. AT</td>
-      <td>Tel. RO</td>
-      <td>Aktionen</td>
-    </tr>
-
+    <thead>
+      <tr>
+        <th>Nachname</th>
+        <th>Vorname</th>
+        <th>Tel. AT</th>
+        <th>Tel. RO</th>
+        <th>Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for carer in carer_list %}
       <tr>
         <td>{{carer.lastname}}</td>
@@ -39,6 +44,7 @@
         </td>
       </tr>
     {% endfor %}
+    </tbody>
 
   </table>
 

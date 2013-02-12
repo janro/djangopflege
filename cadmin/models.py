@@ -86,6 +86,7 @@ class Family(models.Model):
   # date_of_birth
 
   CARE_LEVELS = (
+    (0,'Unbekannt'),
     (1, 'Stufe 1'),
     (2, 'Stufe 2'),
     (3, 'Stufe 3'),
@@ -125,8 +126,8 @@ class Operation(models.Model):
 
   carer = models.ForeignKey(Carer)
   family = models.ForeignKey(Family)
-  start_date = models.DateField(auto_now_add=True, blank=False)
-  end_date = models.DateField(null=True, blank=True)
+  start_date = models.DateField(null=False, blank=False)
+  end_date = models.DateField(null=False, blank=False)
 
   def clean(self):
     # Check all Operations for Intersections
