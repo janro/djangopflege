@@ -1,20 +1,22 @@
 {% if operation_list %}
 
 <table class = "table table-striped">
-  <tr>
-    <td>Von</td>
-    <td>Bis</td>
-    <!-- Make the list modular -->
-    <!-- Display care person if this is an operation list for an carer -->
-    <!-- Display carer if this is an operation list for a care person -->
-    {% if carer %}
-    <td>Zu pflegende Person</td>
-    {% elif family %}
-    <td>PflegerInn</td>
-    {% endif %}
-    <td>Aktionen</td>
-  </tr>
-
+  <thead>
+    <tr>
+      <th>Von</th>
+      <th>Bis</th>
+      <!-- Make the list modular -->
+      <!-- Display care person if this is an operation list for an carer -->
+      <!-- Display carer if this is an operation list for a care person -->
+      {% if carer %}
+      <th>Zu pflegende Person</th>
+      {% elif family %}
+      <th>PflegerInn</th>
+      {% endif %}
+      <th>Aktionen</th>
+    </tr>
+  </thead>
+  <tbody>
   {% for operation in operation_list %}
   <tr>
     <td>{{operation.start_date}}</td>
@@ -44,6 +46,7 @@
     </td>
   </tr>
   {% endfor %}  
+  </tbody>
 </table>
 
 {% else %}
