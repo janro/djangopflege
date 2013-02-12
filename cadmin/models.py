@@ -86,6 +86,7 @@ class Family(models.Model):
   # date_of_birth
 
   CARE_LEVELS = (
+    (0,'Unbekannt'),
     (1, 'Stufe 1'),
     (2, 'Stufe 2'),
     (3, 'Stufe 3'),

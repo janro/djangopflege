@@ -65,6 +65,7 @@ def carerDetails(request, carer_id):
 @permission_required('cadmin.familyCreateDelete', raise_exception=True)
 def familyDelete(request, family_id):
   family = get_object_or_404(Family, pk=family_id)
+  # delete operations and payments!!
 
   # delete all operation entries belonging to this family
   try:
@@ -72,9 +73,20 @@ def familyDelete(request, family_id):
   except ObjectDoesNotExist:
     operation_list = {}
 
-  for operation in operations:
+  for operation in operation_list:
     operation.delete()
 
+  # delete all payment entries belonging to this family
+  try:
+    payments = FamilyPayment.objects.filter(family=family_id)
+  except ObjectDoesNotExist:
+    payment_list = {}
+
+  for payment in payment_list:
+    payment.delete()
+
+
+  # finally delete the family
   family.delete()
   return HttpResponseRedirect(
     reverse('cadmin.views.familyList', ))
@@ -82,6 +94,7 @@ def familyDelete(request, family_id):
 @permission_required('cadmin.carerCreateDelete', raise_exception=True)
 def carerDelete(request, carer_id):
   carer = get_object_or_404(Carer, pk=carer_id)
+  #delete operations and payments!!
 
   # delete all operation entries belonging to this carer
   try:
@@ -89,9 +102,19 @@ def carerDelete(request, carer_id):
   except ObjectDoesNotExist:
     operation_list = {}
 
-  for operation in operations:
+  for operation in operation_list:
     operation.delete()
 
+  # delete all payments entries belonging to this carer
+  try:
+    payments = CarerPayment.objects.filter(carer=carer_id)
+  except ObjectDoesNotExist:
+    payment_list = {}
+
+  for payment in payment_list:
+    payment.delete()
+
+  # finally delete the carer
   carer.delete()
   return HttpResponseRedirect(
     reverse('cadmin.views.carerList', ))

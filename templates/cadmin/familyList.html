@@ -5,20 +5,24 @@
 {% block content %}
 
   <h1>Familien Liste</h1>
+  <p class="muted">
+    Sortiert nach Nachnamen der zu pflegenden Personen.
+  </p>
   
   <table class="table table-striped">
-
-    <tr>
-      <td>Vorname</td>
-      <td>Nachname</td>
-      <td>Telephonnummer</td>
-      <td>Aktionen</td>
-    </tr>
-
+    <thead>
+      <tr>
+        <th>Nachname</th>
+        <th>Vorname</th>
+        <th>Telephonnummer</th>
+        <th>Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for family in family_list %}
       <tr>
-        <td>{{family.firstname_contact_person}}</td>
-        <td>{{family.lastname_contact_person}}</td>
+        <td>{{family.lastname_care_person}}</td>
+        <td>{{family.firstname_care_person}}</td>
         <td>{{family.phone_contact_person}}</td>
         <td>
           <a href="{% url cadmin.views.familyDetails family.id %}">
@@ -37,7 +41,7 @@
         </td>
       </tr>
     {% endfor %}
-
+    </tbody>
   </table>
 
 {% endblock %}
