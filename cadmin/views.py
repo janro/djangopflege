@@ -17,14 +17,19 @@ import datetime
 def summary(request):
   family_count = Family.objects.all().count()
   carer_count = Carer.objects.all().count()
+
+  # start < today <= end
   operation_count = Operation.objects.filter(
     start_date__lte = datetime.date.today()).filter(
     end_date__gte = datetime.date.today()).count()
 
-  operation_count += Operation.objects.filter(start_date__lte = datetime.date.today()).filter(end_date=None).count()
+  # start < today <= n.A.
+  operation_count += Operation.objects.filter(
+    start_date__lte = datetime.date.today()).filter(
+    end_date=None).count()
 
-  arrival_list = Operation.objects.filter(start_date__gte = datetime.date.today()).order_by('-start_date')[0:5]
-  departure_list = Operation.objects.filter(end_date__gte = datetime.date.today()).order_by('-end_date')[0:5]
+  arrival_list = Operation.objects.filter(start_date__gte = datetime.date.today()).order_by('start_date')[0:5]
+  departure_list = Operation.objects.filter(end_date__gte = datetime.date.today()).order_by('end_date')[0:5]
   return render_to_response('cadmin/summary.html',
     {'carer_count' : carer_count,
      'family_count' : family_count,
