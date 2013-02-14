@@ -20,7 +20,7 @@
   {% for operation in operation_list %}
   <tr>
     <td>{{operation.start_date}}</td>
-    <td>{{operation.end_date}}</td>
+    <td>{{operation.end_date|default_if_none:'&nbsp;'}}</td>
 
     {% if carer %}
     <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">

@@ -62,9 +62,9 @@ class Carer(models.Model):
   remark = models.CharField(max_length=500, null=True, blank=True)
 
   def __unicode__(self):
-    full_name = self.firstname
+    full_name = self.lastname
     full_name += ' '
-    full_name += self.lastname
+    full_name += self.firstname
     return full_name
 
   class Meta:
@@ -109,9 +109,9 @@ class Family(models.Model):
   date_of_birth = models.DateField(null=True, blank=True)
 
   def __unicode__(self):
-    full_name = self.firstname_care_person
+    full_name = self.lastname_care_person
     full_name += ' '
-    full_name += self.lastname_care_person
+    full_name += self.firstname_care_person
     return full_name
 
   class Meta:
@@ -127,30 +127,36 @@ class Operation(models.Model):
   carer = models.ForeignKey(Carer)
   family = models.ForeignKey(Family)
   start_date = models.DateField(null=False, blank=False)
-  end_date = models.DateField(null=False, blank=False)
+  end_date = models.DateField(null=True, blank=True)
 
   def clean(self):
-    # Check all Operations for Intersections
-    # 1 - The Carer is envolved
-    try:
-      operations = Operation.objects.filter(carer=self.carer)
-      for operation in operations:
-        if Operation.opIntersect(operation,self):
-          #if the carer is already at another family
-          raise ValidationError(str(self.carer)+' is already at '+str(operation.family)+
-            ' ('+operation.start_date.strftime("%d.%m.%Y")+' - '+operation.end_date.strftime("%d.%m.%Y")+')')
-    except ObjectDoesNotExist:
-      pass
-    # 2 - The Family is envolved
-    try:
-      operations = Operation.objects.filter(family=self.family)
-      for operation in operations:
-        if Operation.opIntersect(operation,self):
-          #if an other carer is already at this family
-          raise ValidationError(str(operation.carer)+' is already at '+str(self.family)+
-            ' ('+operation.start_date.strftime("%d.%m.%Y")+' - '+operation.end_date.strftime("%d.%m.%Y")+')')
-    except ObjectDoesNotExist:
-      pass
+
+    # very primitive and first solution for missing end_dates
+    # --> only do the check if end_date is avaible!
+
+    if self.end_date is not None:
+      # Check all Operations for Intersections
+      # 1 - The Carer is envolved
+      try:
+        operations = Operation.objects.filter(carer=self.carer)
+        for operation in operations:
+          if Operation.opIntersect(operation,self):
+            #if the carer is already at another family
+            raise ValidationError(str(self.carer)+' is already at '+str(operation.family)+
+              ' ('+operation.start_date.strftime("%d.%m.%Y")+' - '+operation.end_date.strftime("%d.%m.%Y")+')')
+      except ObjectDoesNotExist:
+        pass
+      # 2 - The Family is envolved
+      try:
+        operations = Operation.objects.filter(family=self.family)
+        for operation in operations:
+          if Operation.opIntersect(operation,self):
+            #if an other carer is already at this family
+            raise ValidationError(str(operation.carer)+' is already at '+str(self.family)+
+              ' ('+operation.start_date.strftime("%d.%m.%Y")+' - '+operation.end_date.strftime("%d.%m.%Y")+')')
+      except ObjectDoesNotExist:
+        pass
+    
 
   def opIntersect(op1, op2):
     return (op1.start_date < op2.start_date < op1.end_date) or (op1.start_date < op2.end_date < op1.end_date)
