@@ -140,20 +140,22 @@ class Operation(models.Model):
       try:
         operations = Operation.objects.filter(carer=self.carer)
         for operation in operations:
-          if Operation.opIntersect(operation,self):
-            #if the carer is already at another family
-            raise ValidationError(str(self.carer)+' is already at '+str(operation.family)+
-              ' ('+operation.start_date.strftime("%d.%m.%Y")+' - '+operation.end_date.strftime("%d.%m.%Y")+')')
+          if operation.end_date is not None:
+            if Operation.opIntersect(operation,self):
+              #if the carer is already at another family
+              raise ValidationError(str(self.carer)+' is already at '+str(operation.family)+
+                ' ('+operation.start_date.strftime("%d.%m.%Y")+' - '+operation.end_date.strftime("%d.%m.%Y")+')')
       except ObjectDoesNotExist:
         pass
       # 2 - The Family is envolved
       try:
         operations = Operation.objects.filter(family=self.family)
         for operation in operations:
-          if Operation.opIntersect(operation,self):
-            #if an other carer is already at this family
-            raise ValidationError(str(operation.carer)+' is already at '+str(self.family)+
-              ' ('+operation.start_date.strftime("%d.%m.%Y")+' - '+operation.end_date.strftime("%d.%m.%Y")+')')
+          if operation.end_date is not None:
+            if Operation.opIntersect(operation,self):
+              #if an other carer is already at this family
+              raise ValidationError(str(operation.carer)+' is already at '+str(self.family)+
+                ' ('+operation.start_date.strftime("%d.%m.%Y")+' - '+operation.end_date.strftime("%d.%m.%Y")+')')
       except ObjectDoesNotExist:
         pass
     
