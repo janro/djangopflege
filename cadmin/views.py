@@ -33,7 +33,7 @@ def summary(request):
 
 @login_required
 def familyList(request):
-  family_list = Family.objects.all();
+  family_list = Family.objects.all().order_by('lastname_care_person')
   return render_to_response('cadmin/familyList.html',
     {'family_list' : family_list},
     context_instance=RequestContext(request))
@@ -369,4 +369,4 @@ def familyPaymentDelete(request, family_id, payment_id):
   family_payment.delete()
   messages.add_message(request, messages.INFO, 'Eintrag geloescht!')
   return HttpResponseRedirect(
-    reverse('cadmin.views.carerDetails', args=(family_payment.family.id,)))
+    reverse('cadmin.views.familyDetails', args=(family_payment.family.id,)))

@@ -48,7 +48,7 @@
       <div class="control-group">
         <label class="control-label">Datum</label>
         <div class="controls">
-          <input type="text" name="date" id="id_date" value="{{form.date.value}}"/>
+          <input type="text" name="date" id="id_date" value="{{form.date.value|default_if_none:''}}"/>
         </div>
       </div>
 
