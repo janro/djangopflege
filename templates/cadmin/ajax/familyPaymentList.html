@@ -18,7 +18,7 @@
     <td>{{payment.get_method_display}}</td>
     <td>{{payment.amount}} &#8364;</td>
     <td>{{payment.account_print_number|default_if_none:'&nbsp;'}}</td>
-    <td>{{payment.remark}}</td>
+    <td>{{payment.remark|default_if_none:'&nbsp;'}}</td>
     <td>
       <a href="{% url cadmin.views.familyPaymentEditForm payment.family.id payment.id %}">
         <span class="label">Bearbeiten</span>
