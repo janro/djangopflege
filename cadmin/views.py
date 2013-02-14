@@ -70,7 +70,7 @@ def familyDelete(request, family_id):
 
   # delete all operation entries belonging to this family
   try:
-    operations = Operation.objects.filter(family=family_id)
+    operation_list = Operation.objects.filter(family=family_id)
   except ObjectDoesNotExist:
     operation_list = {}
 
@@ -79,7 +79,7 @@ def familyDelete(request, family_id):
 
   # delete all payment entries belonging to this family
   try:
-    payments = FamilyPayment.objects.filter(family=family_id)
+    payment_list = FamilyPayment.objects.filter(family=family_id)
   except ObjectDoesNotExist:
     payment_list = {}
 
@@ -100,7 +100,7 @@ def carerDelete(request, carer_id):
 
   # delete all operation entries belonging to this carer
   try:
-    operations = Operation.objects.filter(carer=carer_id)
+    operation_list = Operation.objects.filter(carer=carer_id)
   except ObjectDoesNotExist:
     operation_list = {}
 
@@ -109,7 +109,7 @@ def carerDelete(request, carer_id):
 
   # delete all payments entries belonging to this carer
   try:
-    payments = CarerPayment.objects.filter(carer=carer_id)
+    payment_list = CarerPayment.objects.filter(carer=carer_id)
   except ObjectDoesNotExist:
     payment_list = {}
 
