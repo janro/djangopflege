@@ -165,6 +165,7 @@ class FamilyPayment(models.Model):
   # date
   # account_print_number
   # method
+  # remark
 
   PAYMENT_METHODS = (
     (1, 'Bar'),
@@ -176,11 +177,19 @@ class FamilyPayment(models.Model):
   date = models.DateField(blank=False)
   account_print_number = models.IntegerField(null=True, blank=True)
   method = models.IntegerField(default=1, choices=PAYMENT_METHODS, blank=False)
+  remark = models.CharField(max_length=200, blank=True)
 
   class Meta:
       permissions = (('familyPaymentView', 'View Family Payment'),)
 
 class CarerPayment(models.Model):
+
+  # carer
+  # amount
+  # date
+  # account_print_number
+  # method
+  # remark
 
   PAYMENT_METHODS = (
     (1, 'Bar'),
@@ -191,6 +200,8 @@ class CarerPayment(models.Model):
   date = models.DateField(blank=False)
   amount = models.IntegerField(null=False, blank=False)
   method = models.IntegerField(default=1, choices=PAYMENT_METHODS, blank=False)
+  account_print_number = models.IntegerField(null=True, blank=True)
+  remark = models.CharField(max_length=200, blank=True)
 
   class Meta:
     permissions = (('carerPaymentView', 'View Carer Payment'),)

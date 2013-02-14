@@ -15,6 +15,11 @@ class OperationForm(ModelForm):
   class Meta:
     model = Operation
 
+  def __init__(self, *args, **kwargs):
+    super(OperationForm, self).__init__(*args, **kwargs)
+    self.fields['carer'].queryset = Carer.objects.order_by('lastname')
+    self.fields['family'].queryset = Family.objects.order_by('lastname_care_person')
+
 class CarerPaymentForm(ModelForm):
   class Meta:
     model = CarerPayment
