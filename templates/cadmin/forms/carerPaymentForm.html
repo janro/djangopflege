@@ -51,6 +51,14 @@
           <input type="text" name="date" id="id_date" value="{{form.date.value|default_if_none:''}}"/>
         </div>
       </div>
+      <div class="control-group">
+        <label class="control-label">Kontoauszugsnummer</label>
+        <div class="controls">{{form.account_print_number}}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Anmerkung</label>
+        <div class="controls">{{form.remark}}</div>
+      </div>
 
       <input type="submit" value="Speichern" class="btn btn-primary"/>
       <input type="reset" value="Verwerfen" class="btn" />
