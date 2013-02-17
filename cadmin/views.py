@@ -28,8 +28,8 @@ def summary(request):
     start_date__lte = datetime.date.today()).filter(
     end_date=None).count()
 
-  arrival_list = Operation.objects.filter(start_date__gte = datetime.date.today()).order_by('start_date')[0:5]
-  departure_list = Operation.objects.filter(end_date__gte = datetime.date.today()).order_by('end_date')[0:5]
+  arrival_list = Operation.objects.filter(start_date__gte = datetime.date.today()).order_by('start_date')[0:10]
+  departure_list = Operation.objects.filter(end_date__gte = datetime.date.today()).order_by('end_date')[0:10]
   return render_to_response('cadmin/summary.html',
     {'carer_count' : carer_count,
      'family_count' : family_count,
@@ -353,7 +353,6 @@ def familyPaymentAddForm(request, family_id):
 
 @permission_required('cadmin.familyPaymentView', raise_exception=True)
 def familyPaymentEditForm(request, family_id, payment_id):
-  print 'f: ' + repr(family_id) + ' p: ' + repr(payment_id)
   family_payment = get_object_or_404(FamilyPayment, pk=payment_id)
 
   if request.method == 'POST':
