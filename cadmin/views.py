@@ -353,6 +353,7 @@ def familyPaymentAddForm(request, family_id):
 
 @permission_required('cadmin.familyPaymentView', raise_exception=True)
 def familyPaymentEditForm(request, family_id, payment_id):
+  print 'f: ' + repr(family_id) + ' p: ' + repr(payment_id)
   family_payment = get_object_or_404(FamilyPayment, pk=payment_id)
 
   if request.method == 'POST':

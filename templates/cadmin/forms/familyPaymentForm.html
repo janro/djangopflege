@@ -26,7 +26,7 @@
     </div>
   {% endif %}
 
-  {% if carer_payment %}
+  {% if family_payment %}
     <form action="{% url cadmin.views.familyPaymentEditForm family.id family_payment.id %}" method="post" class="form-horizontal">
   {% else %}
     <form action="{% url cadmin.views.familyPaymentAddForm family.id %}" method="post" class="form-horizontal">
