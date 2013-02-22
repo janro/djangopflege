@@ -7,7 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('profipflege.views',
     #(r'^$', 'index'),
     (r'^logout/', 'logoutView'),
-    (r'^login2/', 'loginView'),
+    (r'^test/', 'testView'),
 )
 
 urlpatterns += patterns('',
@@ -17,6 +17,9 @@ urlpatterns += patterns('',
 
     # cadmin app
     (r'^ca/', include('cadmin.urls')),
+
+    # logger app
+    (r'^log/', include('logger.urls')),
 
     # admin app
     (r'^admin/', include(admin.site.urls)),

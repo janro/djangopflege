@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Log{% endblock %}
+
+{% block content %}
+
+  <h1>Log</h1>
+  
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>User</th>
+        <th>Action</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for logentry in log_list %}
+      {% if logentry.action == 1 %}
+      <tr class="success">
+      {% elif logentry.action == 2 %}
+      <tr class="warning">
+      {% elif logentry.action == 3 %}
+      <tr class="error">
+      {% else %}
+      <tr>
+      {% endif %}
+        <td>{{logentry.timestamp}}</td>
+        <td>{{logentry.user}}</td>
+        <td>{{logentry.get_action_display}}</td>
+        <td>{{logentry.comment|default_if_none:'&nbsp;'}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% include 'cadmin/topicmenu.html' %}
+{% endblock %}

@@ -67,6 +67,10 @@ class Carer(models.Model):
     full_name += self.firstname
     return full_name
 
+#  @models.permalink
+#  def get_absolute_url(self):
+#      return ('cadmin.views.carerDetails', [str(self.id)])
+
   class Meta:
     permissions = (('carerCreateDelete', 'Create or Delete'),)
 
@@ -109,10 +113,16 @@ class Family(models.Model):
   date_of_birth = models.DateField(null=True, blank=True)
 
   def __unicode__(self):
-    full_name = self.lastname_care_person
-    full_name += ' '
-    full_name += self.firstname_care_person
-    return full_name
+    if self.firstname_care_person and self.lastname_care_person:
+      full_name = self.lastname_care_person
+      full_name += ' '
+      full_name += self.firstname_care_person
+      return full_name
+    else:
+      full_name = self.lastname_contact_person
+      full_name += ' '
+      full_name += self.firstname_contact_person
+      return full_name
 
   class Meta:
       permissions = (('familyCreateDelete', 'Create or Delete'),)

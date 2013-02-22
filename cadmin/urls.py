@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
 
+from cadmin import views
+
 urlpatterns = patterns('cadmin.views',
     
     (r'^$', 'summary'),
@@ -21,7 +23,7 @@ urlpatterns = patterns('cadmin.views',
     # carer section
     (r'^c/$', 'carerList'),
     (r'^c/edit/$', 'carerCreateForm'),
-    (r'^c/(?P<carer_id>\d+)/$', 'carerDetails'),
+    (r'^c/(?P<carer_id>\d+)/$', views.carerDetails),
     (r'^c/(?P<carer_id>\d+)/delete/$', 'carerDelete'),    
     (r'^c/(?P<carer_id>\d+)/edit/$', 'carerUpdateForm'),
     (r'^c/(?P<carer_id>\d+)/pm/add/$', 'carerPaymentAddForm'),

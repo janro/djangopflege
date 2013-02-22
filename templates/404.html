@@ -1,23 +1,2 @@
-{% if user.is_authenticated %}
-
-  {% extends 'base.html' %}
-  {% block title %}Error{% endblock %}
-  {% block content %}
-
-    <div class="row-fluid">
-      <div class="span8">
-        <h1>Error 404</h1>
-        The requested page is not avaible or does not exist!
-      </div>
-    </div>
-
-  {% endblock %}
-  {% block topicmenu %}
-  {% endblock %}
-
-{% else %}
-
-  <h1>Error 404</h1>
-  The requested page is not avaible or does not exist!
-
-{% endif %}
+<h1>Error 404</h1>
+The requested page is not avaible or does not exist!
