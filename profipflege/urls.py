@@ -18,6 +18,9 @@ urlpatterns += patterns('',
     # cadmin app
     (r'^ca/', include('cadmin.urls')),
 
+    # logger app
+    (r'^log/', include('logger.urls')),
+
     # admin app
     (r'^admin/', include(admin.site.urls)),
 

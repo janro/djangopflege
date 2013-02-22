@@ -11,6 +11,8 @@ from django.contrib import messages
 from cadmin.forms import FamilyForm, CarerForm, OperationForm, CarerPaymentForm, FamilyPaymentForm
 from cadmin.models import Carer, Family, Operation, CarerPayment, TradeRegister, FamilyPayment
 
+from logger.models import LogEntry
+
 import datetime
 
 @login_required
@@ -96,6 +98,7 @@ def familyDelete(request, family_id):
 
   # finally delete the family
   family.delete()
+  LogEntry(user=request.user, action=3, comment=str(family)).save()
   messages.add_message(request, messages.INFO, 'Eintrag geloescht!')
   return HttpResponseRedirect(
     reverse('cadmin.views.familyList', ))
@@ -125,6 +128,7 @@ def carerDelete(request, carer_id):
 
   # finally delete the carer
   carer.delete()
+  LogEntry(user=request.user, action=3, comment=str(carer)).save()
   messages.add_message(request, messages.INFO, 'Eintrag geloescht!')
   return HttpResponseRedirect(
     reverse('cadmin.views.carerList', ))
@@ -136,6 +140,7 @@ def familyUpdateForm(request, family_id):
     form = FamilyForm(request.POST, instance=family)
     if form.is_valid():
       family = form.save()
+      LogEntry(user=request.user, action=2, comment=str(family)).save()
       return HttpResponseRedirect(
         reverse('cadmin.views.familyDetails', args=(family.id,)))
   else:
@@ -151,6 +156,7 @@ def carerUpdateForm(request, carer_id):
     form = CarerForm(request.POST, instance=carer)
     if form.is_valid():
       carer = form.save()
+      LogEntry(user=request.user, action=2, comment=str(carer)).save()
       return HttpResponseRedirect(
         reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
@@ -165,6 +171,7 @@ def familyCreateForm(request):
     form = FamilyForm(request.POST)
     if form.is_valid():
       family = form.save()
+      LogEntry(user=request.user, action=1, comment=str(family)).save()
       return HttpResponseRedirect(
         reverse('cadmin.views.familyDetails', args=(family.id,)))
   else:
@@ -179,6 +186,7 @@ def carerCreateForm(request):
     form = CarerForm(request.POST)
     if form.is_valid():
       carer = form.save()
+      LogEntry(user=request.user, action=1, comment=str(carer)).save()
       return HttpResponseRedirect(
         reverse('cadmin.views.carerDetails', args=(carer.id,)))
   else:
