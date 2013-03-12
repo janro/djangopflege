@@ -148,7 +148,7 @@ class Operation(models.Model):
       # Check all Operations for Intersections
       # 1 - The Carer is envolved
       try:
-        operations = Operation.objects.filter(carer=self.carer)
+        operations = Operation.objects.filter(carer=self.carer).exclude(id=self.id)
         for operation in operations:
           if operation.end_date is not None:
             if Operation.opIntersect(operation,self):
@@ -159,7 +159,7 @@ class Operation(models.Model):
         pass
       # 2 - The Family is envolved
       try:
-        operations = Operation.objects.filter(family=self.family)
+        operations = Operation.objects.filter(family=self.family).exclude(id=self.id)
         for operation in operations:
           if operation.end_date is not None:
             if Operation.opIntersect(operation,self):
