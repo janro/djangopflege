@@ -82,9 +82,9 @@
 
 {% block scripts %}
   <script>
-    $("#operations").load("{% url cadmin.views.ajaxFamilyOperationList family.id %}");
+    $("#operations").load("{% url 'cadmin.views.ajaxFamilyOperationList' family.id %}");
   </script>
   <script>
-    $("#payment").load("{% url cadmin.views.ajaxFamilyPaymentList family.id %}");
+    $("#payment").load("{% url 'cadmin.views.ajaxFamilyPaymentList' family.id %}");
   </script>
 {% endblock %}

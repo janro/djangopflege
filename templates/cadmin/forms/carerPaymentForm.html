@@ -27,9 +27,9 @@
   {% endif %}
 
   {% if carer_payment %}
-    <form action="{% url cadmin.views.carerPaymentEditForm carer.id carer_payment.id %}" method="post" class="form-horizontal">
+    <form action="{% url 'cadmin.views.carerPaymentEditForm' carer.id carer_payment.id %}" method="post" class="form-horizontal">
   {% else %}
-    <form action="{% url cadmin.views.carerPaymentAddForm carer.id %}" method="post" class="form-horizontal">
+    <form action="{% url 'cadmin.views.carerPaymentAddForm' carer.id %}" method="post" class="form-horizontal">
   {% endif %}
     
       {% csrf_token %}

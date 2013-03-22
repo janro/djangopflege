@@ -28,11 +28,11 @@
         <td>{{carer.phone_at|default_if_none:"&nbsp;"}}</td>
         <td>{{carer.phone_ro|default_if_none:"&nbsp;"}}</td>
         <td>
-          <a href="{% url cadmin.views.carerDetails carer.id %}">
+          <a href="{% url 'cadmin.views.carerDetails' carer.id %}">
             <span class="label">Zeigen</span>
           </a>
           &nbsp;
-          <a href="{% url cadmin.views.carerUpdateForm carer.id %}">
+          <a href="{% url 'cadmin.views.carerUpdateForm' carer.id %}">
             <span class="label">Bearbeiten</span>
           </a>
           &nbsp;

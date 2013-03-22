@@ -25,11 +25,11 @@
         <td>{{family.firstname_care_person}}</td>
         <td>{{family.phone_contact_person}}</td>
         <td>
-          <a href="{% url cadmin.views.familyDetails family.id %}">
+          <a href="{% url 'cadmin.views.familyDetails' family.id %}">
             <span class="label">Zeigen</span>
           </a>
           &nbsp;
-          <a href="{% url cadmin.views.familyUpdateForm family.id %}">
+          <a href="{% url 'cadmin.views.familyUpdateForm' family.id %}">
             <span class="label">Bearbeiten</span>
           </a>
           &nbsp;

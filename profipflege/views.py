@@ -1,4 +1,4 @@
-from urlparse import urlparse, urlunparse
+from urllib.parse import urlparse, urlunparse # python2: from urlparse import urlparse, urlunparse
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse

@@ -27,9 +27,9 @@
   {% endif %}
 
   {% if family %}
-    <form action="{% url cadmin.views.familyUpdateForm family.id %}" method="post" class="form-horizontal">
+    <form action="{% url 'cadmin.views.familyUpdateForm' family.id %}" method="post" class="form-horizontal">
   {% else %}
-    <form action="{% url cadmin.views.familyCreateForm %}" method="post" class="form-horizontal">
+    <form action="{% url 'cadmin.views.familyCreateForm' %}" method="post" class="form-horizontal">
   {% endif %}
     
       {% csrf_token %}

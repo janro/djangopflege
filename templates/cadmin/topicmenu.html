@@ -4,14 +4,14 @@
   <!-- Family Section -->
 
   <li class="nav-header">Familien</li>
-  <li><a href="{% url cadmin.views.familyList %}">Liste</a></li>
+  <li><a href="{% url 'cadmin.views.familyList' %}">Liste</a></li>
 
   {% if family %}
-  <li><a href="{% url cadmin.views.familyUpdateForm family.id %}">Bearbeiten</a></li>
+  <li><a href="{% url 'cadmin.views.familyUpdateForm' family.id %}">Bearbeiten</a></li>
   {% endif %}
 
   {% if perms.cadmin.familyPaymentView and family%}
-  <li><a href="{% url cadmin.views.familyPaymentAddForm family.id %}">Zahlung eintragen</a></li>
+  <li><a href="{% url 'cadmin.views.familyPaymentAddForm' family.id %}">Zahlung eintragen</a></li>
   {% endif %}
 
   {% if perms.cadmin.familyCreateDelete and family%}
@@ -21,21 +21,21 @@
   {% endif %}
 
   {% if perms.cadmin.familyCreateDelete %}
-  <li><a href="{% url cadmin.views.familyCreateForm %}">Hinzuf&uuml;gen</a></li>
+  <li><a href="{% url 'cadmin.views.familyCreateForm' %}">Hinzuf&uuml;gen</a></li>
   {% endif %}
 
 
   <!-- Carer Section -->
 
   <li class="nav-header">PflegerInnen</li>
-  <li><a href="{% url cadmin.views.carerList %}">Liste</a></li>
+  <li><a href="{% url 'cadmin.views.carerList' %}">Liste</a></li>
 
   {% if carer %}
-  <li><a href="{% url cadmin.views.carerUpdateForm carer.id %}">Bearbeiten</a></li>
+  <li><a href="{% url 'cadmin.views.carerUpdateForm' carer.id %}">Bearbeiten</a></li>
   {% endif %}
 
   {% if perms.cadmin.carerPaymentView and carer%}
-  <li><a href="{% url cadmin.views.carerPaymentAddForm carer.id %}">Zahlung eintragen</a></li>
+  <li><a href="{% url 'cadmin.views.carerPaymentAddForm' carer.id %}">Zahlung eintragen</a></li>
   {% endif %}
 
   {% if perms.cadmin.carerCreateDelete and carer%} 
@@ -45,7 +45,7 @@
   {% endif %}
 
   {% if perms.cadmin.carerCreateDelete%} 
-  <li><a href="{% url cadmin.views.carerCreateForm %}">Hinzuf&uuml;gen</a></li>
+  <li><a href="{% url 'cadmin.views.carerCreateForm' %}">Hinzuf&uuml;gen</a></li>
   {% endif %}
 
 
@@ -54,11 +54,11 @@
   <li class="nav-header">Eins&auml;tze</li>
 
   {% if perms.cadmin.operationCreateDelete %}
-  <li><a href="{% url cadmin.views.operations %}">Liste</a></li> 
+  <li><a href="{% url 'cadmin.views.operations' %}">Liste</a></li> 
   {% endif %}
 
   {% if perms.cadmin.operationCreateDelete %}
-  <li><a href="{% url cadmin.views.operationCreateForm %}">Hinzuf&uuml;gen</a></li>
+  <li><a href="{% url 'cadmin.views.operationCreateForm' %}">Hinzuf&uuml;gen</a></li>
   {% endif %}
 
   {% if perms.cadmin.operationCreateDelete and operation %}

@@ -20,7 +20,7 @@
     <td>{{payment.account_print_number|default_if_none:'&nbsp;'}}</td>
     <td>{{payment.remark|default_if_none:'&nbsp;'}}</td>
     <td>
-      <a href="{% url cadmin.views.carerPaymentEditForm payment.carer.id payment.id %}">
+      <a href="{% url 'cadmin.views.carerPaymentEditForm' payment.carer.id payment.id %}">
         <span class="label">Bearbeiten</span>
       </a>
       &nbsp;
@@ -39,7 +39,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn" data-dismiss="modal" aria-hidden="true">Abbrechen</button>
-          <a href="{% url cadmin.views.carerPaymentDelete payment.carer.id payment.id %}" role="button" class="btn btn-primary">Best&auml;tigen</a>
+          <a href="{% url 'cadmin.views.carerPaymentDelete' payment.carer.id payment.id %}" role="button" class="btn btn-primary">Best&auml;tigen</a>
         </div>
       </div>
       <!-- End Modal -->
