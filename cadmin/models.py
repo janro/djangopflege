@@ -61,7 +61,7 @@ class Carer(models.Model):
   operation_skills = models.IntegerField(default=0, choices=SKILL_LEVELS, blank=False)
   remark = models.CharField(max_length=500, null=True, blank=True)
 
-  def __unicode__(self):
+  def __str__(self):
     full_name = self.lastname
     full_name += ' '
     full_name += self.firstname
@@ -112,7 +112,7 @@ class Family(models.Model):
   care_level = models.IntegerField(default=1, choices=CARE_LEVELS, blank=True)
   date_of_birth = models.DateField(null=True, blank=True)
 
-  def __unicode__(self):
+  def __str__(self):
     if self.firstname_care_person and self.lastname_care_person:
       full_name = self.lastname_care_person
       full_name += ' '

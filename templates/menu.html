@@ -1,18 +1,18 @@
-<ul class="nav">
+'<ul class="nav">
 
   <!-- alltime features -->
   <!-- none -->
 
   <!-- not-logged-in features -->
   {% if not user.is_authenticated %}
-  <li><a href="{% url django.contrib.auth.views.login %}">Anmelden</a></li>
+  <li><a href="{% url 'django.contrib.auth.views.login' %}">Anmelden</a></li>
   {% endif %}
 
   <!-- logged-in-features -->
   {% if user.is_authenticated %}
-  <li><a href="{% url cadmin.views.summary %}">Zusammenfassung</a></li>
-  <li><a href="{% url cadmin.views.familyList %}">Familien</a></li>
-  <li><a href="{% url cadmin.views.carerList %}">PflegerInnen</a></li>
+  <li><a href="{% url 'cadmin.views.summary' %}">Zusammenfassung</a></li>
+  <li><a href="{% url 'cadmin.views.familyList' %}">Familien</a></li>
+  <li><a href="{% url 'cadmin.views.carerList' %}">PflegerInnen</a></li>
   {% endif %}
 
   <!-- admin feature -->
@@ -23,7 +23,7 @@
 
   <!-- further logged-in-features -->
   {% if user.is_authenticated %}
-  <li><a href="{% url profipflege.views.logoutView %}">Abmelden</a></li>
+  <li><a href="{% url 'profipflege.views.logoutView' %}">Abmelden</a></li>
   {% endif %}
 
 </ul>     

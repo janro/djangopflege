@@ -23,18 +23,18 @@
     <td>{{operation.end_date|default_if_none:'&nbsp;'}}</td>
 
     {% if carer %}
-    <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
+    <td><a href="{% url 'cadmin.views.familyDetails' operation.family.id %}">
       {{operation.family.firstname_care_person}} {{operation.family.lastname_care_person}}
     </a></td>
     {% elif family %}
-    <td><a href="{% url cadmin.views.carerDetails operation.carer.id %}">
+    <td><a href="{% url 'cadmin.views.carerDetails' operation.carer.id %}">
       {{operation.carer}}
     </a></td>
     {% endif %}
     
     <td>
 
-      <a href="{% url cadmin.views.operationUpdateForm operation.id %}">
+      <a href="{% url 'cadmin.views.operationUpdateForm' operation.id %}">
         <span class="label">Bearbeiten</span>
       </a>
       &nbsp;

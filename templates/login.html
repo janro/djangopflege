@@ -46,7 +46,7 @@
   <body>
     <div class="container">
 
-      <form method="post" action="{% url django.contrib.auth.views.login %}" class="form-signin">
+      <form method="post" action="{% url 'django.contrib.auth.views.login' %}" class="form-signin">
         {% csrf_token %}
         <h2 class="form-signin-heading">Anmeldung</h2>
 
@@ -67,7 +67,7 @@
         <input name="username" type="text" class="input-block-level" placeholder="Benutzername">
         <input name="password" type="password" class="input-block-level" placeholder="Passwort">
 
-        <input type="hidden" name="next" value="{% url cadmin.views.summary %}" />
+        <input type="hidden" name="next" value="{% url 'cadmin.views.summary' %}" />
 
         <button class="btn btn-large btn-primary" type="submit">Anmelden</button>
 

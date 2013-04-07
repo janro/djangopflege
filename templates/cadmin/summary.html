@@ -27,12 +27,12 @@
         <tr>
           <td>{{operation.start_date}}</td>
           <td>
-            <a href="{% url cadmin.views.carerDetails operation.carer.id %}">{{operation.carer.firstname}}&nbsp;{{operation.carer.lastname}}</a>
+            <a href="{% url 'cadmin.views.carerDetails' operation.carer.id %}">{{operation.carer.firstname}}&nbsp;{{operation.carer.lastname}}</a>
           </td>
-          <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
+          <td><a href="{% url 'cadmin.views.familyDetails' operation.family.id %}">
             {{operation.family.firstname_care_person}}&nbsp;{{operation.family.lastname_care_person}}
           </a></td>
-          <td><a href="{% url cadmin.views.operationUpdateForm operation.id %}"><span class="label">Bearbeiten</span></a></td>
+          <td><a href="{% url 'cadmin.views.operationUpdateForm' operation.id %}"><span class="label">Bearbeiten</span></a></td>
         </tr>
       {% endfor %}
     </table>
@@ -53,12 +53,12 @@
         <tr>
           <td>{{operation.end_date}}</td>
           <td>
-            <a href="{% url cadmin.views.carerDetails operation.carer.id %}">{{operation.carer.firstname}}&nbsp;{{operation.carer.lastname}}</a>
+            <a href="{% url 'cadmin.views.carerDetails' operation.carer.id %}">{{operation.carer.firstname}}&nbsp;{{operation.carer.lastname}}</a>
           </td>
-          <td><a href="{% url cadmin.views.familyDetails operation.family.id %}">
+          <td><a href="{% url 'cadmin.views.familyDetails' operation.family.id %}">
             {{operation.family.firstname_care_person}}&nbsp;{{operation.family.lastname_care_person}}
           </a></td>
-          <td><a href="{% url cadmin.views.operationUpdateForm operation.id %}"><span class="label">Bearbeiten</span></a></td>
+          <td><a href="{% url 'cadmin.views.operationUpdateForm' operation.id %}"><span class="label">Bearbeiten</span></a></td>
         </tr>
       {% endfor %}
     </table>

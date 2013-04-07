@@ -29,9 +29,9 @@
   {% endif %}
 
   {% if operation %}
-    <form action="{% url cadmin.views.operationUpdateForm operation.id %}" method="post" class="form-horizontal">
+    <form action="{% url 'cadmin.views.operationUpdateForm' operation.id %}" method="post" class="form-horizontal">
   {% else %}
-    <form action="{% url cadmin.views.operationCreateForm %}" method="post" class="form-horizontal">
+    <form action="{% url 'cadmin.views.operationCreateForm' %}" method="post" class="form-horizontal">
   {% endif %}
 
       {% csrf_token %}
