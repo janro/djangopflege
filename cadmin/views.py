@@ -42,14 +42,14 @@ def summary(request):
 
 @login_required
 def familyList(request):
-  family_list = Family.objects.all().order_by('lastname_care_person')
+  family_list = Family.objects.all().order_by('lastname_care_person').filter(archive=False)
   return render_to_response('cadmin/familyList.html',
     {'family_list' : family_list},
     context_instance=RequestContext(request))
 
 @login_required
 def carerList(request):
-  carer_list = Carer.objects.all().order_by('lastname')
+  carer_list = Carer.objects.all().order_by('lastname').filter(archive=False)
   return render_to_response('cadmin/carerList.html',
     {'carer_list' : carer_list},
     context_instance=RequestContext(request))
@@ -133,6 +133,59 @@ def carerDelete(request, carer_id):
   return HttpResponseRedirect(
     reverse('cadmin.views.carerList', ))
 
+#--------------------- Carer Archive Methods ----------------------------------
+@permission_required('cadmin.carerCreateDelete', raise_exception=True)
+def carerArchive(request, carer_id):
+  carer = get_object_or_404(Carer, pk=carer_id)
+  carer.archive = True
+  carer.save()
+  messages.add_message(request, messages.INFO, 'Eintrag archivierd!')
+  return HttpResponseRedirect(
+        reverse('cadmin.views.carerList'))
+
+@permission_required('cadmin.carerCreateDelete', raise_exception=True)
+def carerActivate(request, carer_id):
+  carer = get_object_or_404(Carer, pk=carer_id)
+  carer.archive = False
+  carer.save()
+  messages.add_message(request, messages.INFO, 'Eintrag reaktiviert!')
+  return HttpResponseRedirect(
+        reverse('cadmin.views.carerArchiveList'))
+
+@login_required
+def carerArchiveList(request):
+  carer_list = Carer.objects.all().order_by('lastname').filter(archive=True)
+  return render_to_response('cadmin/carerList.html',
+    {'carer_list' : carer_list, 'archive' : True},
+    context_instance=RequestContext(request))
+
+#--------------------- Family Archive Methods ---------------------------------
+@permission_required('cadmin.carerCreateDelete', raise_exception=True)
+def familyArchive(request, family_id):
+  family = get_object_or_404(Family, pk=family_id)
+  family.archive = True
+  family.save()
+  messages.add_message(request, messages.INFO, 'Eintrag archivierd!')
+  return HttpResponseRedirect(
+        reverse('cadmin.views.familyList'))
+
+@permission_required('cadmin.carerCreateDelete', raise_exception=True)
+def familyActivate(request, family_id):
+  family = get_object_or_404(Family, pk=family_id)
+  family.archive = False
+  family.save()
+  messages.add_message(request, messages.INFO, 'Eintrag reaktiviert!')
+  return HttpResponseRedirect(
+        reverse('cadmin.views.familyArchiveList'))
+
+@login_required
+def familyArchiveList(request):
+  family_list = Family.objects.all().order_by('lastname_care_person').filter(archive=True)
+  return render_to_response('cadmin/familyList.html',
+    {'family_list' : family_list, 'archive' : True},
+    context_instance=RequestContext(request))
+
+#------------------------------------------------------------------------------
 @permission_required('cadmin.familyCreateDelete', raise_exception=True)
 def familyUpdateForm(request, family_id):
   family = get_object_or_404(Family, pk=family_id)

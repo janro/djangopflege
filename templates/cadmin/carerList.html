@@ -4,11 +4,10 @@
 
 {% block content %}
 
-  <h1>PflegerInnen Liste</h1>
+  <h1>PflegerInnen Liste{% if archive %}&nbsp;- Archiv{% endif %}</h1>
   <p class="muted">
     Sortiert nach Nachnamen der pflegenden Personen.
   </p>
-
   
   <table class="table table-striped">
     <thead>
@@ -36,11 +35,17 @@
             <span class="label">Bearbeiten</span>
           </a>
           &nbsp;
-          <a href="#carerDeleteDialog{{carer.id}}" data-toggle="modal">
-            <span class="label">L&ouml;schen</span>
+          {% if perms.cadmin.carerCreateDelete %}
+          {% if archive %} <!-- activate when archived -->
+          <a href="{% url 'cadmin.views.carerActivate' carer.id %}">
+            <span class="label">Reaktivieren</span>
           </a>
-          <!-- include the modal embedded in this file -->
-          {% include 'cadmin/dialogs/carerDeleteDialog.html' %}
+          {% else %} <!-- archive when activeted -->
+          <a href="{% url 'cadmin.views.carerArchive' carer.id %}">
+            <span class="label">Archivieren</span>
+          </a>
+          {% endif %}
+          {% endif %}
         </td>
       </tr>
     {% endfor %}
