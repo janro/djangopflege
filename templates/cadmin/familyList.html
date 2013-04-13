@@ -4,7 +4,7 @@
 
 {% block content %}
 
-  <h1>Familien Liste</h1>
+  <h1>Familien Liste{% if archive %}&nbsp;- Archiv{% endif %}</h1>
   <p class="muted">
     Sortiert nach Nachnamen der zu pflegenden Personen.
   </p>
@@ -33,11 +33,17 @@
             <span class="label">Bearbeiten</span>
           </a>
           &nbsp;
-          <a href="#familyDeleteDialog{{family.id}}" data-toggle="modal">
-            <span class="label">L&ouml;schen</span>
+          {% if perms.cadmin.familyCreateDelete %}
+          {% if archive %} <!-- activate when archived -->
+          <a href="{% url 'cadmin.views.familyActivate' family.id %}">
+            <span class="label">Reaktivieren</span>
           </a>
-          <!-- include the modal embedded in this file -->
-          {% include 'cadmin/dialogs/familyDeleteDialog.html' %}
+          {% else %} <!-- archive when activeted -->
+          <a href="{% url 'cadmin.views.familyArchive' family.id %}">
+            <span class="label">Archivieren</span>
+          </a>
+          {% endif %}
+          {% endif %}
         </td>
       </tr>
     {% endfor %}

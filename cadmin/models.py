@@ -60,6 +60,7 @@ class Carer(models.Model):
   language_skills = models.IntegerField(default=0, choices=SKILL_LEVELS, blank=False)
   operation_skills = models.IntegerField(default=0, choices=SKILL_LEVELS, blank=False)
   remark = models.CharField(max_length=500, null=True, blank=True)
+  archive = models.BooleanField()
 
   def __str__(self):
     full_name = self.lastname
@@ -111,6 +112,7 @@ class Family(models.Model):
   city = models.CharField(max_length=100, blank=True)
   care_level = models.IntegerField(default=1, choices=CARE_LEVELS, blank=True)
   date_of_birth = models.DateField(null=True, blank=True)
+  archive = models.BooleanField()
 
   def __str__(self):
     if self.firstname_care_person and self.lastname_care_person:
