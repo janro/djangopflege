@@ -41,7 +41,7 @@
   <li><a href="{% url 'cadmin.views.carerCreateForm' %}">Hinzuf&uuml;gen</a></li>
   {% endif %}
 
-  {% if family and not family.archive %}
+  {% if carer and not carer.archive %}
   <li class="divider"></li>
   {% endif %}
 
@@ -62,8 +62,6 @@
   <!-- include the modal embedded in this file -->
   {% include 'cadmin/dialogs/carerDeleteDialog.html' %}
   {% endif %}
-
-
 
 
   <!-- Operation Section -->    

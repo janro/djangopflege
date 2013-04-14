@@ -8,12 +8,6 @@
 
 {% block content %}
 
-  {% if family %}
-    <h1>Family bearbeiten {{family}}</h1>
-  {% else %}
-    <h1>Familie hinzuf&uuml;gen</h1>
-  {% endif %}
-
   {% if form.errors %}
     <div class="alert alert-error">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -72,7 +66,6 @@
         <div class="controls">{{form.care_level}}</div>
       </div>
 
-
       <h2>Addresse</h2>
       <div class="control-group">
         <label class="control-label">Stra&szlig;e</label>
@@ -90,6 +83,14 @@
         <label class="control-label">Stadt</label>
         <div class="controls">{{form.city}}</div>
       </div>
+
+      {% if perms.cadmin.familyPaymentView %}
+      <h2>Honorar</h2>
+      <div class="control-group">
+        <label class="control-label">Vereinbartes Honorar</label>
+        <div class="controls">{{form.duty}}</div>
+      </div>
+      {% endif %}
 
       <input type="submit" value="Speichern" class="btn btn-primary"/>
       <input type="reset" value="Verwerfen" class="btn" />
