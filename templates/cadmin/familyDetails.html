@@ -12,6 +12,9 @@
       <li class="active"><a href="#A" data-toggle="tab">Kontakt Person</a></li>
       <li><a href="#B" data-toggle="tab">Zu Pflegende Person</a></li>
       <li><a href="#C" data-toggle="tab">Addresse</a></li>
+      {% if perms.cadmin.familyPaymentView %}
+      <li><a href="#D" data-toggle="tab">Honorar</a></li>
+      {% endif %}
     </ul>
     
     <div class="tab-content">
@@ -49,6 +52,15 @@
           {{family.postal_code}} {{family.city}}<br>
         </address>
       </div>
+
+      {% if perms.cadmin.familyPaymentView %}
+      <div class="tab-pane" id="D">
+        <dl>
+          <dt>Vereinbartes Honorar</dt>
+          <dd>{{family.duty}}</dd>
+        </dl>
+      </div>
+      {% endif %}
 
     </div>
   </div>

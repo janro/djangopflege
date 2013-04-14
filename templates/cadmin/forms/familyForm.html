@@ -72,7 +72,6 @@
         <div class="controls">{{form.care_level}}</div>
       </div>
 
-
       <h2>Addresse</h2>
       <div class="control-group">
         <label class="control-label">Stra&szlig;e</label>
@@ -90,6 +89,14 @@
         <label class="control-label">Stadt</label>
         <div class="controls">{{form.city}}</div>
       </div>
+
+      {% if perms.cadmin.familyPaymentView %}
+      <h2>Honorar</h2>
+      <div class="control-group">
+        <label class="control-label">Vereinbartes Honorar</label>
+        <div class="controls">{{form.duty}}</div>
+      </div>
+      {% endif %}
 
       <input type="submit" value="Speichern" class="btn btn-primary"/>
       <input type="reset" value="Verwerfen" class="btn" />

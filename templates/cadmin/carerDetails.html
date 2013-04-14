@@ -12,6 +12,9 @@
       <li class="active"><a href="#A" data-toggle="tab">Basisinformationen</a></li>
       <li><a href="#B" data-toggle="tab">Zusatzinformationen</a></li>
       <li><a href="#C" data-toggle="tab">F&auml;higkeiten und Notitzen</a></li>
+      {% if perms.cadmin.carerPaymentView %}
+      <li><a href="#D" data-toggle="tab">Honorar</a></li>
+      {% endif %}
     </ul>
     
     <div class="tab-content">
@@ -70,6 +73,15 @@
           <dd>{% if carer.remark %}{{carer.remark}}{% else %}keine{% endif %}</dd>
         </dl>
       </div>
+
+      {% if perms.cadmin.carerPaymentView %}
+      <div class="tab-pane" id="D">
+        <dl>
+          <dt>Vereinbartes Honorar</dt>
+          <dd>{{carer.duty}}</dd>
+        </dl>
+      </div>
+      {% endif %}
 
     </div>
   </div>

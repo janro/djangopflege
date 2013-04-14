@@ -118,6 +118,14 @@
         <div class="controls">{{form.bic}}</div>
       </div>
 
+      {% if perms.cadmin.carerPaymentView %}
+      <h2>Honorar</h2>
+      <div class="control-group">
+        <label class="control-label">Vereinbartes Honorar</label>
+        <div class="controls">{{form.duty}}</div>
+      </div>
+      {% endif %}
+
       <h2>Notitzen</h2>
       <div class="control-group">
         <label class="control-label">Notitzen</label>
