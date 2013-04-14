@@ -17,9 +17,9 @@ import datetime
 
 @login_required
 def summary(request):
-  family_count = Family.objects.all().count()
+  family_count = Family.objects.all().filter(archive=False).count()
   family_archive_count = Family.objects.all().filter(archive=True).count()
-  carer_count = Carer.objects.all().count()
+  carer_count = Carer.objects.all().filter(archive=False).count()
   carer_archive_count = Carer.objects.all().filter(archive=True).count()
 
   # start < today <= end
