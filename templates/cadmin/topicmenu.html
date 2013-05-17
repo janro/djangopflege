@@ -35,7 +35,7 @@
   <!-- Carer Section -->
   <li class="nav-header">PflegerInnen</li>
 
-  <li><a href="{% url 'cadmin.views.newCarerList' %}">Liste</a></li>
+  <li><a href="{% url 'cadmin.views.carerList' %}">Liste</a></li>
 
   {% if perms.cadmin.carerCreateDelete %} 
   <li><a href="{% url 'cadmin.views.carerCreateForm' %}">Hinzuf&uuml;gen</a></li>
