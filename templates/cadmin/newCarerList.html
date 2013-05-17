@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}PflegerInnen{% endblock %}
+
+{% block content %}
+
+  <h1>PflegerInnen Liste{% if archive %}&nbsp;- Archiv{% endif %}</h1>
+  <p class="muted">
+    Sortiert nach Nachnamen der pflegenden Personen.
+  </p>
+
+  <div class="btn-group">
+    <button class="btn" onclick="filter('true','carer','5'); stripe('carer');">Aktiv</button>
+    <button class="btn" onclick="filter('','carer','5'); stripe('carer');">Alle</button>
+    <button class="btn" onclick="filter('false','carer','5'); stripe('carer');">Inaktiv</button>
+  </div>
+  
+  <table id="carer" class="table">
+    <thead>
+      <tr>
+        <th>Nachname</th><!--0-->
+        <th>Vorname</th><!--1-->
+        <th>Tel. AT</th><!--2-->
+        <th>Tel. RO</th><!--3-->
+        <th>Aktionen</th><!--4-->
+        <th style="display:none;">active</th><!--5-->
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for carer in active_carers %}
+      <tr>
+        <td>{{carer.lastname}}</td>
+        <td>{{carer.firstname}}</td>
+        <td>{{carer.phone_at|default_if_none:"&nbsp;"}}</td>
+        <td>{{carer.phone_ro|default_if_none:"&nbsp;"}}</td>
+        <td>
+          <a href="{% url 'cadmin.views.carerDetails' carer.id %}">
+            <span class="label">Zeigen</span>
+          </a>
+          &nbsp;
+          <a href="{% url 'cadmin.views.carerUpdateForm' carer.id %}">
+            <span class="label">Bearbeiten</span>
+          </a>
+          &nbsp;
+          {% if perms.cadmin.carerCreateDelete %}
+          {% if archive %} <!-- activate when archived -->
+          <a href="{% url 'cadmin.views.carerActivate' carer.id %}">
+            <span class="label">Reaktivieren</span>
+          </a>
+          {% else %} <!-- archive when activeted -->
+          <a href="{% url 'cadmin.views.carerArchive' carer.id %}">
+            <span class="label">Archivieren</span>
+          </a>
+          {% endif %}
+          {% endif %}
+        </td>
+        <td style="display:none;">true</td>
+      </tr>
+    {% endfor %}
+
+    {% for carer in inactive_carers %}
+      <tr>
+        <td>{{carer.lastname}}</td>
+        <td>{{carer.firstname}}</td>
+        <td>{{carer.phone_at|default_if_none:"&nbsp;"}}</td>
+        <td>{{carer.phone_ro|default_if_none:"&nbsp;"}}</td>
+        <td>
+          <a href="{% url 'cadmin.views.carerDetails' carer.id %}">
+            <span class="label">Zeigen</span>
+          </a>
+          &nbsp;
+          <a href="{% url 'cadmin.views.carerUpdateForm' carer.id %}">
+            <span class="label">Bearbeiten</span>
+          </a>
+          &nbsp;
+          {% if perms.cadmin.carerCreateDelete %}
+          {% if archive %} <!-- activate when archived -->
+          <a href="{% url 'cadmin.views.carerActivate' carer.id %}">
+            <span class="label">Reaktivieren</span>
+          </a>
+          {% else %} <!-- archive when activeted -->
+          <a href="{% url 'cadmin.views.carerArchive' carer.id %}">
+            <span class="label">Archivieren</span>
+          </a>
+          {% endif %}
+          {% endif %}
+        </td>
+        <td style="display:none;">false</td>
+      </tr>
+    {% endfor %}
+
+    </tbody>
+
+  </table>
+
+{% endblock %}
+
+{% block topicmenu %}
+  {% include 'cadmin/topicmenu.html' %}
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript">
+  //from http://www.vonloesch.de/node/23
+  function filter (term, _id, cellNr){
+    var suche = term;
+    //var suche = term.value.toLowerCase();
+    var table = document.getElementById(_id);
+    var ele;
+    for (var r = 1; r < table.rows.length; r++){
+      ele = table.rows[r].cells[cellNr].innerHTML.replace(/<[^>]+>/g,"");
+      if (ele.toLowerCase().indexOf(suche)>=0 )
+        table.rows[r].style.display = '';
+      else table.rows[r].style.display = 'none';
+    }
+  }
+</script>
+
+<script type="text/javascript" src="{{STATIC_URL}}js/gs_sortable.1.2.js"></script>
+
+<script type="text/javascript">
+  //http://www.allmyscripts.com/Table_Sort/index.html
+  var TSort_Data = new Array ('carer', 's','s','','','','');
+  var TSort_Initial = 1;
+</script>
+
+{% endblock %}

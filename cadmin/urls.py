@@ -25,6 +25,7 @@ urlpatterns = patterns('cadmin.views',
 
     # carer section
     (r'^c/$', 'carerList'),
+    (r'^c/new/$', 'newCarerList'),
     (r'^c/archive/$', 'carerArchiveList'),
     (r'^c/edit/$', 'carerCreateForm'),
     (r'^c/(?P<carer_id>\d+)/$', 'carerDetails'),

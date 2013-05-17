@@ -59,6 +59,22 @@ def carerList(request):
     context_instance=RequestContext(request))
 
 @login_required
+def newCarerList(request):
+  
+  from itertools import chain
+  set1 = Operation.objects.filter(end_date__gte = datetime.date.today)
+  set2 = Operation.objects.filter(end_date = None)
+  set3 = list(chain(set1,set2))
+  active_carers = Carer.objects.filter(archive=False).filter(id__in=(ao.id for ao in set3)).order_by('lastname')
+  inactive_carers = Carer.objects.filter(archive=False).exclude(id__in=(ao.id for ao in set3)).order_by('lastname')
+  
+  return render_to_response('cadmin/newCarerList.html',
+    {'active_carers' : active_carers,
+     'inactive_carers' : inactive_carers,
+    },
+    context_instance=RequestContext(request))
+
+@login_required
 def familyDetails(request, family_id):
   family = get_object_or_404(Family, pk=family_id)
   try:
