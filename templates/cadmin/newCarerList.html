@@ -10,9 +10,9 @@
   </p>
 
   <div class="btn-group">
-    <button class="btn" onclick="filter('true','carer','5'); stripe('carer');">Aktiv</button>
-    <button class="btn" onclick="filter('','carer','5'); stripe('carer');">Alle</button>
-    <button class="btn" onclick="filter('false','carer','5'); stripe('carer');">Inaktiv</button>
+    <button class="btn" onclick="filter('true','carer','5');">Aktiv</button>
+    <button class="btn" onclick="filter('','carer','5');">Alle</button>
+    <button class="btn" onclick="filter('false','carer','5');">Inaktiv</button>
   </div>
   
   <table id="carer" class="table">
@@ -123,7 +123,7 @@
 <script type="text/javascript">
   //http://www.allmyscripts.com/Table_Sort/index.html
   var TSort_Data = new Array ('carer', 's','s','','','','');
-  var TSort_Initial = 1;
+  var TSort_Initial = 0;
 </script>
 
 {% endblock %}
