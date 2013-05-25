@@ -62,11 +62,19 @@ def carerList(request):
 def newCarerList(request):
   
   from itertools import chain
-  set1 = Operation.objects.filter(end_date__gte = datetime.date.today)
-  set2 = Operation.objects.filter(end_date = None)
+  # start < today <= end
+  set1 = Operation.objects.filter(
+    start_date__lte = datetime.date.today()).filter(
+    end_date__gte = datetime.date.today()).values_list('carer_id', flat=True)
+  # start < today <= n.A.
+  set2 = Operation.objects.filter(
+    start_date__lte = datetime.date.today()).filter(
+    end_date=None).values_list('carer_id', flat=True)
   set3 = list(chain(set1,set2))
-  active_carers = Carer.objects.filter(archive=False).filter(id__in=(ao.id for ao in set3)).order_by('lastname')
-  inactive_carers = Carer.objects.filter(archive=False).exclude(id__in=(ao.id for ao in set3)).order_by('lastname')
+  
+
+  active_carers = Carer.objects.filter(archive=False).filter(pk__in=set3).order_by('lastname')
+  inactive_carers = Carer.objects.filter(archive=False).exclude(pk__in=set3).order_by('lastname')
   
   return render_to_response('cadmin/newCarerList.html',
     {'active_carers' : active_carers,
