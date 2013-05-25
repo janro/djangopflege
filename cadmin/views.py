@@ -64,12 +64,10 @@ def newCarerList(request):
   from itertools import chain
   # start < today <= end
   set1 = Operation.objects.filter(
-    start_date__lte = datetime.date.today()).filter(
-    end_date__gte = datetime.date.today()).values_list('carer_id', flat=True)
+    start_date__lte = datetime.date.today(), end_date__gte = datetime.date.today()).values_list('carer_id', flat=True)
   # start < today <= n.A.
-  set2 = Operation.objects.filter(
-    start_date__lte = datetime.date.today()).filter(
-    end_date=None).values_list('carer_id', flat=True)
+  set2 = Operation.objects.filter(start_date__lte = datetime.date.today(), end_date=None).values_list('carer_id', flat=True)
+
   set3 = list(chain(set1,set2))
   
 
