@@ -119,6 +119,7 @@ class Family(models.Model):
   date_of_birth = models.DateField(null=True, blank=True)
   archive = models.BooleanField()
   duty = models.IntegerField(null=True, blank=True)
+  remark = models.CharField(max_length=500, null=True, blank=True)
 
   def __str__(self):
     if self.firstname_care_person and self.lastname_care_person:
