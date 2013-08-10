@@ -124,7 +124,9 @@
       <div class="control-group">
         <label class="control-label">Notitzen</label>
         <div class="controls">
-          <textarea id="id_remark" type="text" name="remark" rows="3" maxlength="500"></textarea>
+          <textarea id="id_remark" type="text" name="remark" rows="3" maxlength="500">
+            {{form.remark.value|default_if_none:''}}
+          </textarea>
         </div>
       </div>
 

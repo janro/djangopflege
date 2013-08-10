@@ -56,7 +56,7 @@
 
       <div class="tab-pane" id="D">
         <h3>Notizen</h3>
-        {% if carer.remark %}{{carer.remark}}{% else %}keine{% endif %}
+        {% if family.remark %}{{family.remark}}{% else %}keine{% endif %}
       </div>
 
       {% if perms.cadmin.familyPaymentView %}
