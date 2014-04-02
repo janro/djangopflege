@@ -311,38 +311,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "cadmin/views.py",
-			"settings":
-			{
-				"buffer_size": 17997,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "cadmin/urls.py",
-			"settings":
-			{
-				"buffer_size": 2091,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "templates/cadmin/topicmenu.html",
-			"settings":
-			{
-				"buffer_size": 3688,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "templates/cadmin/newCarerList.html",
-			"settings":
-			{
-				"buffer_size": 4012,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -376,6 +344,18 @@
 	},
 	"file_history":
 	[
+		"/C/Users/jan/Documents/GitHub/djangopflege/cadmin/views.py",
+		"/C/Users/jan/Documents/GitHub/djangopflege/cadmin/urls.py",
+		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/topicmenu.html",
+		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/newCarerList.html",
+		"/C/Users/jan/Documents/GitHub/djangopflege/cadmin/models.py",
+		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/forms/familyForm.html",
+		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/forms/carerForm.html",
+		"/C/Users/jan/Documents/uni/EST1_10W/fragenkatalog.tex",
+		"/C/Users/jan/Documents/private/bewerbung_2013/lebenslauf_rocnik.tex",
+		"/C/Users/jan/Documents/private/bewerbung_2013/publications.bib",
+		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/familyDetails.html",
+		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/carerDetails.html",
 		"/C/Users/jan/Documents/uni/INFOVIS_13S/course_repo/ParallelCoordinates/PCcolumn.ts",
 		"/C/Users/jan/Documents/uni/INFOVIS_13S/course_repo/ParallelCoordinates/ParallelCoordinatesLayout.ts",
 		"/C/Users/jan/Documents/uni/INFOVIS_13S/course_repo/ParallelCoordinates/ParallelCoordinatesEventHandler.ts",
@@ -392,15 +372,10 @@
 		"/C/Users/jan/Documents/uni/INFOVIS_13S/survey_report/report.tex",
 		"/C/Users/jan/Documents/uni/vorlagen/tex/universal_vorlage.tex",
 		"/C/Users/jan/Documents/uni/INFOVIS_13S/survey_report/intro.tex",
-		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/topicmenu.html",
 		"/C/Users/jan/Documents/GitHub/djangopflege/static/js/gs_sortable.1.2.js",
 		"/C/Users/jan/Documents/GitHub/djangopflege/static/js/jquery.min.js",
-		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/forms/carerForm.html",
-		"/C/Users/jan/Documents/GitHub/djangopflege/cadmin/urls.py",
 		"/C/Users/jan/Documents/GitHub/djangopflege/logger/models.py",
 		"/C/Users/jan/Documents/GitHub/djangopflege/logger/views.py",
-		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/forms/familyForm.html",
-		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/familyDetails.html",
 		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/ajax/carerPaymentList.html",
 		"/C/Users/jan/AppData/Roaming/Sublime Text 2/Packages/LaTeXTools/LaTeX.sublime-build",
 		"/C/Users/jan/AppData/Roaming/Sublime Text 2/Packages/LaTeXTools/README.markdown",
@@ -412,10 +387,7 @@
 		"/C/Users/jan/Documents/uni/INFOVIS_13S/survay_presentation/jrocnik_cadgme.tex",
 		"/C/Users/jan/Documents/uni/INFOVIS_13S/survey/survey.tex",
 		"/C/Users/jan/Documents/uni/INFOVIS_13S/survey/README.txt",
-		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/carerDetails.html",
 		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/summary.html",
-		"/C/Users/jan/Documents/GitHub/djangopflege/cadmin/views.py",
-		"/C/Users/jan/Documents/GitHub/djangopflege/cadmin/models.py",
 		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/forms/carerContractPaymentForm.html",
 		"/C/Users/jan/Documents/GitHub/djangopflege/cadmin/forms.py",
 		"/C/Users/jan/Documents/GitHub/djangopflege/templates/cadmin/forms/carerPaymentForm.html",
@@ -450,9 +422,7 @@
 		"/C/Users/jan/Documents/GitHub/djangopflege/templates/menu.html",
 		"/C/Users/jan/Documents/GitHub/djangopflege/templates/testpage.html",
 		"/C/Users/jan/Documents/GitHub/djangopflege/templates/403.html",
-		"/C/Users/jan/Documents/private/bewerbung_2013/lebenslauf_rocnik.tex",
 		"/C/Users/jan/Documents/GitHub/djangopflege/logger/urls.py",
-		"/C/Users/jan/Documents/private/bewerbung_2013/publications.bib",
 		"/C/Users/jan/Desktop/create_carer_09022013.sql",
 		"/C/Users/jan/Desktop/create_families_12022012.sql",
 		"/C/Users/jan/Desktop/fam.csv",
@@ -501,9 +471,7 @@
 		"/C/Users/jan/Documents/GitHub/djangopflege/static/js/bootstrap.min.js",
 		"/C/Users/jan/Documents/GitHub/djangopflege/templates/index2.html",
 		"/C/Users/jan/Documents/GitHub/djangopflege/static/bootstrap/css/bootstrap.min.css",
-		"/C/Python27/Lib/site-packages/django/contrib/admin/views/main.py",
-		"/C/Python27/Lib/site-packages/django/contrib/admin/sites.py",
-		"/C/Users/jan/Documents/GitHub/djangopflege/data.json"
+		"/C/Python27/Lib/site-packages/django/contrib/admin/views/main.py"
 	],
 	"find":
 	{
@@ -666,121 +634,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "cadmin/views.py",
-					"settings":
-					{
-						"buffer_size": 17997,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1322,
-								1322
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 525.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "cadmin/urls.py",
-					"settings":
-					{
-						"buffer_size": 2091,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1049,
-								1049
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "templates/cadmin/topicmenu.html",
-					"settings":
-					{
-						"buffer_size": 3688,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "templates/cadmin/newCarerList.html",
-					"settings":
-					{
-						"buffer_size": 4012,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3985,
-								3985
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1163.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
